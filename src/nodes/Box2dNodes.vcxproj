@@ -159,14 +159,14 @@
       <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)\build\lib\$(Platform)\</AdditionalLibraryDirectories>
     </Link>
-  </ItemDefinitionGroup>
+  </ItemDefinitionGroup>  
   <ItemGroup>
     <Reference Include="System">
       <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
     </Reference>
     <Reference Include="System.ComponentModel.Composition.CodePlex">
-      <HintPath>..\..\..\..\..\vvvv\vvvv_45beta34.2_x86\lib\core\System.ComponentModel.Composition.CodePlex.dll</HintPath>
+      <HintPath>$(SolutionDir)\externals\mixed\System.ComponentModel.Composition.CodePlex.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="System.Data">
@@ -177,27 +177,53 @@
       <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
     </Reference>
-    <Reference Include="VVVV.Core">
-      <HintPath>..\..\..\..\..\vvvv\vvvv_45beta34.2_x86\lib\core\VVVV.Core.dll</HintPath>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Platform)'=='Win32'">
+      <Reference Include="VVVV.Core">
+      <HintPath>$(SolutionDir)\externals\x86\VVVV.Core.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VVVV.Hosting">
-      <HintPath>..\..\..\..\..\vvvv\vvvv_45beta34.2_x86\lib\core\VVVV.Hosting.dll</HintPath>
+      <HintPath>$(SolutionDir)\externals\x86\VVVV.Hosting.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VVVV.PluginInterfaces">
-      <HintPath>..\..\..\..\..\vvvv\vvvv_45beta34.2_x86\lib\core\VVVV.PluginInterfaces.dll</HintPath>
+      <HintPath>$(SolutionDir)\externals\x86\VVVV.PluginInterfaces.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VVVV.Utils">
-      <HintPath>..\..\..\..\..\vvvv\vvvv_45beta34.2_x86\lib\core\VVVV.Utils.dll</HintPath>
+      <HintPath>$(SolutionDir)\externals\x86\VVVV.Utils.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VVVV.Utils3rdParty">
-      <HintPath>..\..\..\..\..\vvvv\vvvv_45beta34.2_x86\lib\core\VVVV.Utils3rdParty.dll</HintPath>
+      <HintPath>$(SolutionDir)\externals\x86\VVVV.Utils3rdParty.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
+  <ItemGroup Condition="'$(Platform)'=='x64'">
+      <Reference Include="VVVV.Core">
+      <HintPath>$(SolutionDir)\externals\x64\VVVV.Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="VVVV.Hosting">
+      <HintPath>$(SolutionDir)\externals\x64\VVVV.Hosting.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="VVVV.PluginInterfaces">
+      <HintPath>$(SolutionDir)\externals\x64\VVVV.PluginInterfaces.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="VVVV.Utils">
+      <HintPath>$(SolutionDir)\externals\x64\VVVV.Utils.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="VVVV.Utils3rdParty">
+      <HintPath>$(SolutionDir)\externals\x64\VVVV.Utils3rdParty.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+  
+  
   <ItemGroup>
     <ClCompile Include="Box2dContactReportsNode.cpp" />
     <ClCompile Include="Utils\ArrayUtils.cpp" />
