@@ -15,6 +15,11 @@ namespace VVVV
 			return this->m_shapes->at(index % this->m_shapes->size());
 		}
 
+		b2Shape* ShapeDataType::Get(int index)
+		{
+			return this->m_shapes->at(index);
+		}
+
 		void ShapeDataType::Reset() 
 		{
 			this->m_shapes->clear();

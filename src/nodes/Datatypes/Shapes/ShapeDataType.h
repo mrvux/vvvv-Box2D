@@ -26,6 +26,8 @@ namespace VVVV
 				ShapeDataType();
 
 				virtual b2Shape* GetSlice(int index);
+
+				b2Shape* Get(int index);
 				void Reset();
 				void Add(b2Shape* shape);
 				int Count();

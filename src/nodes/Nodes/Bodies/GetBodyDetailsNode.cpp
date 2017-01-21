@@ -247,7 +247,6 @@ namespace VVVV
 			}
 		}
 
-
 		void GetBodyDetailsNode::ConnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInBodies)

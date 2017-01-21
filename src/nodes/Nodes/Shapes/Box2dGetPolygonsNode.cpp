@@ -92,11 +92,15 @@ namespace VVVV
 				this->tempCustomId->Clear();
 				this->tempLifeTime->Clear();
 
+				int sliceCount;
+				int* sliceData;
+				this->vInShapes->GetUpStreamSlices(sliceCount, sliceData);
+
 				int cnt = 0;
 				for (int i = 0; i < this->vInShapes->SliceCount ; i++) 
 				{
-					int realslice;
-					this->vInShapes->GetUpsreamSlice(i,realslice);
+					int realslice = sliceData[i];
+					//this->vInShapes->GetUpsreamSlice(i,realslice);
 					b2Shape* shape = this->m_polygons->GetSlice(realslice);
 					
 					if (shape->GetType() == e_polygonShape) 
