@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\DataTypes">
+      <UniqueIdentifier>{30d4f4cf-1e17-413e-ae08-b37c8eb753d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DataTypes\Shapes">
+      <UniqueIdentifier>{1c5c052a-21ae-4995-871e-c90fade77bc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DataTypes\Controllers">
+      <UniqueIdentifier>{58783335-a1b8-4dd2-8efb-1214c7f10eb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Nodes">
+      <UniqueIdentifier>{369ec524-6e3c-46e1-80ba-f7e342953916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Nodes\Shapes">
+      <UniqueIdentifier>{3849c14c-1ee1-445c-9416-b4c74905e974}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Nodes\Shapes\Def">
+      <UniqueIdentifier>{8699f6a4-d37c-4d71-b999-dca6d9e8100b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Nodes\Bodies">
+      <UniqueIdentifier>{8a448282-86dd-4f88-9bcd-c6f0a3c4a25f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Nodes\Forces">
+      <UniqueIdentifier>{d1c6d10c-e5eb-4cb5-be28-5bc446c5c24f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Nodes\Joints">
+      <UniqueIdentifier>{4d3f2e13-73f6-444d-96cb-db354ec99c84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Nodes\Controllers">
+      <UniqueIdentifier>{fcf7155a-8a60-43f6-9110-ffbb6c858f5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Nodes\Controllers\Def">
+      <UniqueIdentifier>{56df9a00-7d65-4cd3-8c34-881431200419}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{cfafdd83-fa1e-40d1-a775-afff6fba5b2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Internals">
+      <UniqueIdentifier>{4518c668-6609-4b55-b238-9c32292d9ab3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Internals\Data">
+      <UniqueIdentifier>{815f3383-c6bd-47b9-9bc1-5860331b7481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Internals\Contacts">
+      <UniqueIdentifier>{023143a1-c36b-4015-8e20-a43cbd17d8e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Internals\Engine">
+      <UniqueIdentifier>{3a32cb2a-05f4-423f-9213-013763902887}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\DataTypes">
+      <UniqueIdentifier>{837a70a8-9253-4f78-8523-831d930b6bde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DataTypes\Shapes">
+      <UniqueIdentifier>{c03e3f10-9ceb-479d-93d7-cd553d9469f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DataTypes\Controllers">
+      <UniqueIdentifier>{68611ea2-a806-407b-b7e0-78d6ce48da64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Nodes">
+      <UniqueIdentifier>{e9833877-1c28-4edd-85ac-1807596ea36f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Nodes\Shapes">
+      <UniqueIdentifier>{6912b31c-cdcc-43d3-90d1-498af7774df5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Nodes\Shapes\Def">
+      <UniqueIdentifier>{abc60665-83e4-4382-ab65-73593c33a800}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Nodes\Bodies">
+      <UniqueIdentifier>{70f2a491-cc5d-456a-950a-72f3b483727f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Nodes\Forces">
+      <UniqueIdentifier>{3d00ed09-275a-43f0-9810-455c88ab0ea8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Nodes\Joints">
+      <UniqueIdentifier>{c579c2be-775a-491e-9b0e-52d8384f8883}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Nodes\Joints\Def">
+      <UniqueIdentifier>{d0345814-dedb-4ecb-9e36-d0fff0c8df07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Nodes\Controllers">
+      <UniqueIdentifier>{181f7a67-81dd-43ca-95b1-9c0ea808fc3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Nodes\Controllers\Def">
+      <UniqueIdentifier>{857b6a57-3e62-42ef-87de-67e7ffd61d34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{6e8f9bcf-5120-499b-8f58-6ea5acdfc6bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Internals">
+      <UniqueIdentifier>{39b03d6d-cd8c-4160-b986-f2dd3afdd2a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Internals\Contact">
+      <UniqueIdentifier>{e34f5d3f-370a-4527-a049-e19c8459c68a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Internals\Data">
+      <UniqueIdentifier>{79ab1231-50bf-43af-a02f-fb780d8953a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Internals\Engine">
+      <UniqueIdentifier>{c742a4a1-b476-4732-9f71-5033140fb598}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Utils\ArrayUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AssemblyInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Box2dAdvancedRayCastNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Box2dContactDetailsDualNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Bodies\Box2dCreateBodyPersistNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Box2dHasContactNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Box2dRayCastNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Internals\Data\ContactResultData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Internals\Engine\ObjectManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Datatypes\BodyDataType.cpp">
+      <Filter>Source Files\DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Datatypes\GroundDataType.cpp">
+      <Filter>Source Files\DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Datatypes\JointDataType.cpp">
+      <Filter>Source Files\DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Datatypes\WorldDataType.cpp">
+      <Filter>Source Files\DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Datatypes\Shapes\ShapeDataType.cpp">
+      <Filter>Source Files\DataTypes\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Datatypes\Shapes\ShapeDefDataType.cpp">
+      <Filter>Source Files\DataTypes\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Datatypes\Controllers\ControllerDataType.cpp">
+      <Filter>Source Files\DataTypes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="Datatypes\Controllers\ControllerDefDataType.cpp">
+      <Filter>Source Files\DataTypes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Box2dAABBQueryNode.cpp">
+      <Filter>Source Files\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Box2dContactDetailsNode.cpp">
+      <Filter>Source Files\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Box2dWorldNode.cpp">
+      <Filter>Source Files\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Shapes\Box2dCreateShapeNode.cpp">
+      <Filter>Source Files\Nodes\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Shapes\Box2dDestroyShape.cpp">
+      <Filter>Source Files\Nodes\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Shapes\Box2dGetCircles.cpp">
+      <Filter>Source Files\Nodes\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Shapes\Box2dGetEdgeChains.cpp">
+      <Filter>Source Files\Nodes\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Shapes\Box2dGetPolygonsNode.cpp">
+      <Filter>Source Files\Nodes\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Shapes\Box2dScaleShapeNode.cpp">
+      <Filter>Source Files\Nodes\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Shapes\Box2dUpdateShapeNode.cpp">
+      <Filter>Source Files\Nodes\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Shapes\Definitions\Box2dBaseShapeDefNode.cpp">
+      <Filter>Source Files\Nodes\Shapes\Def</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Shapes\Definitions\Box2dBoxDefNode.cpp">
+      <Filter>Source Files\Nodes\Shapes\Def</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Shapes\Definitions\Box2dCircleShapeDefNode.cpp">
+      <Filter>Source Files\Nodes\Shapes\Def</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Shapes\Definitions\Box2dEdgeShapeDefNode.cpp">
+      <Filter>Source Files\Nodes\Shapes\Def</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Shapes\Definitions\Box2dPolygonDefNode.cpp">
+      <Filter>Source Files\Nodes\Shapes\Def</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Bodies\Box2dCreateBodyNode.cpp">
+      <Filter>Source Files\Nodes\Bodies</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Bodies\Box2dDestroyBodyNode.cpp">
+      <Filter>Source Files\Nodes\Bodies</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Bodies\Box2dUpdateBodyNode.cpp">
+      <Filter>Source Files\Nodes\Bodies</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Bodies\GetBodyDetailsNode.cpp">
+      <Filter>Source Files\Nodes\Bodies</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Forces\Box2dApplyForceNode.cpp">
+      <Filter>Source Files\Nodes\Forces</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Forces\Box2dApplyImpulseNode.cpp">
+      <Filter>Source Files\Nodes\Forces</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Forces\Box2dApplyTorqueNode.cpp">
+      <Filter>Source Files\Nodes\Forces</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Joints\Create\Box2dCreateDistanceJointNode.cpp">
+      <Filter>Source Files\Nodes\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Joints\Create\Box2dCreateJointNode.cpp">
+      <Filter>Source Files\Nodes\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Joints\Create\Box2dCreateLineJointNode.cpp">
+      <Filter>Source Files\Nodes\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Joints\Create\Box2dCreateMouseJointNode.cpp">
+      <Filter>Source Files\Nodes\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Joints\Create\Box2dCreatePrismaticJointNode.cpp">
+      <Filter>Source Files\Nodes\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Joints\Create\Box2dCreatePulleyJointNode.cpp">
+      <Filter>Source Files\Nodes\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Joints\Create\Box2dCreateRevoluteJointNode.cpp">
+      <Filter>Source Files\Nodes\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Joints\Box2dDestroyJointNode.cpp">
+      <Filter>Source Files\Nodes\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Joints\Box2dSetMotorSpeed.cpp">
+      <Filter>Source Files\Nodes\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Joints\GetJointDetailsNode.cpp">
+      <Filter>Source Files\Nodes\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Joints\MoveMouseJointTargetNode.cpp">
+      <Filter>Source Files\Nodes\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Controllers\Box2dAssignControllerNode.cpp">
+      <Filter>Source Files\Nodes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Controllers\Box2dUnAssignControllerNode.cpp">
+      <Filter>Source Files\Nodes\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Controllers\Box2dBaseControllerDefNode.cpp">
+      <Filter>Source Files\Nodes\Controllers\Def</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Controllers\Box2dBuoyancyControllerDefNode.cpp">
+      <Filter>Source Files\Nodes\Controllers\Def</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Controllers\Box2dConstantAccDefNode.cpp">
+      <Filter>Source Files\Nodes\Controllers\Def</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Controllers\Box2dCVelDefNode.cpp">
+      <Filter>Source Files\Nodes\Controllers\Def</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Controllers\Box2dGravityControllerNode.cpp">
+      <Filter>Source Files\Nodes\Controllers\Def</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Controllers\Box2dTensorDampingControllerDefNode.cpp">
+      <Filter>Source Files\Nodes\Controllers\Def</Filter>
+    </ClCompile>
+    <ClCompile Include="Internals\Data\BodyCustomData.cpp">
+      <Filter>Source Files\Internals\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Internals\Data\JointCustomData.cpp">
+      <Filter>Source Files\Internals\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Internals\Data\ShapeCustomData.cpp">
+      <Filter>Source Files\Internals\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Internals\Contact\ContactListener.cpp">
+      <Filter>Source Files\Internals\Contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="Box2dContactReportsNode.cpp">
+      <Filter>Source Files\Nodes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Utils\ArrayUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Box2dAdvancedRayCastNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Box2dContactDetailsDualNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Bodies\Box2dCreateBodyPersistNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Box2dHasContactNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Box2dRayCastNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Internals\Data\ContactResultData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Internals\Engine\ObjectManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Datatypes\BodyDataType.h">
+      <Filter>Header Files\DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Datatypes\GroundDataType.h">
+      <Filter>Header Files\DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Datatypes\JointDataType.h">
+      <Filter>Header Files\DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Datatypes\WorldDataType.h">
+      <Filter>Header Files\DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Datatypes\Shapes\ShapeDataType.h">
+      <Filter>Header Files\DataTypes\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Datatypes\Shapes\ShapeDefDataType.h">
+      <Filter>Header Files\DataTypes\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Datatypes\Controllers\ControllerDataType.h">
+      <Filter>Header Files\DataTypes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Datatypes\Controllers\ControllerDefDataType.h">
+      <Filter>Header Files\DataTypes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Box2dAABBQueryNode.h">
+      <Filter>Header Files\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Box2dContactDetailsNode.h">
+      <Filter>Header Files\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Box2dWorldNode.h">
+      <Filter>Header Files\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Shapes\Box2dCreateShapeNode.h">
+      <Filter>Header Files\Nodes\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Shapes\Box2dDestroyShape.h">
+      <Filter>Header Files\Nodes\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Shapes\Box2dGetCircles.h">
+      <Filter>Header Files\Nodes\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Shapes\Box2dGetEdgeChains.h">
+      <Filter>Header Files\Nodes\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Shapes\Box2dGetPolygonsNode.h">
+      <Filter>Header Files\Nodes\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Shapes\Box2dScaleShapeNode.h">
+      <Filter>Header Files\Nodes\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Shapes\Box2dUpdateShapeNode.h">
+      <Filter>Header Files\Nodes\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Shapes\Definitions\Box2dBaseShapeDefNode.h">
+      <Filter>Header Files\Nodes\Shapes\Def</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Shapes\Definitions\Box2dBoxDefNode.h">
+      <Filter>Header Files\Nodes\Shapes\Def</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Shapes\Definitions\Box2dCircleShapeDefNode.h">
+      <Filter>Header Files\Nodes\Shapes\Def</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Shapes\Definitions\Box2dEdgeShapeDefNode.h">
+      <Filter>Header Files\Nodes\Shapes\Def</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Shapes\Definitions\Box2dPolygonDefNode.h">
+      <Filter>Header Files\Nodes\Shapes\Def</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Bodies\Box2dCreateBodyNode.h">
+      <Filter>Header Files\Nodes\Bodies</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Bodies\Box2dDestroyBodyNode.h">
+      <Filter>Header Files\Nodes\Bodies</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Bodies\Box2dUpdateBodyNode.h">
+      <Filter>Header Files\Nodes\Bodies</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Bodies\GetBodyDetailsNode.h">
+      <Filter>Header Files\Nodes\Bodies</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Forces\Box2dApplyForceNode.h">
+      <Filter>Header Files\Nodes\Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Forces\Box2dApplyImpulseNode.h">
+      <Filter>Header Files\Nodes\Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Forces\Box2dApplyTorqueNode.h">
+      <Filter>Header Files\Nodes\Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Joints\Create\Box2dCreateLineJointNode.h">
+      <Filter>Header Files\Nodes\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Joints\Create\Box2dCreateMouseJointNode.h">
+      <Filter>Header Files\Nodes\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Joints\Create\Box2dCreatePrismaticJointNode.h">
+      <Filter>Header Files\Nodes\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Joints\Box2dDestroyJointNode.h">
+      <Filter>Header Files\Nodes\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Joints\Box2dSetMotorSpeed.h">
+      <Filter>Header Files\Nodes\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Joints\GetJointDetailsNode.h">
+      <Filter>Header Files\Nodes\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Joints\MoveMouseJointTargetNode.h">
+      <Filter>Header Files\Nodes\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Joints\Create\Box2dCreateDistanceJointNode.h">
+      <Filter>Header Files\Nodes\Joints\Def</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Joints\Create\Box2dCreateJointNode.h">
+      <Filter>Header Files\Nodes\Joints\Def</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Joints\Create\Box2dCreatePulleyJointNode.h">
+      <Filter>Header Files\Nodes\Joints\Def</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Joints\Create\Box2dCreateRevoluteJointNode.h">
+      <Filter>Header Files\Nodes\Joints\Def</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Controllers\Box2dAssignControllerNode.h">
+      <Filter>Header Files\Nodes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Controllers\Box2dUnAssignControllerNode.h">
+      <Filter>Header Files\Nodes\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Controllers\Box2dBaseControllerDefNode.h">
+      <Filter>Header Files\Nodes\Controllers\Def</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Controllers\Box2dBuoyancyControllerDefNode.h">
+      <Filter>Header Files\Nodes\Controllers\Def</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Controllers\Box2dConstantAccDefNode.h">
+      <Filter>Header Files\Nodes\Controllers\Def</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Controllers\Box2dCVelDefNode.h">
+      <Filter>Header Files\Nodes\Controllers\Def</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Controllers\Box2dGravityControllerNode.h">
+      <Filter>Header Files\Nodes\Controllers\Def</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Controllers\Box2dTensorDampingControllerDefNode.h">
+      <Filter>Header Files\Nodes\Controllers\Def</Filter>
+    </ClInclude>
+    <ClInclude Include="Internals\Contact\ContactListener.h">
+      <Filter>Header Files\Internals\Contact</Filter>
+    </ClInclude>
+    <ClInclude Include="Internals\Data\BodyCustomData.h">
+      <Filter>Header Files\Internals\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Internals\Data\JointCustomData.h">
+      <Filter>Header Files\Internals\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Internals\Data\ShapeCustomData.h">
+      <Filter>Header Files\Internals\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Box2dContactReportsNode.h">
+      <Filter>Header Files\Nodes</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
