@@ -1,0 +1,21 @@
+# branches to build
+branches:
+  # whitelist
+  only:
+    - master
+
+image: Visual Studio 2015
+
+platform: x64
+
+configuration: Release
+
+build:
+  project: deploy.targets
+
+artifacts:
+  # pushing a single file
+  - path: Zip/vvvv-box2d-x86.zip
+    name: 32 Bits build
+  - path: Zip/vvvv-box2d-x64.zip
+    name: 64 Bits build
