@@ -8,6 +8,7 @@
 namespace v4 = VVVV::PluginInterfaces::V1;
 namespace gen = System::Collections::Generic;
 namespace v4b2d = VVVV::DataTypes;
+namespace v4math = VVVV::Utils::VMath;
 
 namespace VVVV 
 {

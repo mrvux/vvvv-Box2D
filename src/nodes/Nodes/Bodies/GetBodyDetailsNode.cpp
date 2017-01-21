@@ -20,7 +20,7 @@ namespace VVVV
 
 			this->FHost->CreateNodeInput("Bodies",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInBodies);
 			this->vInBodies->SetSubType(VVVV::Utils::ArrayUtils::DoubleGuidArray(v4b2d::BodyDataType::GUID, v4b2d::GroundDataType::GUID), v4b2d::BodyDataType::FriendlyName);
-			//this->vInBodies->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(BodyDataType::GUID), BodyDataType::FriendlyName);//   
+			//this->vInBodies->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::BodyDataType::GUID), v4b2d::BodyDataType::FriendlyName);//   
 
 			this->FHost->CreateValueInput("Filter Persisted", 1, nullptr, v4::TSliceMode::Single, v4::TPinVisibility::True, this->vInFilterPersisted);
 			this->vInFilterPersisted->SetSubType(0, 1, 1, 0, false,true, false);
@@ -74,9 +74,6 @@ namespace VVVV
 
 			this->FHost->CreateValueOutput("TTL",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutTTL);
 			this->vOutTTL->SetSubType(System::Double::MinValue,System::Double::MaxValue,1,0.0,false,false,false);
-
-			//this->FHost->CreateValueOutput("Velocity",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutVelocity);
-			//this->vOutVelocity->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 		}
 
 
@@ -88,7 +85,6 @@ namespace VVVV
 		
 		void GetBodyDetailsNode::Evaluate(int SpreadMax)
 		{
-			FHost->Log(VVVV::PluginInterfaces::V1::TLogType::Debug, this->vInBodies->IsConnected.ToString());
 			if (this->vInBodies->IsConnected) 
 			{
 				this->m_shapes->Reset();
@@ -136,6 +132,26 @@ namespace VVVV
 				this->vOutLifeTime->SliceCount = cnt;
 				this->vOutHasTTL->SliceCount = cnt;
 				this->vOutTTL->SliceCount = cnt;
+
+				//Get all output pointers
+				double *rawPositionPtr, *rawVelocityPtr;
+				double *rotationPtr, *dynamicPtr, *idPtr, *massPtr, *inertiaPtr,*shapeCntPtr, *isSleepingPtr, *isFrozenPtr, *lifeTimePtr, *hasTTLPtr, *ttlPtr;
+
+				this->vOutPosition->GetValuePointer(rawPositionPtr);
+				this->vOutVelocity->GetValuePointer(rawVelocityPtr);
+
+				this->vOutRotation->GetValuePointer(rotationPtr);
+				this->vOutIsDynamic->GetValuePointer(dynamicPtr);
+				this->vOutMass->GetValuePointer(massPtr);
+				this->vOutInertia->GetValuePointer(inertiaPtr);
+				this->vOutShapeCount->GetValuePointer(shapeCntPtr);
+				this->vOutIsSleeping->GetValuePointer(isSleepingPtr);
+				this->vOutIsFrozen->GetValuePointer(isFrozenPtr);
+
+				this->vOutLifeTime->GetValuePointer(lifeTimePtr);
+				this->vOutHasTTL->GetValuePointer(hasTTLPtr);
+				this->vOutTTL->GetValuePointer(ttlPtr);
+
 				gen::List<System::String^>^ types = gcnew gen::List<System::String^>();
 
 				int cntper = 0;
@@ -156,24 +172,30 @@ namespace VVVV
 
 					b2Vec2 pos = body->GetPosition();
 					b2Vec2 vel = body->GetLinearVelocity();
-					this->vOutPosition->SetValue2D(cntper, pos.x,pos.y);
-					this->vOutVelocity->SetValue2D(cntper, vel.x,vel.y);
-					this->vOutRotation->SetValue(cntper,body->GetAngle() / (System::Math::PI * 2.0));
-					this->vOutIsDynamic->SetValue(cntper, System::Convert::ToInt32(body->IsDynamic()));
-					this->vOutMass->SetValue(cntper,body->GetMass());
-					this->vOutInertia->SetValue(cntper,body->GetInertia());
-					this->vOutIsFrozen->SetValue(cntper, System::Convert::ToDouble(body->IsFrozen()));
-					this->vOutIsSleeping->SetValue(cntper, System::Convert::ToDouble(body->IsSleeping()));
 
+					rawPositionPtr[i * 2] = pos.x;
+					rawPositionPtr[i * 2+ 1] = pos.y;
+
+					rawVelocityPtr[i * 2] = vel.x;
+					rawVelocityPtr[i * 2 + 1] = vel.y;
+
+					rotationPtr[i] = body->GetAngle() / (System::Math::PI * 2.0);
+					dynamicPtr[i] = body->IsDynamic() ? 1.0 : 0.0;
+					massPtr[i] = body->GetMass();
+					inertiaPtr[i] = body->GetInertia();
+					isSleepingPtr[i] = body->IsSleeping() ? 1.0 : 0.0;			
+					isFrozenPtr[i] = body->IsFrozen() ? 1.0 : 0.0;
+					
 					if (this->isbody) 
 					{
 						BodyCustomData* bdata = (BodyCustomData*)body->GetUserData();
 						this->vOutId->SetValue(cntper, bdata->Id);
 						System::String^ str = gcnew System::String(bdata->Custom);
 						this->vOutCustom->SetString(cntper,str);
-						this->vOutLifeTime->SetValue(cntper,bdata->LifeTime);
-						this->vOutHasTTL->SetValue(cntper, System::Convert::ToDouble(bdata->HasTTL));
-						this->vOutTTL->SetValue(cntper,bdata->TTL);
+						
+						lifeTimePtr[cntper] = bdata->LifeTime;
+						hasTTLPtr[cntper] = bdata->HasTTL ? 1.0 : 0.0;
+						ttlPtr[cntper] = bdata->TTL;
 					}
 					else
 					{
