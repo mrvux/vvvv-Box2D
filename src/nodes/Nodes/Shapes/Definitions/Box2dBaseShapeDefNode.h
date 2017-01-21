@@ -1,8 +1,14 @@
 #pragma once
+
+
 #include "../../../DataTypes/Shapes/ShapeDefDataType.h"
 #include "../../../Internals/Data/ShapeCustomData.h"
 
-using namespace VVVV::DataTypes;
+#include "../../../Utils/ArrayUtils.h"
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+namespace gen = System::Collections::Generic;
+namespace v4b2d = VVVV::DataTypes;
 
 namespace VVVV 
 {
@@ -13,8 +19,8 @@ namespace VVVV
 		public:
 			Box2dBaseShapeDefNode(void);
 
-			virtual void SetPluginHost(IPluginHost^ Host);
-			virtual void Configurate(IPluginConfig^ Input);
+			virtual void SetPluginHost(v4::IPluginHost^ Host);
+			virtual void Configurate(v4::IPluginConfig^ Input);
 
 			virtual void Evaluate(int SpreadMax) abstract;
 			
@@ -24,18 +30,18 @@ namespace VVVV
 			}
 	
 		protected:
-			IPluginHost^ FHost;
+			v4::IPluginHost^ FHost;
 						//Details
-			IValueIn^ vInDensity;
-			IValueIn^ vInFriction;
-			IValueIn^ vInRestitution;
-			IValueIn^ vInIsSensor;
-			IValueIn^ vInGroupIndex;
-			IStringIn^ vInCustom;
+			v4::IValueIn^ vInDensity;
+			v4::IValueIn^ vInFriction;
+			v4::IValueIn^ vInRestitution;
+			v4::IValueIn^ vInIsSensor;
+			v4::IValueIn^ vInGroupIndex;
+			v4::IStringIn^ vInCustom;
 
-			INodeOut^ vOutShapes;
+			v4::INodeOut^ vOutShapes;
 
-			ShapeDefDataType^ m_shapes;
+			v4b2d::ShapeDefDataType^ m_shapes;
 
 			virtual void OnPluginHostSet() abstract;
 

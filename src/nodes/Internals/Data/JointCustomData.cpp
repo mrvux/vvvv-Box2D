@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "JointCustomData.h"
 
 JointCustomData::JointCustomData(void)

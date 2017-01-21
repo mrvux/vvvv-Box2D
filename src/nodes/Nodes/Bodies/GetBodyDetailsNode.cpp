@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "GetBodyDetailsNode.h"
 #include "../../Internals/Data/BodyCustomData.h"
 
@@ -11,76 +11,76 @@ namespace VVVV
 
 		GetBodyDetailsNode::GetBodyDetailsNode(void)
 		{
-			this->m_shapes = gcnew ShapeDataType();
+			this->m_shapes = gcnew v4b2d::ShapeDataType();
 		}
 
-		void GetBodyDetailsNode::SetPluginHost(IPluginHost^ Host) 
+		void GetBodyDetailsNode::SetPluginHost(v4::IPluginHost^ Host) 
 		{
 			this->FHost = Host;
 
-			this->FHost->CreateNodeInput("Bodies",TSliceMode::Dynamic,TPinVisibility::True,this->vInBodies);
-			this->vInBodies->SetSubType(ArrayUtils::DoubleGuidArray(BodyDataType::GUID, GroundDataType::GUID), BodyDataType::FriendlyName);
-			//this->vInBodies->SetSubType(ArrayUtils::SingleGuidArray(BodyDataType::GUID), BodyDataType::FriendlyName);//   
+			this->FHost->CreateNodeInput("Bodies",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInBodies);
+			this->vInBodies->SetSubType(VVVV::Utils::ArrayUtils::DoubleGuidArray(v4b2d::BodyDataType::GUID, v4b2d::GroundDataType::GUID), v4b2d::BodyDataType::FriendlyName);
+			//this->vInBodies->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(BodyDataType::GUID), BodyDataType::FriendlyName);//   
 
-			this->FHost->CreateValueInput("Filter Persisted", 1, nullptr, TSliceMode::Single, TPinVisibility::True, this->vInFilterPersisted);
+			this->FHost->CreateValueInput("Filter Persisted", 1, nullptr, v4::TSliceMode::Single, v4::TPinVisibility::True, this->vInFilterPersisted);
 			this->vInFilterPersisted->SetSubType(0, 1, 1, 0, false,true, false);
 
-			this->FHost->CreateValueOutput("Position",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutPosition);
-			this->vOutPosition->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueOutput("Position",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutPosition);
+			this->vOutPosition->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueOutput("Rotation",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutRotation);
-			this->vOutRotation->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueOutput("Rotation",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutRotation);
+			this->vOutRotation->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueOutput("Velocity",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutVelocity);
-			this->vOutVelocity->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueOutput("Velocity",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutVelocity);
+			this->vOutVelocity->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueOutput("Is Dynamic",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutIsDynamic);
-			this->vOutIsDynamic->SetSubType(Double::MinValue,Double::MaxValue,1,0.0,false,true,false);
+			this->FHost->CreateValueOutput("Is Dynamic",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutIsDynamic);
+			this->vOutIsDynamic->SetSubType(System::Double::MinValue,System::Double::MaxValue,1,0.0,false,true,false);
 
-			this->FHost->CreateValueOutput("Is Sleeping",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutIsSleeping);
-			this->vOutIsSleeping->SetSubType(Double::MinValue,Double::MaxValue,1,0.0,false,true,false);
+			this->FHost->CreateValueOutput("Is Sleeping",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutIsSleeping);
+			this->vOutIsSleeping->SetSubType(System::Double::MinValue,System::Double::MaxValue,1,0.0,false,true,false);
 
-			this->FHost->CreateValueOutput("Is Frozen",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutIsFrozen);
-			this->vOutIsFrozen->SetSubType(Double::MinValue,Double::MaxValue,1,0.0,false,true,false);
+			this->FHost->CreateValueOutput("Is Frozen",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutIsFrozen);
+			this->vOutIsFrozen->SetSubType(System::Double::MinValue,System::Double::MaxValue,1,0.0,false,true,false);
 
-			this->FHost->CreateValueOutput("Mass",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutMass);
-			this->vOutMass->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueOutput("Mass",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutMass);
+			this->vOutMass->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueOutput("Inertia",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutInertia);
-			this->vOutInertia->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueOutput("Inertia",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutInertia);
+			this->vOutInertia->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateStringOutput("Custom",TSliceMode::Dynamic,TPinVisibility::True,this->vOutCustom);
+			this->FHost->CreateStringOutput("Custom",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutCustom);
 			this->vOutCustom->SetSubType("",false);
 
-			this->FHost->CreateNodeOutput("Shapes",TSliceMode::Dynamic,TPinVisibility::True,this->vOutShapes);
-			this->vOutShapes->SetSubType(ArrayUtils::SingleGuidArray(ShapeDataType::GUID),ShapeDataType::FriendlyName);
+			this->FHost->CreateNodeOutput("Shapes",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutShapes);
+			this->vOutShapes->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::ShapeDataType::GUID), v4b2d::ShapeDataType::FriendlyName);
 			this->vOutShapes->SetInterface(this->m_shapes);
 
-			this->FHost->CreateStringOutput("Shape Types",TSliceMode::Dynamic,TPinVisibility::True,this->vOutShapeType);
+			this->FHost->CreateStringOutput("Shape Types",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutShapeType);
 			this->vOutShapeType->SetSubType("",false);
 
-			this->FHost->CreateValueOutput("Shape Count",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutShapeCount);
-			this->vOutShapeCount->SetSubType(0,Double::MaxValue,1,0.0,false,false,true);
+			this->FHost->CreateValueOutput("Shape Count",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutShapeCount);
+			this->vOutShapeCount->SetSubType(0,System::Double::MaxValue,1,0.0,false,false,true);
 
 
-			this->FHost->CreateValueOutput("Body Id",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutId);
-			this->vOutId->SetSubType(Double::MinValue,Double::MaxValue,1,0.0,false,false,true);
+			this->FHost->CreateValueOutput("Body Id",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutId);
+			this->vOutId->SetSubType(System::Double::MinValue,System::Double::MaxValue,1,0.0,false,false,true);
 
-			this->FHost->CreateValueOutput("LifeTime",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutLifeTime);
-			this->vOutLifeTime->SetSubType(Double::MinValue,Double::MaxValue,1,0.0,false,false,false);
+			this->FHost->CreateValueOutput("LifeTime",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutLifeTime);
+			this->vOutLifeTime->SetSubType(System::Double::MinValue,System::Double::MaxValue,1,0.0,false,false,false);
 
-			this->FHost->CreateValueOutput("Has TTL",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutHasTTL);
-			this->vOutHasTTL->SetSubType(Double::MinValue,Double::MaxValue,1,0.0,false,true,false);
+			this->FHost->CreateValueOutput("Has TTL",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutHasTTL);
+			this->vOutHasTTL->SetSubType(System::Double::MinValue,System::Double::MaxValue,1,0.0,false,true,false);
 
-			this->FHost->CreateValueOutput("TTL",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutTTL);
-			this->vOutTTL->SetSubType(Double::MinValue,Double::MaxValue,1,0.0,false,false,false);
+			this->FHost->CreateValueOutput("TTL",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutTTL);
+			this->vOutTTL->SetSubType(System::Double::MinValue,System::Double::MaxValue,1,0.0,false,false,false);
 
-			//this->FHost->CreateValueOutput("Velocity",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutVelocity);
-			//this->vOutVelocity->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			//this->FHost->CreateValueOutput("Velocity",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutVelocity);
+			//this->vOutVelocity->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 		}
 
 
-		void GetBodyDetailsNode::Configurate(IPluginConfig^ Input)
+		void GetBodyDetailsNode::Configurate(v4::IPluginConfig^ Input)
 		{
 
 		}
@@ -136,7 +136,7 @@ namespace VVVV
 				this->vOutLifeTime->SliceCount = cnt;
 				this->vOutHasTTL->SliceCount = cnt;
 				this->vOutTTL->SliceCount = cnt;
-				List<String^>^ types = gcnew List<String^>();
+				gen::List<System::String^>^ types = gcnew gen::List<System::String^>();
 
 				int cntper = 0;
 				for (int i = 0; i < this->vInBodies->SliceCount; i++) 
@@ -158,21 +158,21 @@ namespace VVVV
 					b2Vec2 vel = body->GetLinearVelocity();
 					this->vOutPosition->SetValue2D(cntper, pos.x,pos.y);
 					this->vOutVelocity->SetValue2D(cntper, vel.x,vel.y);
-					this->vOutRotation->SetValue(cntper,body->GetAngle() / (Math::PI * 2.0));
-					this->vOutIsDynamic->SetValue(cntper,Convert::ToInt32(body->IsDynamic()));
+					this->vOutRotation->SetValue(cntper,body->GetAngle() / (System::Math::PI * 2.0));
+					this->vOutIsDynamic->SetValue(cntper, System::Convert::ToInt32(body->IsDynamic()));
 					this->vOutMass->SetValue(cntper,body->GetMass());
 					this->vOutInertia->SetValue(cntper,body->GetInertia());
-					this->vOutIsFrozen->SetValue(cntper,Convert::ToDouble(body->IsFrozen()));
-					this->vOutIsSleeping->SetValue(cntper,Convert::ToDouble(body->IsSleeping()));
+					this->vOutIsFrozen->SetValue(cntper, System::Convert::ToDouble(body->IsFrozen()));
+					this->vOutIsSleeping->SetValue(cntper, System::Convert::ToDouble(body->IsSleeping()));
 
 					if (this->isbody) 
 					{
 						BodyCustomData* bdata = (BodyCustomData*)body->GetUserData();
 						this->vOutId->SetValue(cntper, bdata->Id);
-						String^ str = gcnew String(bdata->Custom);
+						System::String^ str = gcnew System::String(bdata->Custom);
 						this->vOutCustom->SetString(cntper,str);
 						this->vOutLifeTime->SetValue(cntper,bdata->LifeTime);
-						this->vOutHasTTL->SetValue(cntper,Convert::ToDouble(bdata->HasTTL));
+						this->vOutHasTTL->SetValue(cntper, System::Convert::ToDouble(bdata->HasTTL));
 						this->vOutTTL->SetValue(cntper,bdata->TTL);
 					}
 					else
@@ -193,7 +193,7 @@ namespace VVVV
 							shapecount++;
 						}
 
-						String^ str;
+						System::String^ str;
 						switch (s->GetType())
 						{
 						case e_circleShape:
@@ -226,27 +226,27 @@ namespace VVVV
 		}
 
 
-		void GetBodyDetailsNode::ConnectPin(IPluginIO^ Pin)
+		void GetBodyDetailsNode::ConnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInBodies)
         	{
-				INodeIOBase^ usI;
+				v4::INodeIOBase^ usI;
 				try 
 				{
 					this->vInBodies->GetUpstreamInterface(usI);
-					this->m_bodies = (BodyDataType^)usI;
+					this->m_bodies = (v4b2d::BodyDataType^)usI;
 					this->isbody = true;
 				} 
-				catch (Exception^ ex)
+				catch (System::Exception^ ex)
 				{
 					this->vInBodies->GetUpstreamInterface(usI);
-					this->mGround = (GroundDataType^)usI;
+					this->mGround = (v4b2d::GroundDataType^)usI;
 					this->isbody = false;
 				}
         	}
 		}
 
-		void GetBodyDetailsNode::DisconnectPin(IPluginIO^ Pin)
+		void GetBodyDetailsNode::DisconnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInBodies)
         	{

@@ -1,12 +1,17 @@
 #pragma once
 
+#include "Box2D.h"
+#include <vector>
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+
 namespace VVVV 
 {
 	namespace DataTypes
 	{
-		[GuidAttribute("D2E73B5C-22DA-449f-A6FB-4117A5761307"),
-		InterfaceType(ComInterfaceType::InterfaceIsIUnknown)]
-		public interface class IJointIO: INodeIOBase
+		[System::Runtime::InteropServices::GuidAttribute("D2E73B5C-22DA-449f-A6FB-4117A5761307"),
+			System::Runtime::InteropServices::InterfaceType(System::Runtime::InteropServices::ComInterfaceType::InterfaceIsIUnknown)]
+		public interface class IJointIO: v4::INodeIOBase
 		{
 			b2Joint* GetSlice(int index);
 		};
@@ -15,7 +20,7 @@ namespace VVVV
 		public ref class JointDataType : IJointIO 
 		{
 			private:
-				static Guid^ m_guid;
+				static System::Guid^ m_guid;
 				std::vector<b2Joint*>* m_joints;
 			public:
 				JointDataType();
@@ -25,10 +30,10 @@ namespace VVVV
 				void Add(b2Joint* body);
 				int Size();
 
-				static String^ FriendlyName = "Box2d Joint";
-				static property Guid^ GUID 
+				static System::String^ FriendlyName = "Box2d Joint";
+				static property System::Guid^ GUID 
 				{
-					Guid^ get() 
+					System::Guid^ get() 
 					{
 						return gcnew System::Guid("D2E73B5C-22DA-449f-A6FB-4117A5761307");
 					}

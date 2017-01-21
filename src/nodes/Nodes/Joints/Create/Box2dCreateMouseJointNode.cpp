@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dCreateMouseJointNode.h"
 
 namespace VVVV 
@@ -11,16 +11,16 @@ namespace VVVV
 
 		void Box2dCreateMouseJointNode::OnPluginHostSet() 
 		{
-			this->FHost->CreateValueInput("Target", 2, nullptr , TSliceMode::Dynamic, TPinVisibility::True, this->vInTarget);
-			this->vInTarget->SetSubType2D(Double::MinValue, Double::MaxValue, 0.01, 0,0, false,false, false);
+			this->FHost->CreateValueInput("Target", 2, nullptr , v4::TSliceMode::Dynamic, v4::TPinVisibility::True, this->vInTarget);
+			this->vInTarget->SetSubType2D(System::Double::MinValue, System::Double::MaxValue, 0.01, 0,0, false,false, false);
 
-			this->FHost->CreateValueInput("Frequency",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInFrequency);
-			this->vInFrequency->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Frequency",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInFrequency);
+			this->vInFrequency->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Damping Ratio",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInDampingRatio);
+			this->FHost->CreateValueInput("Damping Ratio",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInDampingRatio);
 			this->vInDampingRatio->SetSubType(0,1,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Prevent Double", 1, nullptr, TSliceMode::Dynamic, TPinVisibility::True, this->vInPreventDouble);
+			this->FHost->CreateValueInput("Prevent Double", 1, nullptr, v4::TSliceMode::Dynamic, v4::TPinVisibility::True, this->vInPreventDouble);
 			this->vInPreventDouble->SetSubType(0, 1, 1, 0, false,true, false);
 
 		}
@@ -41,7 +41,7 @@ namespace VVVV
 						{
 							double freq,dr,cc,tx,ty,dblprevent;
 							int realslice1,realslice2;
-							String^ cust;
+							System::String^ cust;
 
 							this->vInPreventDouble->GetValue(i, dblprevent);
 							this->vInBody2->GetUpsreamSlice(i % this->vInBody2->SliceCount,realslice2);
@@ -72,7 +72,7 @@ namespace VVVV
 								
 								JointCustomData* jdata = new JointCustomData();
 								jdata->Id = this->mWorld->GetNewJointId();
-								jdata->Custom = (char*)(void*)Marshal::StringToHGlobalAnsi(cust);
+								jdata->Custom = (char*)(void*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(cust);
 
 								b2Joint* j = this->mWorld->GetWorld()->CreateJoint(&md);
 								j->SetUserData(jdata);

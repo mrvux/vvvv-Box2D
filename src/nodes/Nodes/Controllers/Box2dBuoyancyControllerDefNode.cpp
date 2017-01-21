@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dBuoyancyControllerDefNode.h"
 
 namespace VVVV 
@@ -7,7 +7,7 @@ namespace VVVV
 	{
 		Box2dBuoyancyControllerDefNode::Box2dBuoyancyControllerDefNode(void)
 		{
-			this->m_controller = gcnew ControllerDataType();
+			this->m_controller = gcnew v4b2d::ControllerDataType();
 		}
 
 		void Box2dBuoyancyControllerDefNode::OnEvaluate(int SpreadMax, bool reset)
@@ -60,20 +60,20 @@ namespace VVVV
 		
 		void Box2dBuoyancyControllerDefNode::OnPluginHostSet()
 		{
-			this->FHost->CreateValueInput("Normal",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInNormal);
-			this->vInNormal->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,1.0,false,false,false);
+			this->FHost->CreateValueInput("Normal",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInNormal);
+			this->vInNormal->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,1.0,false,false,false);
 
-			this->FHost->CreateValueInput("Offset",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInOffset);
-			this->vInOffset->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Offset",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInOffset);
+			this->vInOffset->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Density",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInDensity);
-			this->vInDensity->SetSubType(Double::MinValue,Double::MaxValue,0.01,2.0,false,false,false);
+			this->FHost->CreateValueInput("Density",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInDensity);
+			this->vInDensity->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,2.0,false,false,false);
 
-			this->FHost->CreateValueInput("Linear Drag",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInLinearDrag);
-			this->vInLinearDrag->SetSubType(Double::MinValue,Double::MaxValue,0.01,2.0,false,false,false);
+			this->FHost->CreateValueInput("Linear Drag",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInLinearDrag);
+			this->vInLinearDrag->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,2.0,false,false,false);
 
-			this->FHost->CreateValueInput("Angular Drag",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInAngularDrag);
-			this->vInAngularDrag->SetSubType(Double::MinValue,Double::MaxValue,0.01,1.0,false,false,false);
+			this->FHost->CreateValueInput("Angular Drag",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInAngularDrag);
+			this->vInAngularDrag->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,1.0,false,false,false);
 		}
 
 	}

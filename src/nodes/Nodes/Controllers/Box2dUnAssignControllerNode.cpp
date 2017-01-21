@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dUnAssignControllerNode.h"
 
 namespace VVVV 
@@ -10,44 +10,44 @@ namespace VVVV
 		{
 		}
 
-		void Box2dUnAssignControllerNode::SetPluginHost(IPluginHost^ Host)
+		void Box2dUnAssignControllerNode::SetPluginHost(v4::IPluginHost^ Host)
 		{
 			this->FHost = Host;
 
-			this->FHost->CreateNodeInput("Controller",TSliceMode::Dynamic,TPinVisibility::True,this->vInController);
-			this->vInController->SetSubType(ArrayUtils::SingleGuidArray(ControllerDataType::GUID),ControllerDataType::FriendlyName);
+			this->FHost->CreateNodeInput("Controller",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInController);
+			this->vInController->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::ControllerDataType::GUID), v4b2d::ControllerDataType::FriendlyName);
 
-			this->FHost->CreateNodeInput("Body",TSliceMode::Dynamic,TPinVisibility::True,this->vInBody);
-			this->vInBody->SetSubType(ArrayUtils::SingleGuidArray(BodyDataType::GUID),BodyDataType::FriendlyName);
+			this->FHost->CreateNodeInput("Body",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInBody);
+			this->vInBody->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::BodyDataType::GUID), v4b2d::BodyDataType::FriendlyName);
 
-			this->FHost->CreateValueInput("Do UnAssign",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInDoCreate);
-			this->vInDoCreate->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,true,false,false);
+			this->FHost->CreateValueInput("Do UnAssign",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInDoCreate);
+			this->vInDoCreate->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,true,false,false);
 
 		}
 
 		
-		void Box2dUnAssignControllerNode::Configurate(IPluginConfig^ Input) 
+		void Box2dUnAssignControllerNode::Configurate(v4::IPluginConfig^ Input) 
 		{
 		}
 
 		
-		void Box2dUnAssignControllerNode::ConnectPin(IPluginIO^ Pin)
+		void Box2dUnAssignControllerNode::ConnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInBody) 
 			{
-				INodeIOBase^ usI;
+				v4::INodeIOBase^ usI;
 				this->vInBody->GetUpstreamInterface(usI);
-				this->m_body = (BodyDataType^)usI;
+				this->m_body = (v4b2d::BodyDataType^)usI;
 			}
 			if (Pin == this->vInController) 
 			{
-				INodeIOBase^ usI;
+				v4::INodeIOBase^ usI;
 				this->vInController->GetUpstreamInterface(usI);
-				this->m_controller = (ControllerDataType^)usI;
+				this->m_controller = (v4b2d::ControllerDataType^)usI;
 			}
 		}
 	
-		void Box2dUnAssignControllerNode::DisconnectPin(IPluginIO^ Pin)
+		void Box2dUnAssignControllerNode::DisconnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInBody)
         	{

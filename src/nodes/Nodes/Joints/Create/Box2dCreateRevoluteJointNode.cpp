@@ -1,4 +1,3 @@
-#include "StdAfx.h"
 #include "Box2dCreateRevoluteJointNode.h"
 
 namespace VVVV 
@@ -11,26 +10,26 @@ namespace VVVV
 
 		void Box2dCreateRevoluteJointNode::OnPluginHostSet() 
 		{
-			this->FHost->CreateValueInput("Position 1",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInPosition);
-			this->vInPosition->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueInput("Position 1",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInPosition);
+			this->vInPosition->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Min Angle",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInMinAngle);
-			this->vInMinAngle->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Min Angle",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInMinAngle);
+			this->vInMinAngle->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Max Angle",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInMaxAngle);
-			this->vInMaxAngle->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Max Angle",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInMaxAngle);
+			this->vInMaxAngle->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Enable Limit",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInEnableLimit);
-			this->vInEnableLimit->SetSubType(Double::MinValue,Double::MaxValue,1.0,0.0,false,true,false);
+			this->FHost->CreateValueInput("Enable Limit",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInEnableLimit);
+			this->vInEnableLimit->SetSubType(System::Double::MinValue,System::Double::MaxValue,1.0,0.0,false,true,false);
 
-			this->FHost->CreateValueInput("Max Motor Torque",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInMaxMotorTorque);
-			this->vInMaxMotorTorque->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Max Motor Torque",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInMaxMotorTorque);
+			this->vInMaxMotorTorque->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Motor Speed",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInMotorSpeed);
-			this->vInMotorSpeed->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Motor Speed",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInMotorSpeed);
+			this->vInMotorSpeed->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Enable Motor",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInEnableMotor);
-			this->vInEnableMotor->SetSubType(Double::MinValue,Double::MaxValue,1.0,0.0,false,true,false);
+			this->FHost->CreateValueInput("Enable Motor",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInEnableMotor);
+			this->vInEnableMotor->SetSubType(System::Double::MinValue,System::Double::MaxValue,1.0,0.0,false,true,false);
 		}
 
 		void Box2dCreateRevoluteJointNode::Evaluate(int SpreadMax)
@@ -54,7 +53,7 @@ namespace VVVV
 							double px,py,mina,maxa,cc;
 							double enlimit,enmotor,motorq,motspeed;
 							int realslice1,realslice2;
-							String^ cust;
+							System::String^ cust;
 
 							b2Body* body1;
 
@@ -84,18 +83,18 @@ namespace VVVV
 
 							b2RevoluteJointDef jointDef;
 							jointDef.Initialize(body1, body2, b2Vec2(px,py));
-							jointDef.lowerAngle = mina * (Math::PI * 2.0);
-							jointDef.upperAngle = maxa * (Math::PI * 2.0);
+							jointDef.lowerAngle = mina * (System::Math::PI * 2.0);
+							jointDef.upperAngle = maxa * (System::Math::PI * 2.0);
 							jointDef.collideConnected= cc >= 0.5;
 							jointDef.enableLimit = enlimit >= 0.5;
-							jointDef.maxMotorTorque = Convert::ToSingle(motorq);
-							jointDef.motorSpeed = Convert::ToSingle(motspeed);
+							jointDef.maxMotorTorque = System::Convert::ToSingle(motorq);
+							jointDef.motorSpeed = System::Convert::ToSingle(motspeed);
 							jointDef.enableMotor = enmotor >= 0.5;
 							
 
 							JointCustomData* jdata = new JointCustomData();
 							jdata->Id = this->mWorld->GetNewJointId();
-							jdata->Custom = (char*)(void*)Marshal::StringToHGlobalAnsi(cust);
+							jdata->Custom = (char*)(void*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(cust);
 
 							b2Joint* j = this->mWorld->GetWorld()->CreateJoint(&jointDef);
 							j->SetUserData(jdata);

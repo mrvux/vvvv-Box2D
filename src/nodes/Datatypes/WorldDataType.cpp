@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "WorldDataType.h"
 
 namespace VVVV 

@@ -137,9 +137,6 @@
     <ClCompile Include="Internals\Engine\ObjectManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Datatypes\BodyDataType.cpp">
       <Filter>Source Files\DataTypes</Filter>
     </ClCompile>
@@ -326,12 +323,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Internals\Engine\ObjectManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Datatypes\BodyDataType.h">

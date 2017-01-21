@@ -1,23 +1,27 @@
 #pragma once
 #include "../../DataTypes/BodyDataType.h"
 
-using namespace VVVV::DataTypes;
+#include "../../Utils/ArrayUtils.h"
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+namespace gen = System::Collections::Generic;
+namespace v4b2d = VVVV::DataTypes;
 
 namespace VVVV 
 {
 	namespace Nodes 
 	{
-		public ref class Box2dUpdateBodyNode : IPlugin,IPluginConnections
+		public ref class Box2dUpdateBodyNode : v4::IPlugin,v4::IPluginConnections
 		{
 		public:
 			Box2dUpdateBodyNode(void);
 
-			static property IPluginInfo^ PluginInfo 
+			static property v4::IPluginInfo^ PluginInfo 
 				{
-					IPluginInfo^ get() 
+					v4::IPluginInfo^ get() 
 					{
-						//IPluginInfo^ Info;
-						IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
+						//v4::IPluginInfo^ Info;
+						v4::IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
 						Info->Name = "UpdateBody";
 						Info->Category = "Box2d";
 						Info->Version = "";
@@ -38,11 +42,11 @@ namespace VVVV
 					}
 				}
 
-			virtual void SetPluginHost(IPluginHost^ Host);
-			virtual void Configurate(IPluginConfig^ Input);
+			virtual void SetPluginHost(v4::IPluginHost^ Host);
+			virtual void Configurate(v4::IPluginConfig^ Input);
 			virtual void Evaluate(int SpreadMax);
-			virtual void ConnectPin(IPluginIO^ Pin);
-			virtual void DisconnectPin(IPluginIO^ Pin);
+			virtual void ConnectPin(v4::IPluginIO^ Pin);
+			virtual void DisconnectPin(v4::IPluginIO^ Pin);
 			
 			virtual property bool AutoEvaluate 
 			{
@@ -50,32 +54,32 @@ namespace VVVV
 			}
 
 		private:
-			IPluginHost^ FHost;
+			v4::IPluginHost^ FHost;
 
-			INodeIn^ vInBodies;
-			BodyDataType^ m_bodies;
+			v4::INodeIn^ vInBodies;
+			v4b2d::BodyDataType^ m_bodies;
 
-			IValueIn^ vInPosition;
-			IValueIn^ vInSetPosition;
+			v4::IValueIn^ vInPosition;
+			v4::IValueIn^ vInSetPosition;
 
-			IValueIn^ vInAngle;
-			IValueIn^ vInSetAngle;
+			v4::IValueIn^ vInAngle;
+			v4::IValueIn^ vInSetAngle;
 
-			IValueIn^ vInVelocity;
-			IValueIn^ vInSetVelocity;
+			v4::IValueIn^ vInVelocity;
+			v4::IValueIn^ vInSetVelocity;
 
-			IValueIn^ vInAngularVelocity;
-			IValueIn^ vInSetAngularVelocity;
+			v4::IValueIn^ vInAngularVelocity;
+			v4::IValueIn^ vInSetAngularVelocity;
 
-			IStringIn^ vInCustom;
-			IValueIn^ vInSetCustom;
+			v4::IStringIn^ vInCustom;
+			v4::IValueIn^ vInSetCustom;
 
-			IValueIn^ vInSleeping;
-			IValueIn^ vInSetSleeping;
+			v4::IValueIn^ vInSleeping;
+			v4::IValueIn^ vInSetSleeping;
 
-			IValueIn^ vInHasTTL;
-			IValueIn^ vInTTL;
-			IValueIn^ vInSetTTL;
+			v4::IValueIn^ vInHasTTL;
+			v4::IValueIn^ vInTTL;
+			v4::IValueIn^ vInSetTTL;
 			
 
 

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dPolygonDefNode.h"
 
 namespace VVVV 
@@ -23,10 +23,10 @@ namespace VVVV
 			{
 
 				double x,y,count,friction,restitution,density,issensor,group;
-				String^ custom;
-				int max = Math::Max(this->vInVerticesCount->SliceCount,this->vInFriction->SliceCount);
-				max = Math::Max(max,this->vInDensity->SliceCount);
-				max = Math::Max(max,this->vInRestitution->SliceCount);
+				System::String^ custom;
+				int max = System::Math::Max(this->vInVerticesCount->SliceCount,this->vInFriction->SliceCount);
+				max = System::Math::Max(max,this->vInDensity->SliceCount);
+				max = System::Math::Max(max,this->vInRestitution->SliceCount);
 
 				this->vOutShapes->SliceCount = max;
 
@@ -45,8 +45,8 @@ namespace VVVV
 
 					b2PolygonDef* shapeDef = this->m_shapes->AddPolygon();
 
-					count = Math::Min(count,24.0);
-					count = Math::Max(count,3.0);
+					count = System::Math::Min(count,24.0);
+					count = System::Math::Max(count,3.0);
 
 					shapeDef->vertexCount = count;
 
@@ -64,7 +64,7 @@ namespace VVVV
 					shapeDef->friction = friction;
 					shapeDef->restitution = restitution;
 					shapeDef->isSensor = issensor >= 0.5;
-					shapeDef->filter.groupIndex = Convert::ToInt32(group);
+					shapeDef->filter.groupIndex = System::Convert::ToInt32(group);
 					this->m_shapes->AddCustom(custom);
 				}
 
@@ -75,10 +75,10 @@ namespace VVVV
 		
 		void Box2dPolygonDefNode::OnPluginHostSet() 
 		{
-			this->FHost->CreateValueInput("Vertices",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInVertices);
-			this->vInVertices->SetSubType2D(0,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueInput("Vertices",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInVertices);
+			this->vInVertices->SetSubType2D(0,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Vertices Count",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInVerticesCount);
+			this->FHost->CreateValueInput("Vertices Count",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInVerticesCount);
 			this->vInVerticesCount->SetSubType(3,24,1,1.0,false,false,true);
 
 		}

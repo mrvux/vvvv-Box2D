@@ -3,22 +3,26 @@
 #include "../../DataTypes/BodyDataType.h"
 #include "../../DataTypes/Controllers/ControllerDataType.h"
 
-using namespace VVVV::DataTypes;
+#include "../../Utils/ArrayUtils.h"
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+namespace gen = System::Collections::Generic;
+namespace v4b2d = VVVV::DataTypes;
 
 namespace VVVV 
 {
 	namespace Nodes 
 	{
-		public ref class Box2dUnAssignControllerNode : IPlugin,IPluginConnections
+		public ref class Box2dUnAssignControllerNode : v4::IPlugin,v4::IPluginConnections
 		{
 		public:
 			Box2dUnAssignControllerNode(void);
-			static property IPluginInfo^ PluginInfo 
+			static property v4::IPluginInfo^ PluginInfo 
 				{
-					IPluginInfo^ get() 
+					v4::IPluginInfo^ get() 
 					{
-						//IPluginInfo^ Info;
-						IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
+						//v4::IPluginInfo^ Info;
+						v4::IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
 						Info->Name = "UnAssignController";
 						Info->Category = "Box2d";
 						Info->Version = "";
@@ -43,10 +47,10 @@ namespace VVVV
 
 
 
-			virtual void SetPluginHost(IPluginHost^ Host);
-			virtual void Configurate(IPluginConfig^ Input);
-			virtual void ConnectPin(IPluginIO^ Pin);
-			virtual void DisconnectPin(IPluginIO^ Pin);
+			virtual void SetPluginHost(v4::IPluginHost^ Host);
+			virtual void Configurate(v4::IPluginConfig^ Input);
+			virtual void ConnectPin(v4::IPluginIO^ Pin);
+			virtual void DisconnectPin(v4::IPluginIO^ Pin);
 
 			virtual void Evaluate(int SpreadMax);
 			
@@ -55,14 +59,14 @@ namespace VVVV
 				bool get() { return true; }
 			}
 		private:
-			IPluginHost^ FHost;
-			INodeIn^ vInController;
-			ControllerDataType^ m_controller;
+			v4::IPluginHost^ FHost;
+			v4::INodeIn^ vInController;
+			v4b2d::ControllerDataType^ m_controller;
 
-			INodeIn^ vInBody;
-			BodyDataType^ m_body;
+			v4::INodeIn^ vInBody;
+			v4b2d::BodyDataType^ m_body;
 
-			IValueIn^ vInDoCreate;
+			v4::IValueIn^ vInDoCreate;
 		};
 	}
 }

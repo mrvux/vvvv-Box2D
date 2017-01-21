@@ -3,34 +3,38 @@
 #include "../../DataTypes/GroundDataType.h"
 #include "../../DataTypes/Shapes/ShapeDataType.h"
 
-using namespace VVVV::DataTypes;
+#include "../../Utils/ArrayUtils.h"
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+namespace gen = System::Collections::Generic;
+namespace v4b2d = VVVV::DataTypes;
 
 namespace VVVV 
 {
 	namespace Nodes 
 	{
-		public ref class GetBodyDetailsNode : IPlugin,IPluginConnections
+		public ref class GetBodyDetailsNode : v4::IPlugin,v4::IPluginConnections
 		{
 		public:
 			GetBodyDetailsNode(void);
 
-			virtual void SetPluginHost(IPluginHost^ Host);
-			virtual void Configurate(IPluginConfig^ Input);
+			virtual void SetPluginHost(v4::IPluginHost^ Host);
+			virtual void Configurate(v4::IPluginConfig^ Input);
 			virtual void Evaluate(int SpreadMax);
-			virtual void ConnectPin(IPluginIO^ Pin);
-			virtual void DisconnectPin(IPluginIO^ Pin);
+			virtual void ConnectPin(v4::IPluginIO^ Pin);
+			virtual void DisconnectPin(v4::IPluginIO^ Pin);
 			
 			virtual property bool AutoEvaluate 
 			{
 				bool get() { return false; }
 			}
 
-			static property IPluginInfo^ PluginInfo 
+			static property v4::IPluginInfo^ PluginInfo 
 			{
-				IPluginInfo^ get() 
+				v4::IPluginInfo^ get() 
 					{
-						//IPluginInfo^ Info;
-						IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
+						//v4::IPluginInfo^ Info;
+						v4::IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
 						Info->Name = "GetBodyDetails";
 						Info->Category = "Box2d";
 						Info->Version = "";
@@ -54,32 +58,32 @@ namespace VVVV
 
 
 		private:
-			IPluginHost^ FHost;
+			v4::IPluginHost^ FHost;
 
-			INodeIn^ vInBodies;
-			IValueIn^ vInFilterPersisted;
-			BodyDataType^ m_bodies;
-			GroundDataType^ mGround;
+			v4::INodeIn^ vInBodies;
+			v4::IValueIn^ vInFilterPersisted;
+			v4b2d::BodyDataType^ m_bodies;
+			v4b2d::GroundDataType^ mGround;
 			bool isbody;
 
-			IValueOut^ vOutPosition;
-			IValueOut^ vOutRotation;
-			IValueOut^ vOutVelocity;
-			IValueOut^ vOutIsDynamic;
-			IValueOut^ vOutIsSleeping;
-			IValueOut^ vOutIsFrozen;
-			IValueOut^ vOutMass;
-			IValueOut^ vOutInertia;
-			IStringOut^ vOutCustom;
-			INodeOut^ vOutShapes;
-			IStringOut^ vOutShapeType;
-			IValueOut^ vOutShapeCount;
-			IValueOut^ vOutLifeTime;
-			IValueOut^ vOutTTL;
-			IValueOut^ vOutHasTTL;
+			v4::IValueOut^ vOutPosition;
+			v4::IValueOut^ vOutRotation;
+			v4::IValueOut^ vOutVelocity;
+			v4::IValueOut^ vOutIsDynamic;
+			v4::IValueOut^ vOutIsSleeping;
+			v4::IValueOut^ vOutIsFrozen;
+			v4::IValueOut^ vOutMass;
+			v4::IValueOut^ vOutInertia;
+			v4::IStringOut^ vOutCustom;
+			v4::INodeOut^ vOutShapes;
+			v4::IStringOut^ vOutShapeType;
+			v4::IValueOut^ vOutShapeCount;
+			v4::IValueOut^ vOutLifeTime;
+			v4::IValueOut^ vOutTTL;
+			v4::IValueOut^ vOutHasTTL;
 
-			IValueOut^ vOutId;
-			ShapeDataType^ m_shapes;
+			v4::IValueOut^ vOutId;
+			v4b2d::ShapeDataType^ m_shapes;
 
 		};
 	}

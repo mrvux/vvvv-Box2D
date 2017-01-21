@@ -1,12 +1,17 @@
 #pragma once
 
+#include "Box2D.h"
+#include <vector>
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+
 namespace VVVV 
 {
 	namespace DataTypes 
 	{
-		[GuidAttribute("6A531781-24FC-4948-AA97-5DDDFE5A3125"),
-		InterfaceType(ComInterfaceType::InterfaceIsIUnknown)]
-		public interface class IControllerDefIO: INodeIOBase
+		[System::Runtime::InteropServices::GuidAttribute("6A531781-24FC-4948-AA97-5DDDFE5A3125"),
+			System::Runtime::InteropServices::InterfaceType(System::Runtime::InteropServices::ComInterfaceType::InterfaceIsIUnknown)]
+		public interface class IControllerDefIO: v4::INodeIOBase
 		{
 			b2ControllerDef* GetController();
 		};
@@ -14,18 +19,18 @@ namespace VVVV
 		public ref class ControllerDefDataType : IControllerDefIO
 		{
 			private:
-				static Guid^ FGuid;
+				static System::Guid^ FGuid;
 				b2ControllerDef* m_controller;
 
 			public:
 				ControllerDefDataType(void);
 				
-				static String^ FriendlyName = "Box2d Controller Definition";
-				static property Guid^ GUID 
+				static System::String^ FriendlyName = "Box2d Controller Definition";
+				static property System::Guid^ GUID 
 				{
-					Guid^ get() 
+					System::Guid^ get() 
 					{
-						if (FGuid == Guid::Empty) 
+						if (FGuid == System::Guid::Empty) 
 						{
 							FGuid = gcnew System::Guid("6A531781-24FC-4948-AA97-5DDDFE5A3125");
 						}

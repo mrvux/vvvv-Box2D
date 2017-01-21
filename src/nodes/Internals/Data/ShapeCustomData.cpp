@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "ShapeCustomData.h"
 
 ShapeCustomData::ShapeCustomData(void)

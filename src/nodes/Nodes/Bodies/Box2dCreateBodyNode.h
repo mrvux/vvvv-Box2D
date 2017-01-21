@@ -3,23 +3,27 @@
 #include "../../DataTypes/Shapes/ShapeDefDataType.h"
 #include "../../DataTypes/BodyDataType.h"
 
-using namespace VVVV::DataTypes;
+#include "../../Utils/ArrayUtils.h"
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+namespace gen = System::Collections::Generic;
+namespace v4b2d = VVVV::DataTypes;
 
 namespace VVVV 
 {
 	namespace Nodes 
 	{
-		public ref class Box2dCreateBodyNode : IPlugin,IPluginConnections
+		public ref class Box2dCreateBodyNode : v4::IPlugin,v4::IPluginConnections
 		{
 		public:
 			Box2dCreateBodyNode(void);
 
-			static property IPluginInfo^ PluginInfo 
+			static property v4::IPluginInfo^ PluginInfo 
 				{
-					IPluginInfo^ get() 
+					v4::IPluginInfo^ get() 
 					{
-						//IPluginInfo^ Info;
-						IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
+						//v4::IPluginInfo^ Info;
+						v4::IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
 						Info->Name = "CreateBody";
 						Info->Category = "Box2d";
 						Info->Version = "";
@@ -41,11 +45,11 @@ namespace VVVV
 				}
 
 
-			virtual void SetPluginHost(IPluginHost^ Host);
-			virtual void Configurate(IPluginConfig^ Input);
+			virtual void SetPluginHost(v4::IPluginHost^ Host);
+			virtual void Configurate(v4::IPluginConfig^ Input);
 			virtual void Evaluate(int SpreadMax);
-			virtual void ConnectPin(IPluginIO^ Pin);
-			virtual void DisconnectPin(IPluginIO^ Pin);
+			virtual void ConnectPin(v4::IPluginIO^ Pin);
+			virtual void DisconnectPin(v4::IPluginIO^ Pin);
 			
 			virtual property bool AutoEvaluate 
 			{
@@ -53,32 +57,32 @@ namespace VVVV
 			}
 
 		private:
-			IPluginHost^ FHost;
+			v4::IPluginHost^ FHost;
 
-			INodeIn^ vInWorld;
-			INodeIn^ vInShapes;
+			v4::INodeIn^ vInWorld;
+			v4::INodeIn^ vInShapes;
 
-			IValueIn^ vInPosition;
-			IValueIn^ vInAngle;
-			IValueIn^ vInVelocity;
-			IValueIn^ vInAngularVelocity;
-			IValueIn^ vInLinearDamping;
-			IValueIn^ vInAngularDamping;
-			IValueIn^ vInIsBullet;
-			IValueIn^ vInFixedRotation;
-			IStringIn^ vInCustom;
-			IValueIn^ vInHasTTL;
-			IValueIn^ vInTTL;
-			IValueIn^ vInDoCreate;
+			v4::IValueIn^ vInPosition;
+			v4::IValueIn^ vInAngle;
+			v4::IValueIn^ vInVelocity;
+			v4::IValueIn^ vInAngularVelocity;
+			v4::IValueIn^ vInLinearDamping;
+			v4::IValueIn^ vInAngularDamping;
+			v4::IValueIn^ vInIsBullet;
+			v4::IValueIn^ vInFixedRotation;
+			v4::IStringIn^ vInCustom;
+			v4::IValueIn^ vInHasTTL;
+			v4::IValueIn^ vInTTL;
+			v4::IValueIn^ vInDoCreate;
 
-			WorldDataType^ mWorld;
-			ShapeDefDataType^ mShapes;
+			v4b2d::WorldDataType^ mWorld;
+			v4b2d::ShapeDefDataType^ mShapes;
 
-			BodyDataType^ mBodies;
+			v4b2d::BodyDataType^ mBodies;
 
-			IValueOut^ vOutCanCreate;
-			INodeOut^ vOutBodies;
-			IValueOut^ vOutId;
+			v4::IValueOut^ vOutCanCreate;
+			v4::INodeOut^ vOutBodies;
+			v4::IValueOut^ vOutId;
 
 		};
 	}

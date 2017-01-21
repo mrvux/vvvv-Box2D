@@ -3,34 +3,38 @@
 #include "../../DataTypes/BodyDataType.h"
 #include "../../DataTypes/JointDataType.h"
 
-using namespace VVVV::DataTypes;
+#include "../../Utils/ArrayUtils.h"
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+namespace gen = System::Collections::Generic;
+namespace v4b2d = VVVV::DataTypes;
 
 namespace VVVV 
 {
 	namespace Nodes 
 	{
-		public ref class GetJointDetailsNode : IPlugin,IPluginConnections
+		public ref class GetJointDetailsNode : v4::IPlugin,v4::IPluginConnections
 		{
 		public:
 			GetJointDetailsNode(void);
 
-			virtual void SetPluginHost(IPluginHost^ Host);
-			virtual void Configurate(IPluginConfig^ Input);
+			virtual void SetPluginHost(v4::IPluginHost^ Host);
+			virtual void Configurate(v4::IPluginConfig^ Input);
 			virtual void Evaluate(int SpreadMax);
-			virtual void ConnectPin(IPluginIO^ Pin);
-			virtual void DisconnectPin(IPluginIO^ Pin);
+			virtual void ConnectPin(v4::IPluginIO^ Pin);
+			virtual void DisconnectPin(v4::IPluginIO^ Pin);
 			
 			virtual property bool AutoEvaluate 
 			{
 				bool get() { return false; }
 			}
 
-			static property IPluginInfo^ PluginInfo 
+			static property v4::IPluginInfo^ PluginInfo 
 			{
-				IPluginInfo^ get() 
+				v4::IPluginInfo^ get() 
 					{
-						//IPluginInfo^ Info;
-						IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
+						//v4::IPluginInfo^ Info;
+						v4::IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
 						Info->Name = "GetJointDetails";
 						Info->Category = "Box2d";
 						Info->Version = "";
@@ -54,25 +58,25 @@ namespace VVVV
 
 
 		private:
-			IPluginHost^ FHost;
+			v4::IPluginHost^ FHost;
 
-			INodeIn^ vInJoints;
-			JointDataType^ m_joints;
+			v4::INodeIn^ vInJoints;
+			v4b2d::JointDataType^ m_joints;
 
 
-			INodeOut^ vOutBody1;
-			BodyDataType^ m_bodies1;
-			IValueOut^ vOutPosition1;
+			v4::INodeOut^ vOutBody1;
+			v4b2d::BodyDataType^ m_bodies1;
+			v4::IValueOut^ vOutPosition1;
 
-			INodeOut^ vOutBody2;
-			BodyDataType^ m_bodies2;
-			IValueOut^ vOutPosition2;
+			v4::INodeOut^ vOutBody2;
+			v4b2d::BodyDataType^ m_bodies2;
+			v4::IValueOut^ vOutPosition2;
 
-			IStringOut^ vOutType;
+			v4::IStringOut^ vOutType;
 
-			IStringOut^ vOutCustom;
-			IValueOut^ vOutId;
-			IValueOut^ vOutLifeTime;
+			v4::IStringOut^ vOutCustom;
+			v4::IValueOut^ vOutId;
+			v4::IValueOut^ vOutLifeTime;
 
 		};
 	}

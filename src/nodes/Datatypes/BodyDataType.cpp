@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "BodyDataType.h"
 
 namespace VVVV 

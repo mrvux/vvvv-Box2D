@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dGravityControllerNode.h"
 
 
@@ -8,7 +8,7 @@ namespace VVVV
 	{
 		Box2dGravityControllerDefNode::Box2dGravityControllerDefNode(void)
 		{
-			this->m_controller = gcnew ControllerDataType();
+			this->m_controller = gcnew v4b2d::ControllerDataType();
 		}
 
 		void Box2dGravityControllerDefNode::OnEvaluate(int SpreadMax, bool reset)
@@ -45,11 +45,11 @@ namespace VVVV
 		
 		void Box2dGravityControllerDefNode::OnPluginHostSet()
 		{
-			this->FHost->CreateValueInput("Force",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInForce);
-			this->vInForce->SetSubType(Double::MinValue,Double::MaxValue,0.01,1.0,false,false,false);
+			this->FHost->CreateValueInput("Force",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInForce);
+			this->vInForce->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,1.0,false,false,false);
 
-			this->FHost->CreateValueInput("Inv Square",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInInvSquare);
-			this->vInInvSquare->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,true,false);
+			this->FHost->CreateValueInput("Inv Square",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInInvSquare);
+			this->vInInvSquare->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,true,false);
 		}
 
 	}

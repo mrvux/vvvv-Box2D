@@ -8,17 +8,17 @@ namespace VVVV
 		{
 			public:
 
-				static array<Guid> ^ SingleGuidArray(Guid^ uid) 
+				static array<System::Guid>^ SingleGuidArray(System::Guid^ uid)
 				{
-					array<Guid> ^ arr1d = gcnew array<Guid>(1);
+					array<System::Guid>^ arr1d = gcnew array<System::Guid>(1);
 					arr1d->SetValue(uid,0);
 
 					return arr1d;
 				}
 
-				static array<Guid> ^ DoubleGuidArray(Guid^ uid1,Guid^ uid2) 
+				static array<System::Guid> ^ DoubleGuidArray(System::Guid^ uid1, System::Guid^ uid2)
 				{
-					array<Guid> ^ arr1d = gcnew array<Guid>(2);
+					array<System::Guid> ^ arr1d = gcnew array<System::Guid>(2);
 					arr1d->SetValue(uid1,0);
 					arr1d->SetValue(uid2,1);
 

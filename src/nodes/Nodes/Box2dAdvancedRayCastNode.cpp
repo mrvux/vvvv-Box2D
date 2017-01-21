@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dAdvancedRayCastNode.h"
 
 
@@ -8,55 +8,55 @@ namespace VVVV
 	{
 		Box2dAdvancedRayCastNode::Box2dAdvancedRayCastNode(void)
 		{
-			this->mBodies = gcnew BodyDataType();
-			this->mShapes = gcnew ShapeDataType();
+			this->mBodies = gcnew v4b2d::BodyDataType();
+			this->mShapes = gcnew v4b2d::ShapeDataType();
 		}
 
-		void Box2dAdvancedRayCastNode::SetPluginHost(IPluginHost^ Host) 
+		void Box2dAdvancedRayCastNode::SetPluginHost(v4::IPluginHost^ Host) 
 		{
 			this->FHost = Host;
 
-			this->FHost->CreateNodeInput("World",TSliceMode::Dynamic,TPinVisibility::True,this->vInWorld);
-			this->vInWorld->SetSubType(ArrayUtils::SingleGuidArray(WorldDataType::GUID),WorldDataType::FriendlyName);
+			this->FHost->CreateNodeInput("World",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInWorld);
+			this->vInWorld->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::WorldDataType::GUID), v4b2d::WorldDataType::FriendlyName);
 
-			this->FHost->CreateValueInput("Origin",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInStartPos);
-			this->vInStartPos->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,-0.1,-0.1,false,false,false);
+			this->FHost->CreateValueInput("Origin",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInStartPos);
+			this->vInStartPos->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,-0.1,-0.1,false,false,false);
 
-			this->FHost->CreateValueInput("Destination",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInEndPos);
-			this->vInEndPos->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.1,0.1,false,false,false);
+			this->FHost->CreateValueInput("Destination",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInEndPos);
+			this->vInEndPos->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.1,0.1,false,false,false);
 
-			this->FHost->CreateValueInput("Bounces Count", 1, nullptr, TSliceMode::Dynamic, TPinVisibility::True, this->vInMaxCount);
-			this->vInMaxCount->SetSubType(1, Double::MaxValue, 1, 1, false,false, true);
+			this->FHost->CreateValueInput("Bounces Count", 1, nullptr, v4::TSliceMode::Dynamic, v4::TPinVisibility::True, this->vInMaxCount);
+			this->vInMaxCount->SetSubType(1, System::Double::MaxValue, 1, 1, false,false, true);
 
-			this->FHost->CreateValueInput("Do Query",1,nullptr,TSliceMode::Single,TPinVisibility::True,this->vInDoQuery);
+			this->FHost->CreateValueInput("Do Query",1,nullptr,v4::TSliceMode::Single,v4::TPinVisibility::True,this->vInDoQuery);
 			this->vInDoQuery->SetSubType(0,1,1,0.0,true,false,false);
 
-			this->FHost->CreateValueOutput("Shapes Count",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutShapeCount);
-			this->vOutShapeCount->SetSubType(0,Double::MaxValue,1,0.0,true,false,true);
+			this->FHost->CreateValueOutput("Shapes Count",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutShapeCount);
+			this->vOutShapeCount->SetSubType(0,System::Double::MaxValue,1,0.0,true,false,true);
 
-			this->FHost->CreateValueOutput("Segments Count",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutSegmentsCount);
-			this->vOutSegmentsCount->SetSubType(0,Double::MaxValue,1,0.0,true,false,true);
+			this->FHost->CreateValueOutput("Segments Count",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutSegmentsCount);
+			this->vOutSegmentsCount->SetSubType(0,System::Double::MaxValue,1,0.0,true,false,true);
 
-			this->FHost->CreateValueOutput("Vertices",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutSegments);
-			this->vOutSegments->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.1,0.1,false,false,false);
+			this->FHost->CreateValueOutput("Vertices",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutSegments);
+			this->vOutSegments->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.1,0.1,false,false,false);
 
-			this->FHost->CreateNodeOutput("Shapes",TSliceMode::Dynamic,TPinVisibility::True,this->vOutShapes);
-			this->vOutShapes->SetSubType(ArrayUtils::SingleGuidArray(ShapeDataType::GUID),ShapeDataType::FriendlyName);
+			this->FHost->CreateNodeOutput("Shapes",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutShapes);
+			this->vOutShapes->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::ShapeDataType::GUID), v4b2d::ShapeDataType::FriendlyName);
 			this->vOutShapes->SetInterface(this->mShapes);
 
-			this->FHost->CreateValueOutput("Shape Ids",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutShapeId);
-			this->vOutShapeId->SetSubType(0,Double::MaxValue,1,0,false,false,true);
+			this->FHost->CreateValueOutput("Shape Ids",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutShapeId);
+			this->vOutShapeId->SetSubType(0,System::Double::MaxValue,1,0,false,false,true);
 
-			this->FHost->CreateNodeOutput("Bodies",TSliceMode::Dynamic,TPinVisibility::True,this->vOutBodies);
-			this->vOutBodies->SetSubType(ArrayUtils::SingleGuidArray(BodyDataType::GUID),BodyDataType::FriendlyName);
+			this->FHost->CreateNodeOutput("Bodies",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutBodies);
+			this->vOutBodies->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::BodyDataType::GUID), v4b2d::BodyDataType::FriendlyName);
 			this->vOutBodies->SetInterface(this->mBodies);
 
-			this->FHost->CreateValueOutput("Body Ids",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutBodyId);
-			this->vOutBodyId->SetSubType(0,Double::MaxValue,1,0,false,false,true);
+			this->FHost->CreateValueOutput("Body Ids",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutBodyId);
+			this->vOutBodyId->SetSubType(0,System::Double::MaxValue,1,0,false,false,true);
 
 		}
 
-		void Box2dAdvancedRayCastNode::Configurate(IPluginConfig^ Input)
+		void Box2dAdvancedRayCastNode::Configurate(v4::IPluginConfig^ Input)
 		{
 
 		}
@@ -223,17 +223,17 @@ namespace VVVV
 			}
 		}
 
-		void Box2dAdvancedRayCastNode::ConnectPin(IPluginIO^ Pin)
+		void Box2dAdvancedRayCastNode::ConnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInWorld) 
 			{
-				INodeIOBase^ usI;
+				v4::INodeIOBase^ usI;
 				this->vInWorld->GetUpstreamInterface(usI);
-				this->m_world = (WorldDataType^)usI;
+				this->m_world = (v4b2d::WorldDataType^)usI;
 			}
 		}
 
-		void Box2dAdvancedRayCastNode::DisconnectPin(IPluginIO^ Pin)
+		void Box2dAdvancedRayCastNode::DisconnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInWorld)
         	{

@@ -1,12 +1,17 @@
 #pragma once
 
+#include "Box2D.h"
+#include <vector>
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+
 namespace VVVV 
 {
 	namespace DataTypes 
 	{
-		[GuidAttribute("AA9E5FA2-50B5-4cb8-AE16-4F160CAB3A69"),
-		InterfaceType(ComInterfaceType::InterfaceIsIUnknown)]
-		public interface class IGroundIO: INodeIOBase
+		[System::Runtime::InteropServices::GuidAttribute("AA9E5FA2-50B5-4cb8-AE16-4F160CAB3A69"),
+			System::Runtime::InteropServices::InterfaceType(System::Runtime::InteropServices::ComInterfaceType::InterfaceIsIUnknown)]
+		public interface class IGroundIO: v4::INodeIOBase
 		{
 			b2Body* GetGround();
 			bool IsValid();
@@ -18,7 +23,7 @@ namespace VVVV
 		public ref class GroundDataType : IGroundIO 
 		{
 			private:
-				static Guid^ m_guid;
+				static System::Guid^ m_guid;
 				b2Body* m_ground;
 				bool m_isvalid;
 			public:
@@ -30,10 +35,10 @@ namespace VVVV
 				virtual void SetGround(b2Body* ground);
 
 
-				static String^ FriendlyName = "Box2d Ground";
-				static property Guid^ GUID 
+				static System::String^ FriendlyName = "Box2d Ground";
+				static property System::Guid^ GUID 
 				{
-					Guid^ get() 
+					System::Guid^ get() 
 					{
 						return gcnew System::Guid("AA9E5FA2-50B5-4cb8-AE16-4F160CAB3A69");
 					}

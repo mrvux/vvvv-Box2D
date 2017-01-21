@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dDestroyBodyNode.h"
 
 #include "../../Internals/Data/BodyCustomData.h"
@@ -7,21 +7,21 @@ namespace VVVV
 {
 	namespace Nodes 
 	{
-		void Box2dDestroyBodyNode::SetPluginHost(IPluginHost^ Host) 
+		void Box2dDestroyBodyNode::SetPluginHost(v4::IPluginHost^ Host) 
 		{
 			this->FHost = Host;
 
-			this->FHost->CreateNodeInput("Bodies",TSliceMode::Dynamic,TPinVisibility::True,this->vInBodies);
-			this->vInBodies->SetSubType(ArrayUtils::SingleGuidArray(BodyDataType::GUID),BodyDataType::FriendlyName);
+			this->FHost->CreateNodeInput("Bodies",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInBodies);
+			this->vInBodies->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::BodyDataType::GUID), v4b2d::BodyDataType::FriendlyName);
 
-			this->FHost->CreateValueInput("Do Destroy",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInDoDestroy);
-			this->vInDoDestroy->SetSubType(Double::MinValue,Double::MaxValue,1.0,0.0,true,false,false);	
+			this->FHost->CreateValueInput("Do Destroy",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInDoDestroy);
+			this->vInDoDestroy->SetSubType(System::Double::MinValue,System::Double::MaxValue,1.0,0.0,true,false,false);	
 
 			
 
 		}
 
-		void Box2dDestroyBodyNode::Configurate(IPluginConfig^ Input)
+		void Box2dDestroyBodyNode::Configurate(v4::IPluginConfig^ Input)
 		{
 
 		}
@@ -58,18 +58,18 @@ namespace VVVV
 
 
 
-		void Box2dDestroyBodyNode::ConnectPin(IPluginIO^ Pin)
+		void Box2dDestroyBodyNode::ConnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInBodies) 
 			{
-				INodeIOBase^ usI;
+				v4::INodeIOBase^ usI;
 				this->vInBodies->GetUpstreamInterface(usI);
-				this->m_bodies = (BodyDataType^)usI;
+				this->m_bodies = (v4b2d::BodyDataType^)usI;
 			}
 		}
 
 
-		void Box2dDestroyBodyNode::DisconnectPin(IPluginIO^ Pin)
+		void Box2dDestroyBodyNode::DisconnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInBodies)
         	{

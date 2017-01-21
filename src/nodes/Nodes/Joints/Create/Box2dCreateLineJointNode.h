@@ -3,21 +3,25 @@
 #include "../../../DataTypes/BodyDataType.h"
 #include "Box2dCreateJointNode.h"
 
-using namespace VVVV::DataTypes;
+#include "../../../Utils/ArrayUtils.h"
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+namespace gen = System::Collections::Generic;
+namespace v4b2d = VVVV::DataTypes;
 
 namespace VVVV 
 {
 	namespace Nodes 
 	{
-		public ref class Box2dCreateLineJointNode : Box2dCreateJointNode, IPlugin, IPluginConnections
+		public ref class Box2dCreateLineJointNode : Box2dCreateJointNode, v4::IPlugin, v4::IPluginConnections
 		{
 		public:
-			static property IPluginInfo^ PluginInfo 
+			static property v4::IPluginInfo^ PluginInfo 
 				{
-					IPluginInfo^ get() 
+					v4::IPluginInfo^ get() 
 					{
-						//IPluginInfo^ Info;
-						IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
+						//v4::IPluginInfo^ Info;
+						v4::IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
 						Info->Name = "CreateLineJoint";
 						Info->Category = "Box2d";
 						Info->Version = "";
@@ -48,18 +52,18 @@ namespace VVVV
 		protected:
 			virtual void OnPluginHostSet() override;
 		private:
-			IValueIn^ vInPosition;
+			v4::IValueIn^ vInPosition;
 
-			IValueIn^ vInLocalAxis;
+			v4::IValueIn^ vInLocalAxis;
 
-			IValueIn^ vInEnableLimit;
+			v4::IValueIn^ vInEnableLimit;
 
-			IValueIn^ vInLowTranslation;
-			IValueIn^ vInUpTranslation;
+			v4::IValueIn^ vInLowTranslation;
+			v4::IValueIn^ vInUpTranslation;
 
-			IValueIn^ vInMaxMotorForce;
-			IValueIn^ vInMotorSpeed;
-			IValueIn^ vInEnableMotor;
+			v4::IValueIn^ vInMaxMotorForce;
+			v4::IValueIn^ vInMotorSpeed;
+			v4::IValueIn^ vInEnableMotor;
 		};
 	}
 }

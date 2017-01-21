@@ -3,7 +3,12 @@
 #include "../../DataTypes/WorldDataType.h"
 #include "../../DataTypes/Controllers/ControllerDataType.h"
 
-using namespace VVVV::DataTypes;
+#include "../../Utils/ArrayUtils.h"
+
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+namespace gen = System::Collections::Generic;
+namespace v4b2d = VVVV::DataTypes;
 
 namespace VVVV 
 {
@@ -15,10 +20,10 @@ namespace VVVV
 			Box2dBaseControllerDefNode(void);
 			~Box2dBaseControllerDefNode();
 
-			virtual void SetPluginHost(IPluginHost^ Host);
-			virtual void Configurate(IPluginConfig^ Input) {}
-			virtual void ConnectPin(IPluginIO^ Pin);
-			virtual void DisconnectPin(IPluginIO^ Pin);
+			virtual void SetPluginHost(v4::IPluginHost^ Host);
+			virtual void Configurate(v4::IPluginConfig^ Input) {}
+			virtual void ConnectPin(v4::IPluginIO^ Pin);
+			virtual void DisconnectPin(v4::IPluginIO^ Pin);
 			virtual void Evaluate(int SpreadMax);
 
 			virtual property bool AutoEvaluate 
@@ -30,15 +35,15 @@ namespace VVVV
 			virtual void OnEvaluate(int SpreadMax, bool reset) abstract;
 		
 
-			IPluginHost^ FHost;
-			INodeIn^ vInWorld;
-			WorldDataType^ m_world;
-			IValueIn^ vInClear;
+			v4::IPluginHost^ FHost;
+			v4::INodeIn^ vInWorld;
+			v4b2d::WorldDataType^ m_world;
+			v4::IValueIn^ vInClear;
 
-			ControllerDataType^ m_controller;
-			INodeOut^ vOutController;
+			v4b2d::ControllerDataType^ m_controller;
+			v4::INodeOut^ vOutController;
 			std::vector<b2Controller*>* ctrl;
-			//IValueOut^ vOutBodyCount;
+			//v4::IValueOut^ vOutBodyCount;
 		};
 
 

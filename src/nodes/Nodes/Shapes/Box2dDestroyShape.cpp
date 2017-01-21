@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dDestroyShape.h"
 
 #include "../../Internals/Data/ShapeCustomData.h"
@@ -11,20 +11,20 @@ namespace VVVV
 		{
 		}
 
-		void Box2dDestroyShape::SetPluginHost(IPluginHost^ Host) 
+		void Box2dDestroyShape::SetPluginHost(v4::IPluginHost^ Host) 
 		{
 			this->FHost = Host;
 
-			this->FHost->CreateNodeInput("Shapes",TSliceMode::Dynamic,TPinVisibility::True,this->vInShapes);
-			this->vInShapes->SetSubType(ArrayUtils::SingleGuidArray(ShapeDataType::GUID),ShapeDataType::FriendlyName);
+			this->FHost->CreateNodeInput("Shapes",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInShapes);
+			this->vInShapes->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::ShapeDataType::GUID), v4b2d::ShapeDataType::FriendlyName);
 
-			this->FHost->CreateValueInput("Do Destroy",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInDoDestroy);
-			this->vInDoDestroy->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,true,false,false);	
+			this->FHost->CreateValueInput("Do Destroy",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInDoDestroy);
+			this->vInDoDestroy->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,true,false,false);	
 
 		}
 
 
-		void Box2dDestroyShape::Configurate(IPluginConfig^ Input)
+		void Box2dDestroyShape::Configurate(v4::IPluginConfig^ Input)
 		{
 
 		}
@@ -59,17 +59,17 @@ namespace VVVV
 			}
 		}
 
-		void Box2dDestroyShape::ConnectPin(IPluginIO^ Pin)
+		void Box2dDestroyShape::ConnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInShapes) 
 			{
-				INodeIOBase^ usI;
+				v4::INodeIOBase^ usI;
 				this->vInShapes->GetUpstreamInterface(usI);
-				this->m_shapes = (ShapeDataType^)usI;
+				this->m_shapes = (v4b2d::ShapeDataType^)usI;
 			}
 		}
 
-		void Box2dDestroyShape::DisconnectPin(IPluginIO^ Pin)
+		void Box2dDestroyShape::DisconnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInShapes)
         	{

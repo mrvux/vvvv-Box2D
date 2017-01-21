@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "ShapeDefDataType.h"
 
 namespace VVVV 
@@ -8,7 +8,7 @@ namespace VVVV
 		ShapeDefDataType::ShapeDefDataType(void)
 		{
 			this->m_shapes = new std::vector<b2ShapeDef*>;
-			this->m_custom = gcnew List<String^>();
+			this->m_custom = gcnew gen::List<System::String^>();
 		}
 
 		ShapeDefDataType::~ShapeDefDataType(void)
@@ -22,7 +22,7 @@ namespace VVVV
 			return this->m_shapes->at(index % this->m_shapes->size());
 		}
 
-		String^ ShapeDefDataType::GetCustom(int index)
+		System::String^ ShapeDefDataType::GetCustom(int index)
 		{
 			return this->m_custom[index % this->m_custom->Count];
 		}
@@ -39,7 +39,7 @@ namespace VVVV
 			this->m_custom->Clear();
 		}
 
-		void ShapeDefDataType::AddCustom(String^ cust) 
+		void ShapeDefDataType::AddCustom(System::String^ cust) 
 		{
 			this->m_custom->Add(cust);
 		}

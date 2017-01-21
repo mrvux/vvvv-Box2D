@@ -1,12 +1,17 @@
 #pragma once
 
+#include "Box2D.h"
+#include <vector>
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+
 namespace VVVV 
 {
 	namespace DataTypes 
 	{
-		[GuidAttribute("D0FA06A8-E796-46b2-AB21-497009F871BD"),
-		InterfaceType(ComInterfaceType::InterfaceIsIUnknown)]
-		public interface class IShapeIO: INodeIOBase
+		[System::Runtime::InteropServices::GuidAttribute("D0FA06A8-E796-46b2-AB21-497009F871BD"),
+			System::Runtime::InteropServices::InterfaceType(System::Runtime::InteropServices::ComInterfaceType::InterfaceIsIUnknown)]
+		public interface class IShapeIO: v4::INodeIOBase
 		{
 			b2Shape* GetSlice(int index);
 		};
@@ -15,7 +20,7 @@ namespace VVVV
 		public ref class ShapeDataType : IShapeIO 
 		{
 			private:
-				static Guid^ m_guid;
+				static System::Guid^ m_guid;
 				std::vector<b2Shape*>* m_shapes;
 			public:
 				ShapeDataType();
@@ -26,10 +31,10 @@ namespace VVVV
 				int Count();
 
 
-				static String^ FriendlyName = "Box2d Shape";
-				static property Guid^ GUID 
+				static System::String^ FriendlyName = "Box2d Shape";
+				static property System::Guid^ GUID 
 				{
-					Guid^ get() 
+					System::Guid^ get() 
 					{
 						return gcnew System::Guid("D0FA06A8-E796-46b2-AB21-497009F871BD");
 					}

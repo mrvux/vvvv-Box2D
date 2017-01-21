@@ -1,21 +1,26 @@
 #pragma once
 #include "../../DataTypes/JointDataType.h"
 
-using namespace VVVV::DataTypes;
+
+#include "../../Utils/ArrayUtils.h"
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+namespace gen = System::Collections::Generic;
+namespace v4b2d = VVVV::DataTypes;
 
 namespace VVVV 
 {
 	namespace Nodes 
 	{
-		public ref class Box2dDestroyJointNode : IPlugin,IPluginConnections
+		public ref class Box2dDestroyJointNode : v4::IPlugin,v4::IPluginConnections
 		{
 		public:
-			static property IPluginInfo^ PluginInfo 
+			static property v4::IPluginInfo^ PluginInfo 
 				{
-					IPluginInfo^ get() 
+					v4::IPluginInfo^ get() 
 					{
-						//IPluginInfo^ Info;
-						IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
+						//v4::IPluginInfo^ Info;
+						v4::IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
 						Info->Name = "DestroyJoint";
 						Info->Category = "Box2d";
 						Info->Version = "";
@@ -36,11 +41,11 @@ namespace VVVV
 					}
 				}
 
-			virtual void SetPluginHost(IPluginHost^ Host);
-			virtual void Configurate(IPluginConfig^ Input);
+			virtual void SetPluginHost(v4::IPluginHost^ Host);
+			virtual void Configurate(v4::IPluginConfig^ Input);
 			virtual void Evaluate(int SpreadMax);
-			virtual void ConnectPin(IPluginIO^ Pin);
-			virtual void DisconnectPin(IPluginIO^ Pin);
+			virtual void ConnectPin(v4::IPluginIO^ Pin);
+			virtual void DisconnectPin(v4::IPluginIO^ Pin);
 			
 			virtual property bool AutoEvaluate 
 			{
@@ -48,12 +53,12 @@ namespace VVVV
 			}
 
 		private:
-			IPluginHost^ FHost;
+			v4::IPluginHost^ FHost;
 
-			INodeIn^ vInJoints;
-			JointDataType^ m_joints;
+			v4::INodeIn^ vInJoints;
+			v4b2d::JointDataType^ m_joints;
 
-			IValueIn^ vInDoDestroy;
+			v4::IValueIn^ vInDoDestroy;
 
 		};
 	}

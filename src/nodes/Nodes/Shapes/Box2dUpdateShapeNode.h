@@ -1,23 +1,27 @@
 #pragma once
 #include "../../DataTypes/Shapes/ShapeDataType.h"
 
-using namespace VVVV::DataTypes;
+#include "../../Utils/ArrayUtils.h"
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+namespace gen = System::Collections::Generic;
+namespace v4b2d = VVVV::DataTypes;
 
 namespace VVVV 
 {
 namespace Nodes 
 {
-	public ref class Box2dUpdateShapeNode : IPlugin,IPluginConnections
+	public ref class Box2dUpdateShapeNode : v4::IPlugin,v4::IPluginConnections
 	{
 	public:
 		Box2dUpdateShapeNode(void);
 
-		static property IPluginInfo^ PluginInfo 
+		static property v4::IPluginInfo^ PluginInfo 
 			{
-				IPluginInfo^ get() 
+				v4::IPluginInfo^ get() 
 				{
-					//IPluginInfo^ Info;
-					IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
+					//v4::IPluginInfo^ Info;
+					v4::IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
 					Info->Name = "UpdateShape";
 					Info->Category = "Box2d";
 					Info->Version = "";
@@ -38,11 +42,11 @@ namespace Nodes
 				}
 			}
 
-		virtual void SetPluginHost(IPluginHost^ Host);
-		virtual void Configurate(IPluginConfig^ Input);
+		virtual void SetPluginHost(v4::IPluginHost^ Host);
+		virtual void Configurate(v4::IPluginConfig^ Input);
 		virtual void Evaluate(int SpreadMax);
-		virtual void ConnectPin(IPluginIO^ Pin);
-		virtual void DisconnectPin(IPluginIO^ Pin);
+		virtual void ConnectPin(v4::IPluginIO^ Pin);
+		virtual void DisconnectPin(v4::IPluginIO^ Pin);
 		
 		virtual property bool AutoEvaluate 
 		{
@@ -50,28 +54,28 @@ namespace Nodes
 		}
 
 	private:
-		IPluginHost^ FHost;
+		v4::IPluginHost^ FHost;
 
-		INodeIn^ vInShapes;
-		ShapeDataType^ m_shapes;
+		v4::INodeIn^ vInShapes;
+		v4b2d::ShapeDataType^ m_shapes;
 
-		IValueIn^ vInDensity;
-		IValueIn^ vInSetDensity;
+		v4::IValueIn^ vInDensity;
+		v4::IValueIn^ vInSetDensity;
 
-		IValueIn^ vInFriction;
-		IValueIn^ vInSetFriction;
+		v4::IValueIn^ vInFriction;
+		v4::IValueIn^ vInSetFriction;
 
-		IValueIn^ vInRestitution;
-		IValueIn^ vInSetRestitution;
+		v4::IValueIn^ vInRestitution;
+		v4::IValueIn^ vInSetRestitution;
 
-		IValueIn^ vInGroup;
-		IValueIn^ vInSetGroup;
+		v4::IValueIn^ vInGroup;
+		v4::IValueIn^ vInSetGroup;
 
-		IStringIn^ vInCustom;
-		IValueIn^ vInSetCustom;
+		v4::IStringIn^ vInCustom;
+		v4::IValueIn^ vInSetCustom;
 
-		IValueIn^ vInSensor;
-		IValueIn^ vInSetSensor;
+		v4::IValueIn^ vInSensor;
+		v4::IValueIn^ vInSetSensor;
 
 	};
 }

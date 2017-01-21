@@ -11,39 +11,46 @@
 #include "../Internals/Data/JointCustomData.h"
 #include "../Internals/Data/ContactResultData.h"
 
-using namespace VVVV::DataTypes;
+#include "../Utils/ArrayUtils.h"
+
+#include "Box2D.h"
+#include <vector>
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+namespace gen = System::Collections::Generic;
+namespace v4b2d = VVVV::DataTypes;
 
 namespace VVVV 
 {
 	namespace Nodes 
 	{
-		public ref class Box2dWorldNode : IPlugin,public IDisposable
+		public ref class Box2dWorldNode : v4::IPlugin, public System::IDisposable
 		{
 			private:
-				IPluginHost^ FHost;
+				v4::IPluginHost^ FHost;
 
-				IValueIn^ vInLowerBound;
-				IValueIn^ vInUpperBound;
-				IValueIn^ vInGravity;
-				IValueIn^ vInAllowSleep;
-				IValueIn^ vInEnabled;
-				IValueFastIn^ vInTimeStep;
-				IValueFastIn^ vInPosIterations;
-				IValueFastIn^ vInVelIterations;
-				IValueIn^ vInReset;
+				v4::IValueIn^ vInLowerBound;
+				v4::IValueIn^ vInUpperBound;
+				v4::IValueIn^ vInGravity;
+				v4::IValueIn^ vInAllowSleep;
+				v4::IValueIn^ vInEnabled;
+				v4::IValueFastIn^ vInTimeStep;
+				v4::IValueFastIn^ vInPosIterations;
+				v4::IValueFastIn^ vInVelIterations;
+				v4::IValueIn^ vInReset;
 
-				IValueOut^ vOutWorldValid;
-				IValueOut^ vOutControllerCount;
-				INodeOut^ vOutWorldNode;
-				INodeOut^ vOutBodies;
-				INodeOut^ vOutGround;
-				INodeOut^ vOutJoints;
-				IValueOut^ vOutReset;
+				v4::IValueOut^ vOutWorldValid;
+				v4::IValueOut^ vOutControllerCount;
+				v4::INodeOut^ vOutWorldNode;
+				v4::INodeOut^ vOutBodies;
+				v4::INodeOut^ vOutGround;
+				v4::INodeOut^ vOutJoints;
+				v4::IValueOut^ vOutReset;
 
-				WorldDataType^ mWorld;
-				BodyDataType^ mBodies;
-				GroundDataType^ mGround;
-				JointDataType^ mJoints;
+				v4b2d::WorldDataType^ mWorld;
+				v4b2d::BodyDataType^ mBodies;
+				v4b2d::GroundDataType^ mGround;
+				v4b2d::JointDataType^ mJoints;
 
 				b2World* internalworld;
 
@@ -55,12 +62,12 @@ namespace VVVV
 				ContactListener* MyListener;
 			
 			public:
-				static property IPluginInfo^ PluginInfo 
+				static property v4::IPluginInfo^ PluginInfo
 				{
-					IPluginInfo^ get() 
+					v4::IPluginInfo^ get()
 					{
-						//IPluginInfo^ Info;
-						IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
+						//v4::IPluginInfo^ Info;
+						v4::IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
 						Info->Name = "World";
 						Info->Category = "Box2d";
 						Info->Version = "";
@@ -87,8 +94,8 @@ namespace VVVV
 				Box2dWorldNode(void);
 				 ~Box2dWorldNode();
 
-				virtual void SetPluginHost(IPluginHost^ Host);
-				virtual void Configurate(IPluginConfig^ Input);
+				virtual void SetPluginHost(v4::IPluginHost^ Host);
+				virtual void Configurate(v4::IPluginConfig^ Input);
 				virtual void Evaluate(int SpreadMax);
 				
 				virtual property bool AutoEvaluate 

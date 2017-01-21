@@ -3,34 +3,39 @@
 #include "../DataTypes/Shapes/ShapeDataType.h"
 #include "../DataTypes/BodyDataType.h"
 
-using namespace VVVV::DataTypes;
+#include "../Utils/ArrayUtils.h"
+
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+namespace gen = System::Collections::Generic;
+namespace v4b2d = VVVV::DataTypes;
 
 namespace VVVV 
 {
 	namespace Nodes 
 	{
-		public ref class Box2dContactDetailsDualNode : IPlugin,IPluginConnections
+		public ref class Box2dContactDetailsDualNode : v4::IPlugin,v4::IPluginConnections
 		{
 		public:
 			Box2dContactDetailsDualNode(void);
 			
-			virtual void SetPluginHost(IPluginHost^ Host);
-			virtual void Configurate(IPluginConfig^ Input);
+			virtual void SetPluginHost(v4::IPluginHost^ Host);
+			virtual void Configurate(v4::IPluginConfig^ Input);
 			virtual void Evaluate(int SpreadMax);
-			virtual void ConnectPin(IPluginIO^ Pin);
-			virtual void DisconnectPin(IPluginIO^ Pin);
+			virtual void ConnectPin(v4::IPluginIO^ Pin);
+			virtual void DisconnectPin(v4::IPluginIO^ Pin);
 			
 			virtual property bool AutoEvaluate 
 			{
 				bool get() { return false; }
 			}
 
-					static property IPluginInfo^ PluginInfo 
+					static property v4::IPluginInfo^ PluginInfo 
 			{
-				IPluginInfo^ get() 
+				v4::IPluginInfo^ get() 
 					{
-						//IPluginInfo^ Info;
-						IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
+						//v4::IPluginInfo^ Info;
+						v4::IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
 						Info->Name = "GetContactDetails";
 						Info->Category = "Box2d";
 						Info->Version = "Spreaded";
@@ -54,28 +59,28 @@ namespace VVVV
 
 
 		private:
-			IPluginHost^ FHost;
+			v4::IPluginHost^ FHost;
 
-			INodeIn^ vInWorld;
-			WorldDataType^ m_world;
+			v4::INodeIn^ vInWorld;
+			v4b2d::WorldDataType^ m_world;
 
-			IValueOut^ vOutId;
-			IValueOut^ vOutPosition;
-			IValueOut^ vOutNormals;
-			IValueOut^ vOutNormalImpulse;
-			IValueOut^ vOutTangentImpulse;
-			IValueOut^ vOutBodyId;
-			IValueOut^ vOutShapes;
+			v4::IValueOut^ vOutId;
+			v4::IValueOut^ vOutPosition;
+			v4::IValueOut^ vOutNormals;
+			v4::IValueOut^ vOutNormalImpulse;
+			v4::IValueOut^ vOutTangentImpulse;
+			v4::IValueOut^ vOutBodyId;
+			v4::IValueOut^ vOutShapes;
 
-			IValueOut^ vOutNew;
+			v4::IValueOut^ vOutNew;
 
-			INodeOut^ vOutShape;
-			ShapeDataType^ m_shape;
+			v4::INodeOut^ vOutShape;
+			v4b2d::ShapeDataType^ m_shape;
 
-			BodyDataType^ mBody;
-			INodeOut^ vOutBody;
+			v4b2d::BodyDataType^ mBody;
+			v4::INodeOut^ vOutBody;
 
-			IValueOut^ vOutContactCount;
+			v4::IValueOut^ vOutContactCount;
 
 		};
 	}

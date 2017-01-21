@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dCreateBodyNode.h"
 #include "../../Internals/Data/BodyCustomData.h"
 #include "../../Internals/Data/ShapeCustomData.h"
@@ -9,68 +9,68 @@ namespace VVVV
 	{
 		Box2dCreateBodyNode::Box2dCreateBodyNode(void)
 		{
-			this->mBodies = gcnew BodyDataType();
+			this->mBodies = gcnew v4b2d::BodyDataType();
 		}
 
-		void Box2dCreateBodyNode::SetPluginHost(IPluginHost^ Host) 
+		void Box2dCreateBodyNode::SetPluginHost(v4::IPluginHost^ Host) 
 		{
 			this->FHost = Host;
 
 			//World input
-			this->FHost->CreateNodeInput("World",TSliceMode::Single,TPinVisibility::True,this->vInWorld);
-			this->vInWorld->SetSubType(ArrayUtils::SingleGuidArray(WorldDataType::GUID),WorldDataType::FriendlyName);
+			this->FHost->CreateNodeInput("World",v4::TSliceMode::Single,v4::TPinVisibility::True,this->vInWorld);
+			this->vInWorld->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::WorldDataType::GUID), v4b2d::WorldDataType::FriendlyName);
 
-			this->FHost->CreateNodeInput("Shapes",TSliceMode::Dynamic,TPinVisibility::True,this->vInShapes);
-			this->vInShapes->SetSubType(ArrayUtils::SingleGuidArray(ShapeDefDataType::GUID),ShapeDefDataType::FriendlyName);
+			this->FHost->CreateNodeInput("Shapes",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInShapes);
+			this->vInShapes->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::ShapeDefDataType::GUID), v4b2d::ShapeDefDataType::FriendlyName);
 
 			//Position and velocity
-			this->FHost->CreateValueInput("Position",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInPosition);
-			this->vInPosition->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueInput("Position",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInPosition);
+			this->vInPosition->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Angle",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInAngle);
-			this->vInAngle->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Angle",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInAngle);
+			this->vInAngle->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Velocity",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInVelocity);
-			this->vInVelocity->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueInput("Velocity",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInVelocity);
+			this->vInVelocity->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Angular Velocity",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInAngularVelocity);
-			this->vInAngularVelocity->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Angular Velocity",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInAngularVelocity);
+			this->vInAngularVelocity->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Linear Damping",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInLinearDamping);
-			this->vInLinearDamping->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Linear Damping",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInLinearDamping);
+			this->vInLinearDamping->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Angular Damping",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInAngularDamping);
-			this->vInAngularDamping->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Angular Damping",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInAngularDamping);
+			this->vInAngularDamping->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Fixed Rotation",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInFixedRotation);
+			this->FHost->CreateValueInput("Fixed Rotation",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInFixedRotation);
 			this->vInFixedRotation->SetSubType(0,1,1.0,0.0,false,true,false);
 
-			this->FHost->CreateValueInput("Is Bullet",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInIsBullet);
+			this->FHost->CreateValueInput("Is Bullet",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInIsBullet);
 			this->vInIsBullet->SetSubType(0,1,1.0,0.0,false,true,false);
 
-			this->FHost->CreateStringInput("Custom",TSliceMode::Dynamic,TPinVisibility::True,this->vInCustom);
+			this->FHost->CreateStringInput("Custom",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInCustom);
 			this->vInCustom->SetSubType("",false);
 
-			this->FHost->CreateValueInput("TTL",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInTTL);
-			this->vInTTL->SetSubType(Double::MinValue,Double::MaxValue,0.01,1.0,false,false,false);
+			this->FHost->CreateValueInput("TTL",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInTTL);
+			this->vInTTL->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,1.0,false,false,false);
 
-			this->FHost->CreateValueInput("Has TTL",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInHasTTL);
+			this->FHost->CreateValueInput("Has TTL",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInHasTTL);
 			this->vInHasTTL->SetSubType(0,1,1.0,0.0,false,true,false);
 
-			this->FHost->CreateValueInput("Do Create",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInDoCreate);
+			this->FHost->CreateValueInput("Do Create",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInDoCreate);
 			this->vInDoCreate->SetSubType(0,1,1.0,0.0,true,false,false);
 
-			this->FHost->CreateNodeOutput("Body",TSliceMode::Dynamic,TPinVisibility::True,this->vOutBodies);
-			this->vOutBodies->SetSubType(ArrayUtils::SingleGuidArray(BodyDataType::GUID),BodyDataType::FriendlyName);
+			this->FHost->CreateNodeOutput("Body",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutBodies);
+			this->vOutBodies->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::BodyDataType::GUID), v4b2d::BodyDataType::FriendlyName);
 			this->vOutBodies->SetInterface(this->mBodies);
 
-			this->FHost->CreateValueOutput("Body Id",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutId);
-			this->vOutId->SetSubType(Double::MinValue,Double::MaxValue,1,0.0,false,false,true);
+			this->FHost->CreateValueOutput("Body Id",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutId);
+			this->vOutId->SetSubType(System::Double::MinValue,System::Double::MaxValue,1,0.0,false,false,true);
 
 			
 		}
 
-		void Box2dCreateBodyNode::Configurate(IPluginConfig^ Input)
+		void Box2dCreateBodyNode::Configurate(v4::IPluginConfig^ Input)
 		{
 
 		}
@@ -81,7 +81,7 @@ namespace VVVV
 			this->vInDoCreate->GetValue(0,dblcreate);
 
 			this->mBodies->Reset();
-			List<int>^ bodyids = gcnew List<int>();
+			gen::List<int>^ bodyids = gcnew gen::List<int>();
 
 			int shapeidx = 0;
 
@@ -90,7 +90,7 @@ namespace VVVV
 				if (this->mWorld->GetIsValid()) 
 				{
 					double x,y,a,vx,vy,va,bull,fr,ld,ad,dblhasttl,dblttl;
-					String^ cust;
+					System::String^ cust;
 					
 
 					for (int i = 0; i < SpreadMax; i++) 
@@ -109,18 +109,18 @@ namespace VVVV
 
 
 						b2BodyDef bodydef;
-						bodydef.position.Set(Convert::ToSingle(x),Convert::ToSingle(y));
+						bodydef.position.Set(System::Convert::ToSingle(x), System::Convert::ToSingle(y));
 						bodydef.isBullet = (bull >= 0.5);
 						bodydef.fixedRotation = (fr >= 0.5);
-						bodydef.angle = Convert::ToSingle(a * (Math::PI * 2.0));
-						bodydef.linearDamping = Convert::ToSingle(ld);
-						bodydef.angularDamping = Convert::ToSingle(ad);
+						bodydef.angle = System::Convert::ToSingle(a * (System::Math::PI * 2.0));
+						bodydef.linearDamping = System::Convert::ToSingle(ld);
+						bodydef.angularDamping = System::Convert::ToSingle(ad);
 
 					
 						BodyCustomData* bdata = new BodyCustomData();
 						
 						bdata->Id = this->mWorld->GetNewBodyId();
-						bdata->Custom = (char*)(void*)Marshal::StringToHGlobalAnsi(cust);
+						bdata->Custom = (char*)(void*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(cust);
 						bdata->HasTTL = dblhasttl > 0.5;
 						bdata->TTL = dblttl;
 						
@@ -153,8 +153,8 @@ namespace VVVV
 						if (testcount)
 						{
 							b2Body* body = this->mWorld->GetWorld()->CreateBody(&bodydef);
-							body->SetLinearVelocity(b2Vec2(Convert::ToSingle(vx),Convert::ToSingle(vy)));
-							body->SetAngularVelocity(Convert::ToSingle(va));
+							body->SetLinearVelocity(b2Vec2(System::Convert::ToSingle(vx), System::Convert::ToSingle(vy)));
+							body->SetAngularVelocity(System::Convert::ToSingle(va));
 							body->SetUserData(bdata);
 
 							float dens = 0.0f;
@@ -163,7 +163,7 @@ namespace VVVV
 							this->vInShapes->GetUpsreamSlice(i % this->vInShapes->SliceCount,realslice);
 					
 							b2ShapeDef* shapedef = this->mShapes->GetSlice(realslice);
-							String^ shapecust = this->mShapes->GetCustom(realslice);
+							System::String^ shapecust = this->mShapes->GetCustom(realslice);
 
 							dens += shapedef->density;
 
@@ -179,7 +179,7 @@ namespace VVVV
 									{
 										ShapeCustomData* sdata = new ShapeCustomData();
 										sdata->Id = this->mWorld->GetNewShapeId();
-										sdata->Custom = (char*)(void*)Marshal::StringToHGlobalAnsi(shapecust);
+										sdata->Custom = (char*)(void*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(shapecust);
 										node->SetUserData(sdata);										
 									}
 
@@ -191,7 +191,7 @@ namespace VVVV
 							{
 								ShapeCustomData* sdata = new ShapeCustomData();
 								sdata->Id = this->mWorld->GetNewShapeId();
-								sdata->Custom = (char*)(void*)Marshal::StringToHGlobalAnsi(shapecust);
+								sdata->Custom = (char*)(void*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(shapecust);
 								shape->SetUserData(sdata);
 							}
 
@@ -223,25 +223,25 @@ namespace VVVV
 		}
 
 
-		void Box2dCreateBodyNode::ConnectPin(IPluginIO^ Pin)
+		void Box2dCreateBodyNode::ConnectPin(v4::IPluginIO^ Pin)
 		{
 			//cache a reference to the upstream interface when the NodeInput pin is being connected
         	if (Pin == this->vInWorld)
         	{
-				INodeIOBase^ usI;
+				v4::INodeIOBase^ usI;
 				this->vInWorld->GetUpstreamInterface(usI);
-				this->mWorld = (WorldDataType^)usI;
+				this->mWorld = (v4b2d::WorldDataType^)usI;
         	}
 			if (Pin == this->vInShapes) 
 			{
-				INodeIOBase^ usI;
+				v4::INodeIOBase^ usI;
 				this->vInShapes->GetUpstreamInterface(usI);
-				this->mShapes = (ShapeDefDataType^)usI;
+				this->mShapes = (v4b2d::ShapeDefDataType^)usI;
 			}
 		}
 
 
-		void Box2dCreateBodyNode::DisconnectPin(IPluginIO^ Pin)
+		void Box2dCreateBodyNode::DisconnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInWorld)
         	{

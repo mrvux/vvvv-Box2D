@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "BodyCustomData.h"
 
 BodyCustomData::BodyCustomData(void)

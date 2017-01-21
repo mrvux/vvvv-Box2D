@@ -1,23 +1,27 @@
 #pragma once
 #include "../../DataTypes/BodyDataType.h"
 
-using namespace VVVV::DataTypes;
+#include "../../Utils/ArrayUtils.h"
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+namespace gen = System::Collections::Generic;
+namespace v4b2d = VVVV::DataTypes;
 
 namespace VVVV 
 {
 	namespace Nodes 
 	{
-		public ref class Box2dApplyImpulseNode : IPlugin,IPluginConnections
+		public ref class Box2dApplyImpulseNode : v4::IPlugin,v4::IPluginConnections
 		{
 		public:
 			Box2dApplyImpulseNode(void);
 
-			static property IPluginInfo^ PluginInfo 
+			static property v4::IPluginInfo^ PluginInfo 
 				{
-					IPluginInfo^ get() 
+					v4::IPluginInfo^ get() 
 					{
-						//IPluginInfo^ Info;
-						IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
+						//v4::IPluginInfo^ Info;
+						v4::IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
 						Info->Name = "ApplyImpulse";
 						Info->Category = "Box2d";
 						Info->Version = "";
@@ -38,25 +42,25 @@ namespace VVVV
 					}
 				}
 
-			virtual void SetPluginHost(IPluginHost^ Host);
-			virtual void Configurate(IPluginConfig^ Input);
+			virtual void SetPluginHost(v4::IPluginHost^ Host);
+			virtual void Configurate(v4::IPluginConfig^ Input);
 			virtual void Evaluate(int SpreadMax);
-			virtual void ConnectPin(IPluginIO^ Pin);
-			virtual void DisconnectPin(IPluginIO^ Pin);
+			virtual void ConnectPin(v4::IPluginIO^ Pin);
+			virtual void DisconnectPin(v4::IPluginIO^ Pin);
 			
 			virtual property bool AutoEvaluate 
 			{
 				bool get() { return true; }
 			}
 		private:
-			IPluginHost^ FHost;
+			v4::IPluginHost^ FHost;
 
-			INodeIn^ vInBodies;
-			BodyDataType^ m_bodies;
+			v4::INodeIn^ vInBodies;
+			v4b2d::BodyDataType^ m_bodies;
 
-			IValueIn^ vInForce;
-			IValueIn^ vInPosition;
-			IValueIn^ vInApply;
+			v4::IValueIn^ vInForce;
+			v4::IValueIn^ vInPosition;
+			v4::IValueIn^ vInApply;
 		};
 	}
 }

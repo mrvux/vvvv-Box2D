@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dWorldNode.h"
 
 
@@ -8,10 +8,10 @@ namespace VVVV
 	{
 		Box2dWorldNode::Box2dWorldNode(void) 
 		{
-			this->mWorld = gcnew WorldDataType();
-			this->mBodies = gcnew BodyDataType();
-			this->mGround = gcnew GroundDataType();
-			this->mJoints = gcnew JointDataType();
+			this->mWorld = gcnew v4b2d::WorldDataType();
+			this->mBodies = gcnew v4b2d::BodyDataType();
+			this->mGround = gcnew v4b2d::GroundDataType();
+			this->mJoints = gcnew v4b2d::JointDataType();
 			
 			this->reports = new std::vector<ContactReportId*>();
 			this->results = new std::vector<ContactResultData*>();
@@ -29,72 +29,72 @@ namespace VVVV
 			}
 		}
 
-		void Box2dWorldNode::SetPluginHost(IPluginHost^ Host)
+		void Box2dWorldNode::SetPluginHost(v4::IPluginHost^ Host)
 		{
 			this->FHost = Host;
 
 			//Bounds
-			this->FHost->CreateValueInput("Lower Bound",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInLowerBound);
-			this->vInLowerBound->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,-100.0,-100.0,false,false,false);
+			this->FHost->CreateValueInput("Lower Bound",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInLowerBound);
+			this->vInLowerBound->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,-100.0,-100.0,false,false,false);
 
-			this->FHost->CreateValueInput("Upper Bound",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInUpperBound);
-			this->vInUpperBound->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,100.0,100.0,false,false,false);
+			this->FHost->CreateValueInput("Upper Bound",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInUpperBound);
+			this->vInUpperBound->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,100.0,100.0,false,false,false);
 
 			//Gravity
-			this->FHost->CreateValueInput("Gravity",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInGravity);
-			this->vInGravity->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0,-1.0,false,false,false);
+			this->FHost->CreateValueInput("Gravity",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInGravity);
+			this->vInGravity->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0,-1.0,false,false,false);
 
-			this->FHost->CreateValueFastInput("Time Step",1,nullptr,TSliceMode::Single,TPinVisibility::True,this->vInTimeStep);
-			this->vInTimeStep->SetSubType(0,Double::MaxValue,0.01,0.01,false,false,false);
+			this->FHost->CreateValueFastInput("Time Step",1,nullptr,v4::TSliceMode::Single,v4::TPinVisibility::True,this->vInTimeStep);
+			this->vInTimeStep->SetSubType(0,System::Double::MaxValue,0.01,0.01,false,false,false);
 
-			this->FHost->CreateValueFastInput("Position Iterations",1,nullptr,TSliceMode::Single,TPinVisibility::True,this->vInPosIterations);
-			this->vInPosIterations->SetSubType(1,Double::MaxValue,1,8,false,false,true);
+			this->FHost->CreateValueFastInput("Position Iterations",1,nullptr,v4::TSliceMode::Single,v4::TPinVisibility::True,this->vInPosIterations);
+			this->vInPosIterations->SetSubType(1,System::Double::MaxValue,1,8,false,false,true);
 
-			this->FHost->CreateValueFastInput("Velocity Iterations",1,nullptr,TSliceMode::Single,TPinVisibility::True,this->vInVelIterations);
-			this->vInVelIterations->SetSubType(1,Double::MaxValue,1,10,false,false,true);
+			this->FHost->CreateValueFastInput("Velocity Iterations",1,nullptr,v4::TSliceMode::Single,v4::TPinVisibility::True,this->vInVelIterations);
+			this->vInVelIterations->SetSubType(1,System::Double::MaxValue,1,10,false,false,true);
 
 			//Allow to put objects in sleep mode
-			this->FHost->CreateValueInput("Allow Sleep",1,nullptr,TSliceMode::Single,TPinVisibility::True,this->vInAllowSleep);
+			this->FHost->CreateValueInput("Allow Sleep",1,nullptr,v4::TSliceMode::Single,v4::TPinVisibility::True,this->vInAllowSleep);
 			this->vInAllowSleep->SetSubType(0,1,1,1,false,true,false);
 
 			//Is World Enabled
-			this->FHost->CreateValueInput("Enabled",1,nullptr,TSliceMode::Single,TPinVisibility::True,this->vInEnabled);
+			this->FHost->CreateValueInput("Enabled",1,nullptr,v4::TSliceMode::Single,v4::TPinVisibility::True,this->vInEnabled);
 			this->vInEnabled->SetSubType(0,1,1,0,false,true,false);
 
-			this->FHost->CreateValueInput("Reset",1,nullptr,TSliceMode::Single,TPinVisibility::True,this->vInReset);
+			this->FHost->CreateValueInput("Reset",1,nullptr,v4::TSliceMode::Single,v4::TPinVisibility::True,this->vInReset);
 			this->vInReset->SetSubType(0,1,1,0,true,false,false);
 
 
 
 			//World output
-			this->FHost->CreateNodeOutput("World",TSliceMode::Single,TPinVisibility::True,this->vOutWorldNode);
-			this->vOutWorldNode->SetSubType(ArrayUtils::SingleGuidArray(WorldDataType::GUID),WorldDataType::FriendlyName);
+			this->FHost->CreateNodeOutput("World",v4::TSliceMode::Single,v4::TPinVisibility::True,this->vOutWorldNode);
+			this->vOutWorldNode->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::WorldDataType::GUID), v4b2d::WorldDataType::FriendlyName);
 			this->vOutWorldNode->SetInterface(this->mWorld);
 
-			this->FHost->CreateValueOutput("Controller Count",1,nullptr,TSliceMode::Single,TPinVisibility::True,this->vOutControllerCount);
-			this->vOutControllerCount->SetSubType(0,Double::MaxValue,1,0,false,false,true);
+			this->FHost->CreateValueOutput("Controller Count",1,nullptr,v4::TSliceMode::Single,v4::TPinVisibility::True,this->vOutControllerCount);
+			this->vOutControllerCount->SetSubType(0,System::Double::MaxValue,1,0,false,false,true);
 
-			this->FHost->CreateValueOutput("World Valid",1,nullptr,TSliceMode::Single,TPinVisibility::True,this->vOutWorldValid);
+			this->FHost->CreateValueOutput("World Valid",1,nullptr,v4::TSliceMode::Single,v4::TPinVisibility::True,this->vOutWorldValid);
 			this->vOutWorldValid->SetSubType(0,1,1,0,false,true,false);
 
-			this->FHost->CreateNodeOutput("Ground",TSliceMode::Single,TPinVisibility::True,this->vOutGround);
-			this->vOutGround->SetSubType(ArrayUtils::SingleGuidArray(GroundDataType::GUID),GroundDataType::FriendlyName);
+			this->FHost->CreateNodeOutput("Ground",v4::TSliceMode::Single,v4::TPinVisibility::True,this->vOutGround);
+			this->vOutGround->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::GroundDataType::GUID), v4b2d::GroundDataType::FriendlyName);
 			this->vOutGround->SetInterface(this->mGround);
 
-			this->FHost->CreateNodeOutput("Bodies",TSliceMode::Dynamic,TPinVisibility::True,this->vOutBodies);
-			this->vOutBodies->SetSubType(ArrayUtils::SingleGuidArray(BodyDataType::GUID),BodyDataType::FriendlyName);
+			this->FHost->CreateNodeOutput("Bodies",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutBodies);
+			this->vOutBodies->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::BodyDataType::GUID), v4b2d::BodyDataType::FriendlyName);
 			this->vOutBodies->SetInterface(this->mBodies);
 
-			this->FHost->CreateNodeOutput("Joints",TSliceMode::Dynamic,TPinVisibility::True,this->vOutJoints);
-			this->vOutJoints->SetSubType(ArrayUtils::SingleGuidArray(JointDataType::GUID),JointDataType::FriendlyName);
+			this->FHost->CreateNodeOutput("Joints",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutJoints);
+			this->vOutJoints->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::JointDataType::GUID), v4b2d::JointDataType::FriendlyName);
 			this->vOutJoints->SetInterface(this->mJoints);
 
-			this->FHost->CreateValueOutput("Has Reset",1,nullptr,TSliceMode::Single,TPinVisibility::True,this->vOutReset);
+			this->FHost->CreateValueOutput("Has Reset",1,nullptr,v4::TSliceMode::Single,v4::TPinVisibility::True,this->vOutReset);
 			this->vOutReset->SetSubType(0,1,1,0,true,false,false);
 		}
 
 
-		void Box2dWorldNode::Configurate(IPluginConfig^ Input) 
+		void Box2dWorldNode::Configurate(v4::IPluginConfig^ Input) 
 		{
 			
 		}
@@ -127,14 +127,14 @@ namespace VVVV
 				this->vInLowerBound->GetValue2D(0,lbx,lby);
 				this->vInUpperBound->GetValue2D(0,ubx,uby);
 
-				worldAABB.lowerBound.Set(Convert::ToSingle(lbx),Convert::ToSingle(lby));
-				worldAABB.upperBound.Set(Convert::ToSingle(ubx),Convert::ToSingle(uby));
+				worldAABB.lowerBound.Set(System::Convert::ToSingle(lbx), System::Convert::ToSingle(lby));
+				worldAABB.upperBound.Set(System::Convert::ToSingle(ubx), System::Convert::ToSingle(uby));
 
 				this->mWorld->SetIsValid(worldAABB.IsValid());
 
 				if (this->mWorld->GetIsValid()) 
 				{
-					b2Vec2 gravity(Convert::ToSingle(gx),Convert::ToSingle(gy));
+					b2Vec2 gravity(System::Convert::ToSingle(gx), System::Convert::ToSingle(gy));
 					bool dosleep = allowsleep >= 0.5;
 					this->internalworld  = new b2World(worldAABB, gravity, dosleep);
 
@@ -164,7 +164,7 @@ namespace VVVV
 
 				this->mWorld->Reset = true;
 
-				this->vOutWorldValid->SetValue(0, Convert::ToDouble(this->mWorld->GetIsValid()));
+				this->vOutWorldValid->SetValue(0, System::Convert::ToDouble(this->mWorld->GetIsValid()));
 
 			}
 			else
@@ -172,14 +172,14 @@ namespace VVVV
 				this->mWorld->SetReset(false);
 			}
 
-			this->vOutReset->SetValue(0,Convert::ToDouble(this->mWorld->Reset));
+			this->vOutReset->SetValue(0, System::Convert::ToDouble(this->mWorld->Reset));
 
 			if (this->vInGravity->PinIsChanged) 
 			{
 				double gx,gy;
 				this->vInGravity->GetValue2D(0,gx,gy);
 
-				b2Vec2 gravity(Convert::ToSingle(gx),Convert::ToSingle(gy));
+				b2Vec2 gravity(System::Convert::ToSingle(gx), System::Convert::ToSingle(gy));
 				this->internalworld->SetGravity(gravity);
 			}
 
@@ -215,7 +215,7 @@ namespace VVVV
 					this->vInPosIterations->GetValue(0,pit);
 					this->vInVelIterations->GetValue(0,vit);
 					
-					this->internalworld->Step(Convert::ToSingle(ts),Convert::ToInt32(vit),Convert::ToInt32(pit));
+					this->internalworld->Step(System::Convert::ToSingle(ts), System::Convert::ToInt32(vit), System::Convert::ToInt32(pit));
 				}
 
 

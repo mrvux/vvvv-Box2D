@@ -1,4 +1,3 @@
-#include "StdAfx.h"
 #include "Box2dCreatePulleyJointNode.h"
 
 namespace VVVV 
@@ -11,26 +10,26 @@ namespace VVVV
 
 		void Box2dCreatePulleyJointNode::OnPluginHostSet() 
 		{
-			this->FHost->CreateValueInput("Position 1",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInPosition1);
-			this->vInPosition1->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueInput("Position 1",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInPosition1);
+			this->vInPosition1->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Anchor 1",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInAnchor1);
-			this->vInAnchor1->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueInput("Anchor 1",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInAnchor1);
+			this->vInAnchor1->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Max Length 1",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInMaxLength1);
-			this->vInMaxLength1->SetSubType(0,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Max Length 1",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInMaxLength1);
+			this->vInMaxLength1->SetSubType(0,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Position 2",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInPosition2);
-			this->vInPosition2->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueInput("Position 2",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInPosition2);
+			this->vInPosition2->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Anchor 2",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInAnchor2);
-			this->vInAnchor2->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueInput("Anchor 2",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInAnchor2);
+			this->vInAnchor2->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Max Length 2",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInMaxLength2);
-			this->vInMaxLength2->SetSubType(0,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Max Length 2",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInMaxLength2);
+			this->vInMaxLength2->SetSubType(0,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Ratio",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInRatio);
-			this->vInRatio->SetSubType(0,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Ratio",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInRatio);
+			this->vInRatio->SetSubType(0,System::Double::MaxValue,0.01,0.0,false,false,false);
 		}
 
 		void Box2dCreatePulleyJointNode::Evaluate(int SpreadMax)
@@ -51,7 +50,7 @@ namespace VVVV
 						{
 							double b1x,b1y,b2x,b2y,a1x,a1y,a2x,a2y,ml1,ml2,ratio,cc;
 							int realslice1,realslice2;
-							String^ cust;
+							System::String^ cust;
 
 							this->vInBody1->GetUpsreamSlice(i % this->vInBody1->SliceCount,realslice1);
 							b2Body* body1 = this->m_body1->GetSlice(realslice1);
@@ -82,7 +81,7 @@ namespace VVVV
 
 							JointCustomData* jdata = new JointCustomData();
 							jdata->Id = this->mWorld->GetNewJointId();
-							jdata->Custom = (char*)(void*)Marshal::StringToHGlobalAnsi(cust);
+							jdata->Custom = (char*)(void*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(cust);
 
 							b2Joint* j = this->mWorld->GetWorld()->CreateJoint(&jointDef);
 							j->SetUserData(jdata);

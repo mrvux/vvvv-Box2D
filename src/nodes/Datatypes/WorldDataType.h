@@ -1,14 +1,20 @@
 #pragma once
 
+#include "Box2D.h"
+#include <vector>
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+
 #include "../Internals/Contact/ContactListener.h"
+
 
 namespace VVVV 
 {
 	namespace DataTypes 
 	{
-		[GuidAttribute("A1FFB623-3077-4435-A482-D87BC60A4443"),
-		InterfaceType(ComInterfaceType::InterfaceIsIUnknown)]
-		public interface class IBoxWorldIO: INodeIOBase
+		[System::Runtime::InteropServices::GuidAttribute("A1FFB623-3077-4435-A482-D87BC60A4443"),
+		System::Runtime::InteropServices::InterfaceType(System::Runtime::InteropServices::ComInterfaceType::InterfaceIsIUnknown)]
+		public interface class IBoxWorldIO: v4::INodeIOBase
 		{
 			bool GetIsValid();
 			void SetIsValid(bool value);
@@ -23,7 +29,7 @@ namespace VVVV
 		public ref class WorldDataType : IBoxWorldIO
 		{
 			private:
-				static Guid^ FGuid;
+				static System::Guid^ FGuid;
 				bool enabled;
 				bool isvalid;
 				bool hasreset;
@@ -54,12 +60,12 @@ namespace VVVV
 				std::vector<ContactResultData*>* Results;
 				std::vector<int>* DeletedIds;
 
-				static String^ FriendlyName = "Box2d World";
-				static property Guid^ GUID 
+				static System::String^ FriendlyName = "Box2d World";
+				static property System::Guid^ GUID 
 				{
-					Guid^ get() 
+					System::Guid^ get() 
 					{
-						if (FGuid == Guid::Empty) 
+						if (FGuid == System::Guid::Empty) 
 						{
 							FGuid = gcnew System::Guid("A1FFB623-3077-4435-A482-D87BC60A4443");
 						}

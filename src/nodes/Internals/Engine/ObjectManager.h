@@ -1,5 +1,8 @@
 #pragma once
 
+#include <vector>
+#include "Box2D.h"
+
 #include "../Data/ShapeCustomData.h"
 #include "../Data/BodyCustomData.h"
 #include "../Data/JointCustomData.h"

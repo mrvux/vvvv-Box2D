@@ -1,5 +1,9 @@
 #pragma once
 
+#include "Box2D.h"
+
+#include <vector>
+
 #include "../Data/ShapeCustomData.h"
 #include "../Data/ContactResultData.h"
 
@@ -27,14 +31,14 @@ public class ContactListener : public b2ContactListener
 		void ResetResults()
 		{
 			//Clear reports (whatever happens)
-			for (int i = 0; i < this->m_reports->size();i++)
+			for (unsigned int i = 0; i < this->m_reports->size();i++)
 			{
 				ContactReportId* cp = this->m_reports->at(i);
 				delete cp;
 			}
 			this->m_reports->clear();
 
-			for (int i = 0; i < this->m_results->size();i++)
+			for (unsigned int i = 0; i < this->m_results->size();i++)
 			{
 				ContactResultData* cd = this->m_results->at(i);
 				delete cd;

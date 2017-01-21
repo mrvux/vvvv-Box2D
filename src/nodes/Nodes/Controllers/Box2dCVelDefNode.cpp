@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dCVelDefNode.h"
 
 namespace VVVV 
@@ -7,7 +7,7 @@ namespace VVVV
 	{
 		Box2dCVelDefNode::Box2dCVelDefNode(void)
 		{
-			this->m_controller = gcnew ControllerDataType();
+			this->m_controller = gcnew v4b2d::ControllerDataType();
 		}
 
 		void Box2dCVelDefNode::OnEvaluate(int SpreadMax, bool reset)
@@ -42,8 +42,8 @@ namespace VVVV
 		
 		void Box2dCVelDefNode::OnPluginHostSet()
 		{
-			this->FHost->CreateValueInput("Force",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInVelocity);
-			this->vInVelocity->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueInput("Force",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInVelocity);
+			this->vInVelocity->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 		}
 
 	}

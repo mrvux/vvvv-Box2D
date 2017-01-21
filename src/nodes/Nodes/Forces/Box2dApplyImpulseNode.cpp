@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dApplyImpulseNode.h"
 
 #include "../../Internals/Data/BodyCustomData.h"
@@ -11,25 +11,25 @@ namespace VVVV
 		{
 		}
 
-		void Box2dApplyImpulseNode::SetPluginHost(IPluginHost^ Host) 
+		void Box2dApplyImpulseNode::SetPluginHost(v4::IPluginHost^ Host) 
 		{
 			this->FHost = Host;
 
-			this->FHost->CreateNodeInput("Bodies",TSliceMode::Dynamic,TPinVisibility::True,this->vInBodies);
-			this->vInBodies->SetSubType(ArrayUtils::SingleGuidArray(BodyDataType::GUID),BodyDataType::FriendlyName);
+			this->FHost->CreateNodeInput("Bodies",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInBodies);
+			this->vInBodies->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::BodyDataType::GUID), v4b2d::BodyDataType::FriendlyName);
 
-			this->FHost->CreateValueInput("Impulse",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInForce);
-			this->vInForce->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueInput("Impulse",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInForce);
+			this->vInForce->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Position",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInPosition);
-			this->vInPosition->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueInput("Position",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInPosition);
+			this->vInPosition->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Apply",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInApply);
+			this->FHost->CreateValueInput("Apply",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInApply);
 			this->vInApply->SetSubType(0,1,1,0.0,true,false,false);	
 
 		}
 
-		void Box2dApplyImpulseNode::Configurate(IPluginConfig^ Input)
+		void Box2dApplyImpulseNode::Configurate(v4::IPluginConfig^ Input)
 		{
 
 		}
@@ -59,18 +59,18 @@ namespace VVVV
 		}
 
 
-		void Box2dApplyImpulseNode::ConnectPin(IPluginIO^ Pin)
+		void Box2dApplyImpulseNode::ConnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInBodies) 
 			{
-				INodeIOBase^ usI;
+				v4::INodeIOBase^ usI;
 				this->vInBodies->GetUpstreamInterface(usI);
-				this->m_bodies = (BodyDataType^)usI;
+				this->m_bodies = (v4b2d::BodyDataType^)usI;
 			}
 		}
 
 
-		void Box2dApplyImpulseNode::DisconnectPin(IPluginIO^ Pin)
+		void Box2dApplyImpulseNode::DisconnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInBodies)
         	{

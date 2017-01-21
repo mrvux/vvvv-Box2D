@@ -7,31 +7,34 @@
 #include "../Internals/Data/ShapeCustomData.h"
 #include "../Internals/Data/BodyCustomData.h"
 
-using namespace VVVV::DataTypes;
+#include "../Utils/ArrayUtils.h"
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+namespace v4b2d = VVVV::DataTypes;
 
 namespace VVVV 
 {
 	namespace Nodes 
 	{
-		public ref class Box2dRayCastNode : IPlugin,IPluginConnections
+		public ref class Box2dRayCastNode : v4::IPlugin,v4::IPluginConnections
 		{
 		public:
 			Box2dRayCastNode(void);
 
-			virtual void SetPluginHost(IPluginHost^ Host);
-			virtual void Configurate(IPluginConfig^ Input);
+			virtual void SetPluginHost(v4::IPluginHost^ Host);
+			virtual void Configurate(v4::IPluginConfig^ Input);
 			virtual void Evaluate(int SpreadMax);
-			virtual void ConnectPin(IPluginIO^ Pin);
-			virtual void DisconnectPin(IPluginIO^ Pin);
+			virtual void ConnectPin(v4::IPluginIO^ Pin);
+			virtual void DisconnectPin(v4::IPluginIO^ Pin);
 
 			virtual property bool AutoEvaluate { bool get() { return false; } }
 
-			static property IPluginInfo^ PluginInfo 
+			static property v4::IPluginInfo^ PluginInfo 
 			{
-				IPluginInfo^ get() 
+				v4::IPluginInfo^ get() 
 				{
-					//IPluginInfo^ Info;
-					IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
+					//v4::IPluginInfo^ Info;
+					v4::IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
 					Info->Name = "RayCast";
 					Info->Category = "Box2d";
 					Info->Version = "";
@@ -55,27 +58,27 @@ namespace VVVV
 
 
 		private:
-			IPluginHost^ FHost;
+			v4::IPluginHost^ FHost;
 
-			INodeIn^ vInWorld;
-			WorldDataType^ m_world;
+			v4::INodeIn^ vInWorld;
+			v4b2d::WorldDataType^ m_world;
 
-			IValueIn^ vInStartPos;
-			IValueIn^ vInEndPos;
-			IValueIn^ vInMaxCount;
-			IValueIn^ vInSolidShapes;
-			IValueIn^ vInDoQuery;
+			v4::IValueIn^ vInStartPos;
+			v4::IValueIn^ vInEndPos;
+			v4::IValueIn^ vInMaxCount;
+			v4::IValueIn^ vInSolidShapes;
+			v4::IValueIn^ vInDoQuery;
 
 
-			IValueOut^ vOutQueryIndex;
+			v4::IValueOut^ vOutQueryIndex;
 
-			INodeOut^ vOutShapes;
-			ShapeDataType^ mShapes;
-			IValueOut^ vOutShapeId;
+			v4::INodeOut^ vOutShapes;
+			v4b2d::ShapeDataType^ mShapes;
+			v4::IValueOut^ vOutShapeId;
 			
-			INodeOut^ vOutBodies;
-			BodyDataType^ mBodies;
-			IValueOut^ vOutBodyId;
+			v4::INodeOut^ vOutBodies;
+			v4b2d::BodyDataType^ mBodies;
+			v4::IValueOut^ vOutBodyId;
 		};
 	}
 }

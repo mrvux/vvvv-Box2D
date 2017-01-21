@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dSetMotorSpeed.h"
 
 #include "../../Internals/Data/JointCustomData.h"
@@ -7,22 +7,22 @@ namespace VVVV
 {
 	namespace Nodes 
 	{
-		void Box2dSetMotorSpeedNode::SetPluginHost(IPluginHost^ Host) 
+		void Box2dSetMotorSpeedNode::SetPluginHost(v4::IPluginHost^ Host) 
 		{
 			this->FHost = Host;
 
-			this->FHost->CreateNodeInput("Joints",TSliceMode::Dynamic,TPinVisibility::True,this->vInJoints);
-			this->vInJoints->SetSubType(ArrayUtils::SingleGuidArray(JointDataType::GUID),JointDataType::FriendlyName);
+			this->FHost->CreateNodeInput("Joints",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInJoints);
+			this->vInJoints->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::JointDataType::GUID),v4b2d::JointDataType::FriendlyName);
 
-			this->FHost->CreateValueInput("Speed",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInSpeed);
-			this->vInSpeed->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);	
+			this->FHost->CreateValueInput("Speed",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInSpeed);
+			this->vInSpeed->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);	
 
-			this->FHost->CreateValueInput("Update", 1, nullptr, TSliceMode::Dynamic, TPinVisibility::True, this->vInUpdate);
+			this->FHost->CreateValueInput("Update", 1, nullptr, v4::TSliceMode::Dynamic, v4::TPinVisibility::True, this->vInUpdate);
 			this->vInUpdate->SetSubType(0, 1, 1, 0, true,false, false);
 
 		}
 
-		void Box2dSetMotorSpeedNode::Configurate(IPluginConfig^ Input)
+		void Box2dSetMotorSpeedNode::Configurate(v4::IPluginConfig^ Input)
 		{
 
 		}
@@ -53,7 +53,7 @@ namespace VVVV
 								{
 									double dblspeed;
 									this->vInSpeed->GetValue(i, dblspeed);
-									rev->SetMotorSpeed(Convert::ToInt32(dblspeed));
+									rev->SetMotorSpeed(System::Convert::ToInt32(dblspeed));
 								}
 							}
 
@@ -65,7 +65,7 @@ namespace VVVV
 								{
 									double dblspeed;
 									this->vInSpeed->GetValue(i, dblspeed);
-									pri->SetMotorSpeed(Convert::ToInt32(dblspeed));
+									pri->SetMotorSpeed(System::Convert::ToInt32(dblspeed));
 								}
 							}
 
@@ -79,18 +79,18 @@ namespace VVVV
 
 
 
-		void Box2dSetMotorSpeedNode::ConnectPin(IPluginIO^ Pin)
+		void Box2dSetMotorSpeedNode::ConnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInJoints) 
 			{
-				INodeIOBase^ usI;
+				v4::INodeIOBase^ usI;
 				this->vInJoints->GetUpstreamInterface(usI);
-				this->m_joints = (JointDataType^)usI;
+				this->m_joints = (v4b2d::JointDataType^)usI;
 			}
 		}
 
 
-		void Box2dSetMotorSpeedNode::DisconnectPin(IPluginIO^ Pin)
+		void Box2dSetMotorSpeedNode::DisconnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInJoints)
         	{

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dGetPolygonsNode.h"
 #include "../../Internals/Data/ShapeCustomData.h"
 #include "../../Internals/Data/BodyCustomData.h"
@@ -14,47 +14,47 @@ namespace VVVV
 		{
 		}
 
-		void Box2dGetPolygonsNode::SetPluginHost(IPluginHost^ Host) 
+		void Box2dGetPolygonsNode::SetPluginHost(v4::IPluginHost^ Host) 
 		{
 			this->FHost = Host;
 
-			this->FHost->CreateNodeInput("Shapes",TSliceMode::Dynamic,TPinVisibility::True,this->vInShapes);
-			this->vInShapes->SetSubType(ArrayUtils::SingleGuidArray(ShapeDataType::GUID),ShapeDataType::FriendlyName);
+			this->FHost->CreateNodeInput("Shapes",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInShapes);
+			this->vInShapes->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::ShapeDataType::GUID), v4b2d::ShapeDataType::FriendlyName);
 
-			this->FHost->CreateValueInput("Closed Polygons",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInClosed);
+			this->FHost->CreateValueInput("Closed Polygons",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInClosed);
 			this->vInClosed->SetSubType(0,1,1,0,false,true,false);
 
-			this->FHost->CreateValueInput("Local Coordinates",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInLocal);
+			this->FHost->CreateValueInput("Local Coordinates",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInLocal);
 			this->vInLocal->SetSubType(0,1,1,0,false,true,false);
 
 
-			this->FHost->CreateValueOutput("Centers",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutCenters);
-			this->vOutCenters->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueOutput("Centers",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutCenters);
+			this->vOutCenters->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueOutput("Vertices",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutVertices);
-			this->vOutVertices->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueOutput("Vertices",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutVertices);
+			this->vOutVertices->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueOutput("Vertices Count",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutVerticesCount);
-			this->vOutVerticesCount->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,true);
+			this->FHost->CreateValueOutput("Vertices Count",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutVerticesCount);
+			this->vOutVerticesCount->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,true);
 
-			this->FHost->CreateValueOutput("Is Sensor",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutIsSensor);
-			this->vOutIsSensor->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,true,false);
+			this->FHost->CreateValueOutput("Is Sensor",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutIsSensor);
+			this->vOutIsSensor->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,true,false);
 
-			this->FHost->CreateStringOutput("Custom",TSliceMode::Dynamic,TPinVisibility::True,this->vOutCustom);
+			this->FHost->CreateStringOutput("Custom",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutCustom);
 			this->vOutCustom->SetSubType("",false);
 
-			this->FHost->CreateValueOutput("Shape Id",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutId);
-			this->vOutId->SetSubType(Double::MinValue,Double::MaxValue,1,0.0,false,false,true);
+			this->FHost->CreateValueOutput("Shape Id",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutId);
+			this->vOutId->SetSubType(System::Double::MinValue,System::Double::MaxValue,1,0.0,false,false,true);
 
-			this->FHost->CreateValueOutput("Body Id",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutBodyId);
-			this->vOutBodyId->SetSubType(Double::MinValue,Double::MaxValue,1,0.0,false,false,true);
+			this->FHost->CreateValueOutput("Body Id",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutBodyId);
+			this->vOutBodyId->SetSubType(System::Double::MinValue,System::Double::MaxValue,1,0.0,false,false,true);
 
-			this->FHost->CreateValueOutput("LifeTime",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutLifeTime);
-			this->vOutLifeTime->SetSubType(Double::MinValue,Double::MaxValue,1,0.0,false,false,false);
+			this->FHost->CreateValueOutput("LifeTime",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutLifeTime);
+			this->vOutLifeTime->SetSubType(System::Double::MinValue,System::Double::MaxValue,1,0.0,false,false,false);
 		}
 
 
-		void Box2dGetPolygonsNode::Configurate(IPluginConfig^ Input)
+		void Box2dGetPolygonsNode::Configurate(v4::IPluginConfig^ Input)
 		{
 
 		}
@@ -79,9 +79,9 @@ namespace VVVV
 				std::vector<int> vcount;
 				std::vector<int> ids;
 				std::vector<bool> issensor;
-				List<String^>^ custs = gcnew List<String^>(); 
-				List<int>^ bodyids = gcnew List<int>();
-				List<double>^ lifetime = gcnew List<double>();
+				gen::List<System::String^>^ custs = gcnew gen::List<System::String^>(); 
+				gen::List<int>^ bodyids = gcnew gen::List<int>();
+				gen::List<double>^ lifetime = gcnew gen::List<double>();
 
 				int cnt = 0;
 				for (int i = 0; i < this->vInShapes->SliceCount ; i++) 
@@ -134,7 +134,7 @@ namespace VVVV
 							ShapeCustomData* sdata = (ShapeCustomData*)shape->GetUserData();
 							ids.push_back(sdata->Id);
 							issensor.push_back(shape->IsSensor());
-							String^ str = gcnew String(sdata->Custom);
+							System::String^ str = gcnew System::String(sdata->Custom);
 							custs->Add(str);
 							lifetime->Add(sdata->LifeTime);
 
@@ -173,17 +173,17 @@ namespace VVVV
 			}
 		}
 
-		void Box2dGetPolygonsNode::ConnectPin(IPluginIO^ Pin)
+		void Box2dGetPolygonsNode::ConnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInShapes) 
 			{
-				INodeIOBase^ usI;
+				v4::INodeIOBase^ usI;
 				this->vInShapes->GetUpstreamInterface(usI);
-				this->m_polygons = (ShapeDataType^)usI;
+				this->m_polygons = (v4b2d::ShapeDataType^)usI;
 			}
 		}
 
-		void Box2dGetPolygonsNode::DisconnectPin(IPluginIO^ Pin)
+		void Box2dGetPolygonsNode::DisconnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInShapes)
         	{

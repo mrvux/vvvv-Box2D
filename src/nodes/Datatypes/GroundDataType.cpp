@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "GroundDataType.h"
 
 namespace VVVV 

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dUpdateShapeNode.h"
 
 #include "../../Internals/Data/ShapeCustomData.h"
@@ -14,63 +14,63 @@ namespace VVVV
 		{
 		}
 
-		void Box2dUpdateShapeNode::SetPluginHost(IPluginHost^ Host) 
+		void Box2dUpdateShapeNode::SetPluginHost(v4::IPluginHost^ Host) 
 		{
 			this->FHost = Host;
 
-			this->FHost->CreateNodeInput("Shapes",TSliceMode::Dynamic,TPinVisibility::True,this->vInShapes);
-			this->vInShapes->SetSubType(ArrayUtils::SingleGuidArray(ShapeDataType::GUID),ShapeDataType::FriendlyName);
+			this->FHost->CreateNodeInput("Shapes",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInShapes);
+			this->vInShapes->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(ShapeDataType::GUID),ShapeDataType::FriendlyName);
 
-			this->FHost->CreateValueInput("Density",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInDensity);
-			this->vInDensity->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Density",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInDensity);
+			this->vInDensity->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Set Density",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInSetDensity);
+			this->FHost->CreateValueInput("Set Density",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInSetDensity);
 			this->vInSetDensity->SetSubType(0,1,1,0.0,true,false,false);
 
-			this->FHost->CreateValueInput("Friction",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInFriction);
-			this->vInFriction->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Friction",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInFriction);
+			this->vInFriction->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Set Friction",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInSetFriction);
+			this->FHost->CreateValueInput("Set Friction",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInSetFriction);
 			this->vInSetFriction->SetSubType(0,1,1,0.0,true,false,false);
 
-			this->FHost->CreateValueInput("Restitution",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInRestitution);
-			this->vInRestitution->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Restitution",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInRestitution);
+			this->vInRestitution->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Set Restitution",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInSetRestitution);
+			this->FHost->CreateValueInput("Set Restitution",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInSetRestitution);
 			this->vInSetRestitution->SetSubType(0,1,1,0.0,true,false,false);	
 
-			this->FHost->CreateValueInput("Group Index", 1, nullptr, TSliceMode::Dynamic, TPinVisibility::True, this->vInGroup);
-			this->vInGroup->SetSubType(Double::MinValue, Double::MaxValue, 1, 0, false,false, true);
+			this->FHost->CreateValueInput("Group Index", 1, nullptr, v4::TSliceMode::Dynamic, v4::TPinVisibility::True, this->vInGroup);
+			this->vInGroup->SetSubType(System::Double::MinValue, System::Double::MaxValue, 1, 0, false,false, true);
 
-			this->FHost->CreateValueInput("Set Group",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInSetGroup);
+			this->FHost->CreateValueInput("Set Group",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInSetGroup);
 			this->vInSetGroup->SetSubType(0,1,1,0.0,true,false,false);
 
-			this->FHost->CreateStringInput("Custom",TSliceMode::Dynamic,TPinVisibility::True,this->vInCustom);
+			this->FHost->CreateStringInput("Custom",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInCustom);
 			this->vInCustom->SetSubType("",false);
 
-			this->FHost->CreateValueInput("Set Custom",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInSetCustom);
+			this->FHost->CreateValueInput("Set Custom",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInSetCustom);
 			this->vInSetCustom->SetSubType(0,1,1,0.0,true,false,false);
 
-			//this->FHost->CreateValueInput("Is Sensor",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInSensor);
+			//this->FHost->CreateValueInput("Is Sensor",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInSensor);
 			//this->vInSensor->SetSubType(0,1,1.0,0.0,false,true,false);
 
-			//this->FHost->CreateValueInput("Set Sensor",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInSetSensor);
+			//this->FHost->CreateValueInput("Set Sensor",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInSetSensor);
 			//this->vInSetSensor->SetSubType(0,1,1.0,0.0,true,false,false);
 
 		}
 
 		
-		void Box2dUpdateShapeNode::Configurate(IPluginConfig^ Input)
+		void Box2dUpdateShapeNode::Configurate(v4::IPluginConfig^ Input)
 		{
 
 		}
 
 				
-		void Box2dUpdateShapeNode::ConnectPin(IPluginIO^ Pin)
+		void Box2dUpdateShapeNode::ConnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInShapes) 
 			{
-				INodeIOBase^ usI;
+				v4::INodeIOBase^ usI;
 				this->vInShapes->GetUpstreamInterface(usI);
 				this->m_shapes = (ShapeDataType^)usI;
 			}
@@ -101,7 +101,7 @@ namespace VVVV
 						double g;
 						this->vInGroup->GetValue(i,g);
 						b2FilterData filter = shape->GetFilterData();
-						filter.groupIndex = Convert::ToInt32(g);
+						filter.groupIndex = System::Convert::ToInt32(g);
 						shape->SetFilterData(filter);
 						shape->GetBody()->GetWorld()->Refilter(shape);
 					}
@@ -133,9 +133,9 @@ namespace VVVV
 					this->vInSetCustom->GetValue(i,dblsc);
 					if (dblsc >= 0.5)
 					{
-						String^ cust;
+						System::String^ cust;
 						this->vInCustom->GetString(i,cust);
-						sdata->Custom = (char*)(void*)Marshal::StringToHGlobalAnsi(cust);
+						sdata->Custom = (char*)(void*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(cust);
 					}
 					
 					/*
@@ -154,7 +154,7 @@ namespace VVVV
 
 
 	
-		void Box2dUpdateShapeNode::DisconnectPin(IPluginIO^ Pin)
+		void Box2dUpdateShapeNode::DisconnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInShapes)
         	{

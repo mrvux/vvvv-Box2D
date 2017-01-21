@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dBoxDefNode.h"
 
 namespace VVVV 
@@ -29,7 +29,7 @@ namespace VVVV
 			{
 
 				double x,y,r,sx,sy,a,friction,restitution,density,issensor,group;
-				String^ custom;
+				System::String^ custom;
 				this->vOutShapes->SliceCount = SpreadMax;
 
 				this->m_shapes->Reset();
@@ -48,12 +48,12 @@ namespace VVVV
 
 					b2PolygonDef* shapeDef = this->m_shapes->AddPolygon();
 					b2Vec2 center(x,y);
-					shapeDef->SetAsBox(sx / 2.0f, sy / 2.0,center,a * (Math::PI * 2.0));
+					shapeDef->SetAsBox(sx / 2.0f, sy / 2.0,center,a * (System::Math::PI * 2.0));
 					shapeDef->density = density;
 					shapeDef->friction = friction;
 					shapeDef->restitution = restitution;
 					shapeDef->isSensor = issensor >= 0.5;
-					shapeDef->filter.groupIndex = Convert::ToInt32(group);
+					shapeDef->filter.groupIndex = System::Convert::ToInt32(group);
 
 					this->m_shapes->AddCustom(custom);
 
@@ -68,14 +68,14 @@ namespace VVVV
 		
 		void Box2dBoxDefNode::OnPluginHostSet() 
 		{
-			this->FHost->CreateValueInput("Position",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInLocalPosition);
-			this->vInLocalPosition->SetSubType2D(0,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueInput("Position",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInLocalPosition);
+			this->vInLocalPosition->SetSubType2D(0,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Size",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInSize);
-			this->vInSize->SetSubType2D(0,Double::MaxValue,0.01,1.0,1.0,false,false,false);
+			this->FHost->CreateValueInput("Size",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInSize);
+			this->vInSize->SetSubType2D(0,System::Double::MaxValue,0.01,1.0,1.0,false,false,false);
 
-			this->FHost->CreateValueInput("Angle",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInAngle);
-			this->vInAngle->SetSubType(0,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Angle",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInAngle);
+			this->vInAngle->SetSubType(0,System::Double::MaxValue,0.01,0.0,false,false,false);
 		}
 	}
 }

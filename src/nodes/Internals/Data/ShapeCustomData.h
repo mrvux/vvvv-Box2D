@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Box2D.h"
+
 public class ShapeCustomData
 {
 public:

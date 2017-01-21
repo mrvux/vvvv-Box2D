@@ -1,23 +1,26 @@
 #pragma once
 #include "../../DataTypes/Shapes/ShapeDataType.h"
+#include "../../Utils/ArrayUtils.h"
 
-using namespace VVVV::DataTypes;
+namespace v4 = VVVV::PluginInterfaces::V1;
+namespace gen = System::Collections::Generic;
+namespace v4b2d = VVVV::DataTypes;
 
 namespace VVVV 
 {
 	namespace Nodes 
 	{
-		public ref class Box2dGetPolygonsNode: IPlugin,IPluginConnections
+		public ref class Box2dGetPolygonsNode: v4::IPlugin,v4::IPluginConnections
 		{
 		public:
 			Box2dGetPolygonsNode(void);
 
-			static property IPluginInfo^ PluginInfo 
+			static property v4::IPluginInfo^ PluginInfo 
 				{
-					IPluginInfo^ get() 
+					v4::IPluginInfo^ get() 
 					{
-						//IPluginInfo^ Info;
-						IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
+						//v4::IPluginInfo^ Info;
+						v4::IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
 						Info->Name = "GetPolygons";
 						Info->Category = "Box2d";
 						Info->Version = "";
@@ -39,11 +42,11 @@ namespace VVVV
 				}
 	
 
-			virtual void SetPluginHost(IPluginHost^ Host);
-			virtual void Configurate(IPluginConfig^ Input);
+			virtual void SetPluginHost(v4::IPluginHost^ Host);
+			virtual void Configurate(v4::IPluginConfig^ Input);
 			virtual void Evaluate(int SpreadMax);
-			virtual void ConnectPin(IPluginIO^ Pin);
-			virtual void DisconnectPin(IPluginIO^ Pin);
+			virtual void ConnectPin(v4::IPluginIO^ Pin);
+			virtual void DisconnectPin(v4::IPluginIO^ Pin);
 			
 			virtual property bool AutoEvaluate 
 			{
@@ -52,21 +55,21 @@ namespace VVVV
 		protected:
 
 		private:
-			IPluginHost^ FHost;
+			v4::IPluginHost^ FHost;
 
-			INodeIn^ vInShapes;
-			IValueIn^ vInClosed;
-			IValueIn^ vInLocal;
-			ShapeDataType^ m_polygons;
+			v4::INodeIn^ vInShapes;
+			v4::IValueIn^ vInClosed;
+			v4::IValueIn^ vInLocal;
+			v4b2d::ShapeDataType^ m_polygons;
 
-			IValueOut^ vOutCenters;
-			IValueOut^ vOutVertices;
-			IValueOut^ vOutVerticesCount;
-			IValueOut^ vOutIsSensor;
-			IValueOut^ vOutId;
-			IValueOut^ vOutBodyId;
-			IStringOut^ vOutCustom;
-			IValueOut^ vOutLifeTime;
+			v4::IValueOut^ vOutCenters;
+			v4::IValueOut^ vOutVertices;
+			v4::IValueOut^ vOutVerticesCount;
+			v4::IValueOut^ vOutIsSensor;
+			v4::IValueOut^ vOutId;
+			v4::IValueOut^ vOutBodyId;
+			v4::IStringOut^ vOutCustom;
+			v4::IValueOut^ vOutLifeTime;
 
 			bool m_closed;
 			bool m_local;

@@ -1,4 +1,3 @@
-#include "StdAfx.h"
 #include "Box2dContactDetailsDualNode.h"
 #include "../Internals/Data/ShapeCustomData.h"
 #include "../Internals/Data/BodyCustomData.h"
@@ -9,56 +8,56 @@ namespace VVVV
 	{
 		Box2dContactDetailsDualNode::Box2dContactDetailsDualNode(void)
 		{
-			this->m_shape = gcnew ShapeDataType();
-			this->mBody = gcnew BodyDataType();
+			this->m_shape = gcnew v4b2d::ShapeDataType();
+			this->mBody = gcnew v4b2d::BodyDataType();
 		}
 
-		void Box2dContactDetailsDualNode::SetPluginHost(IPluginHost^ Host) 
+		void Box2dContactDetailsDualNode::SetPluginHost(v4::IPluginHost^ Host) 
 		{
 			this->FHost = Host;
 	
-			this->FHost->CreateNodeInput("World",TSliceMode::Dynamic,TPinVisibility::True,this->vInWorld);
-			this->vInWorld->SetSubType(ArrayUtils::SingleGuidArray(WorldDataType::GUID),WorldDataType::FriendlyName);
+			this->FHost->CreateNodeInput("World",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInWorld);
+			this->vInWorld->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::WorldDataType::GUID), v4b2d::WorldDataType::FriendlyName);
 
-			this->FHost->CreateValueOutput("Contact Id",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutId);
-			this->vOutId->SetSubType(Double::MinValue,Double::MaxValue,1,0.0,false,false,true);
+			this->FHost->CreateValueOutput("Contact Id",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutId);
+			this->vOutId->SetSubType(System::Double::MinValue,System::Double::MaxValue,1,0.0,false,false,true);
 
-			this->FHost->CreateValueOutput("Position",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutPosition);
-			this->vOutPosition->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueOutput("Position",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutPosition);
+			this->vOutPosition->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueOutput("Normals",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutNormals);
-			this->vOutNormals->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueOutput("Normals",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutNormals);
+			this->vOutNormals->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueOutput("Normal Impulse", 1, nullptr, TSliceMode::Dynamic, TPinVisibility::True, this->vOutNormalImpulse);
-			this->vOutNormalImpulse->SetSubType(Double::MinValue, Double::MaxValue, 0.01, 0, false,false, false);
+			this->FHost->CreateValueOutput("Normal Impulse", 1, nullptr, v4::TSliceMode::Dynamic, v4::TPinVisibility::True, this->vOutNormalImpulse);
+			this->vOutNormalImpulse->SetSubType(System::Double::MinValue, System::Double::MaxValue, 0.01, 0, false,false, false);
 
-			this->FHost->CreateValueOutput("Tangent Impulse", 1, nullptr, TSliceMode::Dynamic, TPinVisibility::True, this->vOutTangentImpulse);
-			this->vOutTangentImpulse->SetSubType(Double::MinValue, Double::MaxValue, 0.01, 0, false,false, false);
+			this->FHost->CreateValueOutput("Tangent Impulse", 1, nullptr, v4::TSliceMode::Dynamic, v4::TPinVisibility::True, this->vOutTangentImpulse);
+			this->vOutTangentImpulse->SetSubType(System::Double::MinValue, System::Double::MaxValue, 0.01, 0, false,false, false);
 
-			this->FHost->CreateNodeOutput("Shapes",TSliceMode::Dynamic,TPinVisibility::True,this->vOutShape);
-			this->vOutShape->SetSubType(ArrayUtils::SingleGuidArray(ShapeDataType::GUID),ShapeDataType::FriendlyName);
+			this->FHost->CreateNodeOutput("Shapes",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutShape);
+			this->vOutShape->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::ShapeDataType::GUID), v4b2d::ShapeDataType::FriendlyName);
 			this->vOutShape->SetInterface(this->m_shape);
 	
-			this->FHost->CreateNodeOutput("Bodies",TSliceMode::Dynamic,TPinVisibility::True,this->vOutBody);
-			this->vOutBody->SetSubType(ArrayUtils::SingleGuidArray(BodyDataType::GUID),BodyDataType::FriendlyName);
+			this->FHost->CreateNodeOutput("Bodies",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutBody);
+			this->vOutBody->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::BodyDataType::GUID), v4b2d::BodyDataType::FriendlyName);
 			this->vOutBody->SetInterface(this->mBody);
 
-			this->FHost->CreateValueOutput("Bodies Id",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutBodyId);
-			this->vOutBodyId->SetSubType(Double::MinValue,Double::MaxValue,1,0.0,false,false,true);
+			this->FHost->CreateValueOutput("Bodies Id",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutBodyId);
+			this->vOutBodyId->SetSubType(System::Double::MinValue,System::Double::MaxValue,1,0.0,false,false,true);
 
-			this->FHost->CreateValueOutput("Shapes Id",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutShapes);
-			this->vOutShapes->SetSubType(Double::MinValue,Double::MaxValue,1,0.0,false,false,true);
+			this->FHost->CreateValueOutput("Shapes Id",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutShapes);
+			this->vOutShapes->SetSubType(System::Double::MinValue,System::Double::MaxValue,1,0.0,false,false,true);
 
-			this->FHost->CreateValueOutput("Is New",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutNew);
-			this->vOutNew->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,true,false,false);
+			this->FHost->CreateValueOutput("Is New",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutNew);
+			this->vOutNew->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,true,false,false);
 
-			this->FHost->CreateValueOutput("Contact Count",1,nullptr,TSliceMode::Single,TPinVisibility::True,this->vOutContactCount);
-			this->vOutContactCount->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,true,false,false);
+			this->FHost->CreateValueOutput("Contact Count",1,nullptr,v4::TSliceMode::Single,v4::TPinVisibility::True,this->vOutContactCount);
+			this->vOutContactCount->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,true,false,false);
 
 		}
 
 
-		void Box2dContactDetailsDualNode::Configurate(IPluginConfig^ Input)
+		void Box2dContactDetailsDualNode::Configurate(v4::IPluginConfig^ Input)
 		{
 
 		}
@@ -88,7 +87,7 @@ namespace VVVV
 					for (int i = 0; i < this->m_world->Results->size(); i++)
 					{
 						ContactResultData* result = this->m_world->Results->at(i);
-						this->vOutId->SetValue(i, Convert::ToDouble(result->id.key));
+						this->vOutId->SetValue(i, System::Convert::ToDouble(result->id.key));
 						this->vOutPosition->SetValue2D(i,result->position.x,result->position.y);
 						this->vOutNormals->SetValue2D(i,result->normal.x,result->normal.y);
 						this->vOutNormalImpulse->SetValue(i, result->normalImpulse);
@@ -152,17 +151,17 @@ namespace VVVV
 		}
 
 
-		void Box2dContactDetailsDualNode::ConnectPin(IPluginIO^ Pin)
+		void Box2dContactDetailsDualNode::ConnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInWorld) 
 			{
-				INodeIOBase^ usI;
+				v4::INodeIOBase^ usI;
 				this->vInWorld->GetUpstreamInterface(usI);
-				this->m_world = (WorldDataType^)usI;
+				this->m_world = (v4b2d::WorldDataType^)usI;
 			}
 		}
 
-		void Box2dContactDetailsDualNode::DisconnectPin(IPluginIO^ Pin)
+		void Box2dContactDetailsDualNode::DisconnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInWorld)
         	{

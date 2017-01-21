@@ -2,21 +2,26 @@
 #include "../../../DataTypes/BodyDataType.h"
 #include "Box2dCreateJointNode.h"
 
-using namespace VVVV::DataTypes;
+
+#include "../../../Utils/ArrayUtils.h"
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+namespace gen = System::Collections::Generic;
+namespace v4b2d = VVVV::DataTypes;
 
 namespace VVVV 
 {
 	namespace Nodes 
 	{
-		public ref class Box2dCreateRevoluteJointNode : Box2dCreateJointNode, IPlugin, IPluginConnections
+		public ref class Box2dCreateRevoluteJointNode : Box2dCreateJointNode, v4::IPlugin, v4::IPluginConnections
 		{
 		public:
-			static property IPluginInfo^ PluginInfo 
+			static property v4::IPluginInfo^ PluginInfo 
 				{
-					IPluginInfo^ get() 
+					v4::IPluginInfo^ get() 
 					{
-						//IPluginInfo^ Info;
-						IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
+						//v4::IPluginInfo^ Info;
+						v4::IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
 						Info->Name = "CreateRevoluteJoint";
 						Info->Category = "Box2d";
 						Info->Version = "";
@@ -47,13 +52,13 @@ namespace VVVV
 		protected:
 			virtual void OnPluginHostSet() override;
 		private:
-			IValueIn^ vInPosition;
-			IValueIn^ vInMinAngle;
-			IValueIn^ vInMaxAngle;
-			IValueIn^ vInEnableLimit;
-			IValueIn^ vInMaxMotorTorque;
-			IValueIn^ vInMotorSpeed;
-			IValueIn^ vInEnableMotor;
+			v4::IValueIn^ vInPosition;
+			v4::IValueIn^ vInMinAngle;
+			v4::IValueIn^ vInMaxAngle;
+			v4::IValueIn^ vInEnableLimit;
+			v4::IValueIn^ vInMaxMotorTorque;
+			v4::IValueIn^ vInMotorSpeed;
+			v4::IValueIn^ vInEnableMotor;
 		};
 	}
 }

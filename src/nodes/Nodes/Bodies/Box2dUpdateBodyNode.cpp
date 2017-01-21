@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dUpdateBodyNode.h"
 
 #include "../../Internals/Data/BodyCustomData.h"
@@ -11,62 +11,62 @@ namespace VVVV
 		{
 		}
 
-		void Box2dUpdateBodyNode::SetPluginHost(IPluginHost^ Host) 
+		void Box2dUpdateBodyNode::SetPluginHost(v4::IPluginHost^ Host) 
 		{
 			this->FHost = Host;
 
-			this->FHost->CreateNodeInput("Bodies",TSliceMode::Dynamic,TPinVisibility::True,this->vInBodies);
-			this->vInBodies->SetSubType(ArrayUtils::SingleGuidArray(BodyDataType::GUID),BodyDataType::FriendlyName);
+			this->FHost->CreateNodeInput("Bodies",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInBodies);
+			this->vInBodies->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::BodyDataType::GUID), v4b2d::BodyDataType::FriendlyName);
 
-			this->FHost->CreateValueInput("Position",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInPosition);
-			this->vInPosition->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueInput("Position",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInPosition);
+			this->vInPosition->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Set Position",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInSetPosition);
+			this->FHost->CreateValueInput("Set Position",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInSetPosition);
 			this->vInSetPosition->SetSubType(0,1,1.0,0.0,true,false,false);	
 
-			this->FHost->CreateValueInput("Angle",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInAngle);
-			this->vInAngle->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Angle",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInAngle);
+			this->vInAngle->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Set Angle",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInSetAngle);
+			this->FHost->CreateValueInput("Set Angle",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInSetAngle);
 			this->vInSetAngle->SetSubType(0,1,1.0,0.0,true,false,false);
 
-			this->FHost->CreateValueInput("Velocity",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInVelocity);
-			this->vInVelocity->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueInput("Velocity",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInVelocity);
+			this->vInVelocity->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Set Velocity",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInSetVelocity);
+			this->FHost->CreateValueInput("Set Velocity",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInSetVelocity);
 			this->vInSetVelocity->SetSubType(0,1,1.0,0.0,true,false,false);	
 
-			this->FHost->CreateValueInput("Angular Velocity",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInAngularVelocity);
-			this->vInAngularVelocity->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Angular Velocity",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInAngularVelocity);
+			this->vInAngularVelocity->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Set Angular Velocity",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInSetAngularVelocity);
+			this->FHost->CreateValueInput("Set Angular Velocity",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInSetAngularVelocity);
 			this->vInSetAngularVelocity->SetSubType(0,1,1.0,0.0,true,false,false);
 
-			this->FHost->CreateStringInput("Custom",TSliceMode::Dynamic,TPinVisibility::True,this->vInCustom);
+			this->FHost->CreateStringInput("Custom",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInCustom);
 			this->vInCustom->SetSubType("",false);
 
-			this->FHost->CreateValueInput("Set Custom",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInSetCustom);
+			this->FHost->CreateValueInput("Set Custom",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInSetCustom);
 			this->vInSetCustom->SetSubType(0,1,1,0.0,true,false,false);
 
-			this->FHost->CreateValueInput("Sleeping",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInSleeping);
+			this->FHost->CreateValueInput("Sleeping",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInSleeping);
 			this->vInSleeping->SetSubType(0,1,1.0,0.0,false,true,false);
 
-			this->FHost->CreateValueInput("Set Sleeping",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInSetSleeping);
+			this->FHost->CreateValueInput("Set Sleeping",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInSetSleeping);
 			this->vInSetSleeping->SetSubType(0,1,1.0,0.0,true,false,false);
 
 			//Time to live
-			this->FHost->CreateValueInput("TTL",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInTTL);
-			this->vInTTL->SetSubType(Double::MinValue,Double::MaxValue,0.01,1.0,false,false,false);
+			this->FHost->CreateValueInput("TTL",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInTTL);
+			this->vInTTL->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,1.0,false,false,false);
 
-			this->FHost->CreateValueInput("Has TTL",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInHasTTL);
+			this->FHost->CreateValueInput("Has TTL",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInHasTTL);
 			this->vInHasTTL->SetSubType(0,1,1.0,0.0,false,true,false);
 
-			this->FHost->CreateValueInput("Set TTL",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInSetTTL);
+			this->FHost->CreateValueInput("Set TTL",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInSetTTL);
 			this->vInSetTTL->SetSubType(0,1,1.0,0.0,true,false,false);
 		}
 
 		
-		void Box2dUpdateBodyNode::Configurate(IPluginConfig^ Input)
+		void Box2dUpdateBodyNode::Configurate(v4::IPluginConfig^ Input)
 		{
 
 		}
@@ -113,7 +113,7 @@ namespace VVVV
 							a = body->GetAngle();
 						}
 
-						body->SetXForm(b2Vec2(Convert::ToSingle(x),Convert::ToSingle(y)),Convert::ToSingle(a));
+						body->SetXForm(b2Vec2(System::Convert::ToSingle(x), System::Convert::ToSingle(y)), System::Convert::ToSingle(a));
 					}
 
 					this->vInSetVelocity->GetValue(i,dblsv);
@@ -121,7 +121,7 @@ namespace VVVV
 					{
 						double x,y;
 						this->vInVelocity->GetValue2D(i,x,y);
-						body->SetLinearVelocity(b2Vec2(Convert::ToSingle(x),Convert::ToSingle(y)));
+						body->SetLinearVelocity(b2Vec2(System::Convert::ToSingle(x), System::Convert::ToSingle(y)));
 					}
 
 					this->vInSetAngularVelocity->GetValue(i,dblsav);
@@ -129,16 +129,16 @@ namespace VVVV
 					{
 						double a;
 						this->vInAngularVelocity->GetValue(i,a);
-						body->SetAngularVelocity(Convert::ToSingle(a));
+						body->SetAngularVelocity(System::Convert::ToSingle(a));
 					}
 
 					this->vInSetCustom->GetValue(i,dblsc);
 					if (dblsc >= 0.5)
 					{
-						String^ cust;
+						System::String^ cust;
 						this->vInCustom->GetString(i,cust);
 						BodyCustomData* bdata = (BodyCustomData*)body->GetUserData();
-						bdata->Custom = (char*)(void*)Marshal::StringToHGlobalAnsi(cust);
+						bdata->Custom = (char*)(void*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(cust);
 					}
 
 					this->vInSetSleeping->GetValue(i, dblsetsleep);
@@ -176,18 +176,18 @@ namespace VVVV
 
 
 		
-		void Box2dUpdateBodyNode::ConnectPin(IPluginIO^ Pin)
+		void Box2dUpdateBodyNode::ConnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInBodies) 
 			{
-				INodeIOBase^ usI;
+				v4::INodeIOBase^ usI;
 				this->vInBodies->GetUpstreamInterface(usI);
-				this->m_bodies = (BodyDataType^)usI;
+				this->m_bodies = (v4b2d::BodyDataType^)usI;
 			}
 		}
 
 
-		void Box2dUpdateBodyNode::DisconnectPin(IPluginIO^ Pin)
+		void Box2dUpdateBodyNode::DisconnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInBodies)
         	{

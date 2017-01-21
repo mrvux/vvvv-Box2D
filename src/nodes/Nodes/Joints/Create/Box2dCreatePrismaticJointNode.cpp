@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dCreatePrismaticJointNode.h"
 
 namespace VVVV 
@@ -11,32 +11,32 @@ namespace VVVV
 
 		void Box2dCreatePrismaticJointNode::OnPluginHostSet() 
 		{
-			this->FHost->CreateValueInput("Position",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInPosition);
-			this->vInPosition->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueInput("Position",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInPosition);
+			this->vInPosition->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Local Axis",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInLocalAxis);
-			this->vInLocalAxis->SetSubType2D(Double::MinValue,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueInput("Local Axis",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInLocalAxis);
+			this->vInLocalAxis->SetSubType2D(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Reference Angle",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInReferenceAngle);
-			this->vInReferenceAngle->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Reference Angle",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInReferenceAngle);
+			this->vInReferenceAngle->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Enable Limit",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInEnableLimit);
-			this->vInEnableLimit->SetSubType(Double::MinValue,Double::MaxValue,1.0,0.0,false,true,false);
+			this->FHost->CreateValueInput("Enable Limit",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInEnableLimit);
+			this->vInEnableLimit->SetSubType(System::Double::MinValue,System::Double::MaxValue,1.0,0.0,false,true,false);
 
-			this->FHost->CreateValueInput("Lower Translation",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInLowTranslation);
-			this->vInLowTranslation->SetSubType(Double::MinValue,Double::MaxValue,0.01,1.0,false,false,false);
+			this->FHost->CreateValueInput("Lower Translation",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInLowTranslation);
+			this->vInLowTranslation->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,1.0,false,false,false);
 
-			this->FHost->CreateValueInput("Upper Translation",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInUpTranslation);
-			this->vInUpTranslation->SetSubType(Double::MinValue,Double::MaxValue,0.01,1.0,false,false,false);
+			this->FHost->CreateValueInput("Upper Translation",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInUpTranslation);
+			this->vInUpTranslation->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,1.0,false,false,false);
 
-			this->FHost->CreateValueInput("Max Motor Force",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInMaxMotorForce);
-			this->vInMaxMotorForce->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Max Motor Force",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInMaxMotorForce);
+			this->vInMaxMotorForce->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Motor Speed",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInMotorSpeed);
-			this->vInMotorSpeed->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,false,false,false);
+			this->FHost->CreateValueInput("Motor Speed",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInMotorSpeed);
+			this->vInMotorSpeed->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Enable Motor",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInEnableMotor);
-			this->vInEnableMotor->SetSubType(Double::MinValue,Double::MaxValue,1.0,0.0,false,true,false);
+			this->FHost->CreateValueInput("Enable Motor",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInEnableMotor);
+			this->vInEnableMotor->SetSubType(System::Double::MinValue,System::Double::MaxValue,1.0,0.0,false,true,false);
 		}
 
 		void Box2dCreatePrismaticJointNode::Evaluate(int SpreadMax)
@@ -60,7 +60,7 @@ namespace VVVV
 							double px,py,refa,cc,ax,ay;
 							double enlimit,enmotor,motorf,motspeed,lt,ut;
 							int realslice1,realslice2;
-							String^ cust;
+							System::String^ cust;
 
 							b2Body* body1;
 
@@ -91,19 +91,19 @@ namespace VVVV
 
 							b2PrismaticJointDef jointDef;
 							jointDef.Initialize(body1, body2, b2Vec2(px,py),b2Vec2(ax,ay));
-							jointDef.referenceAngle = refa * (Math::PI * 2.0);
+							jointDef.referenceAngle = refa * (System::Math::PI * 2.0);
 							jointDef.collideConnected= cc >= 0.5;
 							jointDef.enableLimit = enlimit >= 0.5;
-							jointDef.maxMotorForce = Convert::ToSingle(motorf);
-							jointDef.motorSpeed = Convert::ToSingle(motspeed);
+							jointDef.maxMotorForce = System::Convert::ToSingle(motorf);
+							jointDef.motorSpeed = System::Convert::ToSingle(motspeed);
 							jointDef.enableMotor = enmotor >= 0.5;
-							jointDef.lowerTranslation = Convert::ToSingle(lt);
-							jointDef.upperTranslation = Convert::ToSingle(ut);
+							jointDef.lowerTranslation = System::Convert::ToSingle(lt);
+							jointDef.upperTranslation = System::Convert::ToSingle(ut);
 							
 
 							JointCustomData* jdata = new JointCustomData();
 							jdata->Id = this->mWorld->GetNewJointId();
-							jdata->Custom = (char*)(void*)Marshal::StringToHGlobalAnsi(cust);
+							jdata->Custom = (char*)(void*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(cust);
 
 							b2Joint* j = this->mWorld->GetWorld()->CreateJoint(&jointDef);
 							j->SetUserData(jdata);

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dCircleShapeDefNode.h"
 
 namespace VVVV 
@@ -23,7 +23,7 @@ namespace VVVV
 			{
 
 				double x,y,r,friction,restitution,density,issensor,group;
-				String^ custom;
+				System::String^ custom;
 
 				this->vOutShapes->SliceCount = SpreadMax;
 
@@ -47,7 +47,7 @@ namespace VVVV
 					shapeDef->restitution = restitution;
 					shapeDef->localPosition = b2Vec2(x,y);
 					shapeDef->isSensor = issensor >= 0.5;
-					shapeDef->filter.groupIndex = Convert::ToInt32(group);
+					shapeDef->filter.groupIndex = System::Convert::ToInt32(group);
 
 					this->m_shapes->AddCustom(custom);
 				}
@@ -59,11 +59,11 @@ namespace VVVV
 		
 		void Box2dCircleShapeDefNode::OnPluginHostSet() 
 		{
-			this->FHost->CreateValueInput("Position",2,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInLocalPosition);
-			this->vInLocalPosition->SetSubType2D(0,Double::MaxValue,0.01,0.0,0.0,false,false,false);
+			this->FHost->CreateValueInput("Position",2,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInLocalPosition);
+			this->vInLocalPosition->SetSubType2D(0,System::Double::MaxValue,0.01,0.0,0.0,false,false,false);
 
-			this->FHost->CreateValueInput("Radius",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInRadius);
-			this->vInRadius->SetSubType(0,Double::MaxValue,0.01,1.0,false,false,false);
+			this->FHost->CreateValueInput("Radius",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInRadius);
+			this->vInRadius->SetSubType(0,System::Double::MaxValue,0.01,1.0,false,false,false);
 		}
 	}
 }

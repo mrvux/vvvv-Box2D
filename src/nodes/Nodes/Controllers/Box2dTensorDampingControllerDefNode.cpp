@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dTensorDampingControllerDefNode.h"
 
 namespace VVVV 
@@ -7,7 +7,7 @@ namespace VVVV
 	{
 		Box2dTensorDampingControllerDefNode::Box2dTensorDampingControllerDefNode(void)
 		{
-			this->m_controller = gcnew ControllerDataType();
+			this->m_controller = gcnew v4b2d::ControllerDataType();
 		}
 
 		void Box2dTensorDampingControllerDefNode::OnEvaluate(int SpreadMax, bool reset)
@@ -49,8 +49,8 @@ namespace VVVV
 		
 		void Box2dTensorDampingControllerDefNode::OnPluginHostSet()
 		{
-			this->FHost->CreateValueInput("Model",4,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInModel);
-			this->vInModel->SetSubType4D(Double::MinValue,Double::MaxValue,0.01,-1.0,0.0,0.0,-1.0,false,false,false);
+			this->FHost->CreateValueInput("Model",4,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInModel);
+			this->vInModel->SetSubType4D(System::Double::MinValue,System::Double::MaxValue,0.01,-1.0,0.0,0.0,-1.0,false,false,false);
 		}
 
 	}

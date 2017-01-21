@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dHasContactNode.h"
 #include "../Internals/Data/ShapeCustomData.h"
 #include "../Internals/Data/BodyCustomData.h"
@@ -12,32 +12,32 @@ namespace VVVV
 
 		}
 
-		void Box2dHasContactNode::SetPluginHost(IPluginHost^ Host) 
+		void Box2dHasContactNode::SetPluginHost(v4::IPluginHost^ Host) 
 		{
 			this->FHost = Host;
 	
-			this->FHost->CreateNodeInput("World",TSliceMode::Dynamic,TPinVisibility::True,this->vInWorld);
-			this->vInWorld->SetSubType(ArrayUtils::SingleGuidArray(WorldDataType::GUID),WorldDataType::FriendlyName);
+			this->FHost->CreateNodeInput("World",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInWorld);
+			this->vInWorld->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::WorldDataType::GUID), v4b2d::WorldDataType::FriendlyName);
 
-			this->FHost->CreateValueInput("Id 1",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInId1);
-			this->vInId1->SetSubType(Double::MinValue,Double::MaxValue,1,0.0,false,false,true);
+			this->FHost->CreateValueInput("Id 1",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInId1);
+			this->vInId1->SetSubType(System::Double::MinValue,System::Double::MaxValue,1,0.0,false,false,true);
 
-			this->FHost->CreateValueInput("ShapeBody 1", 1, nullptr, TSliceMode::Dynamic, TPinVisibility::True, this->vInMode1);
+			this->FHost->CreateValueInput("ShapeBody 1", 1, nullptr, v4::TSliceMode::Dynamic, v4::TPinVisibility::True, this->vInMode1);
 			this->vInMode1->SetSubType(0, 1, 1, 0, false,true, false);
 
-			this->FHost->CreateValueInput("Id 2",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInId2);
-			this->vInId2->SetSubType(Double::MinValue,Double::MaxValue,1,0.0,false,false,true);
+			this->FHost->CreateValueInput("Id 2",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInId2);
+			this->vInId2->SetSubType(System::Double::MinValue,System::Double::MaxValue,1,0.0,false,false,true);
 
-			this->FHost->CreateValueInput("ShapeBody 2", 1, nullptr, TSliceMode::Dynamic, TPinVisibility::True, this->vInMode2);
+			this->FHost->CreateValueInput("ShapeBody 2", 1, nullptr, v4::TSliceMode::Dynamic, v4::TPinVisibility::True, this->vInMode2);
 			this->vInMode2->SetSubType(0, 1, 1, 0, false,true, false);
 
-			this->FHost->CreateValueOutput("Has Contact", 1, nullptr, TSliceMode::Dynamic, TPinVisibility::True, this->vOutContact);
+			this->FHost->CreateValueOutput("Has Contact", 1, nullptr, v4::TSliceMode::Dynamic, v4::TPinVisibility::True, this->vOutContact);
 			this->vOutContact->SetSubType(0, 1, 1, 0, false,true, false);
 
 		}
 
 
-		void Box2dHasContactNode::Configurate(IPluginConfig^ Input)
+		void Box2dHasContactNode::Configurate(v4::IPluginConfig^ Input)
 		{
 
 		}
@@ -66,8 +66,8 @@ namespace VVVV
 						b1 = dblmode1 > 0.5;
 						b2 = dblmode2 > 0.5;
 
-						int is1 = Convert::ToInt32(ds1);
-						int is2 = Convert::ToInt32(ds2);
+						int is1 = System::Convert::ToInt32(ds1);
+						int is2 = System::Convert::ToInt32(ds2);
 
 						for (int j = 0; j < this->m_world->Results->size() && !found; j++)
 						{
@@ -106,7 +106,7 @@ namespace VVVV
 							}
 						}
 
-						this->vOutContact->SetValue(i, Convert::ToDouble(found));
+						this->vOutContact->SetValue(i, System::Convert::ToDouble(found));
 
 					}
 				}
@@ -122,17 +122,17 @@ namespace VVVV
 		}
 
 
-		void Box2dHasContactNode::ConnectPin(IPluginIO^ Pin)
+		void Box2dHasContactNode::ConnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInWorld) 
 			{
-				INodeIOBase^ usI;
+				v4::INodeIOBase^ usI;
 				this->vInWorld->GetUpstreamInterface(usI);
-				this->m_world = (WorldDataType^)usI;
+				this->m_world = (v4b2d::WorldDataType^)usI;
 			}
 		}
 
-		void Box2dHasContactNode::DisconnectPin(IPluginIO^ Pin)
+		void Box2dHasContactNode::DisconnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInWorld)
         	{

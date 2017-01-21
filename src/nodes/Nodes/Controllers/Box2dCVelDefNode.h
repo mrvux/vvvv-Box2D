@@ -3,23 +3,27 @@
 #include "../../DataTypes/Controllers/ControllerDefDataType.h"
 #include "Box2dBaseControllerDefNode.h"
 
-using namespace VVVV::DataTypes;
+#include "../../Utils/ArrayUtils.h"
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+namespace gen = System::Collections::Generic;
+namespace v4b2d = VVVV::DataTypes;
 
 namespace VVVV 
 {
 	namespace Nodes 
 	{
-		public ref class Box2dCVelDefNode : Box2dBaseControllerDefNode,IPlugin,IPluginConnections,public IDisposable
+		public ref class Box2dCVelDefNode : Box2dBaseControllerDefNode, v4::IPlugin,v4::IPluginConnections,public System::IDisposable
 		{
 		public:
 			Box2dCVelDefNode(void);
 
-			static property IPluginInfo^ PluginInfo 
+			static property v4::IPluginInfo^ PluginInfo 
 				{
-					IPluginInfo^ get() 
+					v4::IPluginInfo^ get() 
 					{
-						//IPluginInfo^ Info;
-						IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
+						//v4::IPluginInfo^ Info;
+						v4::IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
 						Info->Name = "ConstantForce";
 						Info->Category = "Box2d";
 						Info->Version = "Controller";
@@ -45,7 +49,7 @@ namespace VVVV
 			virtual void OnEvaluate(int SpreadMax, bool reset) override;
 
 		private:
-			IValueIn^ vInVelocity;
+			v4::IValueIn^ vInVelocity;
 		};
 	}
 

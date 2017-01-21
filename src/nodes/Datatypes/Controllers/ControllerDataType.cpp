@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "ControllerDataType.h"
 
 namespace VVVV 

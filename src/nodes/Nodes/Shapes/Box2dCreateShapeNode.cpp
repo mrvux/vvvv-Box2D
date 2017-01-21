@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+
 #include "Box2dCreateShapeNode.h"
 
 namespace VVVV 
@@ -9,32 +9,32 @@ namespace VVVV
 		{
 		}
 
-		void Box2dCreateShapeNode::SetPluginHost(IPluginHost^ Host) 
+		void Box2dCreateShapeNode::SetPluginHost(v4::IPluginHost^ Host) 
 		{
 			this->FHost = Host;
 
 			//World input
-			this->FHost->CreateNodeInput("World",TSliceMode::Single,TPinVisibility::True,this->vInWorld);
-			this->vInWorld->SetSubType(ArrayUtils::SingleGuidArray(WorldDataType::GUID),WorldDataType::FriendlyName);
+			this->FHost->CreateNodeInput("World",v4::TSliceMode::Single,v4::TPinVisibility::True,this->vInWorld);
+			this->vInWorld->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::WorldDataType::GUID), v4b2d::WorldDataType::FriendlyName);
 
-			this->FHost->CreateNodeInput("Bodies",TSliceMode::Dynamic,TPinVisibility::True,this->vInBodies);
-			this->vInBodies->SetSubType(ArrayUtils::DoubleGuidArray(BodyDataType::GUID,GroundDataType::GUID),BodyDataType::FriendlyName);
+			this->FHost->CreateNodeInput("Bodies",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInBodies);
+			this->vInBodies->SetSubType(VVVV::Utils::ArrayUtils::DoubleGuidArray(v4b2d::BodyDataType::GUID, v4b2d::GroundDataType::GUID), v4b2d::BodyDataType::FriendlyName);
 
-			this->FHost->CreateNodeInput("Shapes",TSliceMode::Dynamic,TPinVisibility::True,this->vInShapes);
-			this->vInShapes->SetSubType(ArrayUtils::SingleGuidArray(ShapeDefDataType::GUID),ShapeDefDataType::FriendlyName);
+			this->FHost->CreateNodeInput("Shapes",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInShapes);
+			this->vInShapes->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(v4b2d::ShapeDefDataType::GUID), v4b2d::ShapeDefDataType::FriendlyName);
 
-			this->FHost->CreateValueInput("Shape Count",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInShapeCount);
-			this->vInShapeCount->SetSubType(1,Double::MaxValue,1,1,false,false,true);
+			this->FHost->CreateValueInput("Shape Count",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInShapeCount);
+			this->vInShapeCount->SetSubType(1,System::Double::MaxValue,1,1,false,false,true);
 
-			this->FHost->CreateValueInput("Do Create",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vInDoCreate);
-			this->vInDoCreate->SetSubType(Double::MinValue,Double::MaxValue,0.01,0.0,true,false,false);
+			this->FHost->CreateValueInput("Do Create",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vInDoCreate);
+			this->vInDoCreate->SetSubType(System::Double::MinValue,System::Double::MaxValue,0.01,0.0,true,false,false);
 
-			//this->FHost->CreateValueOutput("Can Create",1,nullptr,TSliceMode::Dynamic,TPinVisibility::True,this->vOutCanCreate);
+			//this->FHost->CreateValueOutput("Can Create",1,nullptr,v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutCanCreate);
 			//this->vOutCanCreate->SetSubType(0,1,1,0,true,false,false);
 
 
-			//this->FHost->CreateNodeOutput("Body",TSliceMode::Dynamic,TPinVisibility::True,this->vOutBodies);
-			//this->vOutBodies->SetSubType(ArrayUtils::SingleGuidArray(BodyDataType::GUID),BodyDataType::FriendlyName);
+			//this->FHost->CreateNodeOutput("Body",v4::TSliceMode::Dynamic,v4::TPinVisibility::True,this->vOutBodies);
+			//this->vOutBodies->SetSubType(VVVV::Utils::ArrayUtils::SingleGuidArray(BodyDataType::GUID),BodyDataType::FriendlyName);
 			//this->vOutBodies->SetInterface(this->mBodies);
 
 			
@@ -76,7 +76,7 @@ namespace VVVV
 							int realsliceshape;
 							this->vInShapes->GetUpsreamSlice(cnt % this->vInShapes->SliceCount,realsliceshape);
 							b2ShapeDef* shapedef = this->mShapes->GetSlice(realsliceshape);
-							String^ shapecust = this->mShapes->GetCustom(realsliceshape);
+							System::String^ shapecust = this->mShapes->GetCustom(realsliceshape);
 
 
 							bool testcount;
@@ -102,7 +102,7 @@ namespace VVVV
 								b2Shape* shape = body->CreateShape(shapedef);
 								ShapeCustomData* sdata = new ShapeCustomData();
 								sdata->Id = this->mWorld->GetNewShapeId();
-								sdata->Custom = (char*)(void*)Marshal::StringToHGlobalAnsi(shapecust);
+								sdata->Custom = (char*)(void*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(shapecust);
 								shape->SetUserData(sdata);
 							}
 
@@ -123,45 +123,45 @@ namespace VVVV
 
 
 
-		void Box2dCreateShapeNode::Configurate(IPluginConfig^ Input)
+		void Box2dCreateShapeNode::Configurate(v4::IPluginConfig^ Input)
 		{
 
 		}
 
-		void Box2dCreateShapeNode::ConnectPin(IPluginIO^ Pin)
+		void Box2dCreateShapeNode::ConnectPin(v4::IPluginIO^ Pin)
 		{
 			//cache a reference to the upstream interface when the NodeInput pin is being connected
 			if (Pin == this->vInWorld)
         	{
-				INodeIOBase^ usI;
+				v4::INodeIOBase^ usI;
 				this->vInWorld->GetUpstreamInterface(usI);
-				this->mWorld = (WorldDataType^)usI;
+				this->mWorld = (v4b2d::WorldDataType^)usI;
         	}
         	if (Pin == this->vInBodies)
         	{
-				INodeIOBase^ usI;
+				v4::INodeIOBase^ usI;
 				try 
 				{
 					this->vInBodies->GetUpstreamInterface(usI);
-					this->mBodies = (BodyDataType^)usI;
+					this->mBodies = (v4b2d::BodyDataType^)usI;
 					this->isbody = true;
 				} 
-				catch (Exception^ ex)
+				catch (System::Exception^ ex)
 				{
 					this->vInBodies->GetUpstreamInterface(usI);
-					this->mGround = (GroundDataType^)usI;
+					this->mGround = (v4b2d::GroundDataType^)usI;
 					this->isbody = false;
 				}
         	}
 			if (Pin == this->vInShapes) 
 			{
-				INodeIOBase^ usI;
+				v4::INodeIOBase^ usI;
 				this->vInShapes->GetUpstreamInterface(usI);
-				this->mShapes = (ShapeDefDataType^)usI;
+				this->mShapes = (v4b2d::ShapeDefDataType^)usI;
 			}
 		}
 
-		void Box2dCreateShapeNode::DisconnectPin(IPluginIO^ Pin)
+		void Box2dCreateShapeNode::DisconnectPin(v4::IPluginIO^ Pin)
 		{
 			if (Pin == this->vInWorld)
         	{

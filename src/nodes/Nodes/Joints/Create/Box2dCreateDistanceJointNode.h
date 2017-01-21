@@ -2,21 +2,25 @@
 #include "../../../DataTypes/BodyDataType.h"
 #include "Box2dCreateJointNode.h"
 
-using namespace VVVV::DataTypes;
+#include "../../../Utils/ArrayUtils.h"
+
+namespace v4 = VVVV::PluginInterfaces::V1;
+namespace gen = System::Collections::Generic;
+namespace v4b2d = VVVV::DataTypes;
 
 namespace VVVV 
 {
 	namespace Nodes 
 	{
-		public ref class Box2dCreateDistanceJointNode : Box2dCreateJointNode, IPlugin, IPluginConnections
+		public ref class Box2dCreateDistanceJointNode : Box2dCreateJointNode, v4::IPlugin, v4::IPluginConnections
 		{
 		public:
-			static property IPluginInfo^ PluginInfo 
+			static property v4::IPluginInfo^ PluginInfo 
 				{
-					IPluginInfo^ get() 
+					v4::IPluginInfo^ get() 
 					{
-						//IPluginInfo^ Info;
-						IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
+						//v4::IPluginInfo^ Info;
+						v4::IPluginInfo^ Info = gcnew VVVV::PluginInterfaces::V1::PluginInfo();
 						Info->Name = "CreateDistanceJoint";
 						Info->Category = "Box2d";
 						Info->Version = "";
@@ -47,10 +51,10 @@ namespace VVVV
 		protected:
 			virtual void OnPluginHostSet() override;
 		private:
-			IValueIn^ vInPosition1;
-			IValueIn^ vInPosition2;
-			IValueIn^ vInFrequency;
-			IValueIn^ vInDampingRatio;
+			v4::IValueIn^ vInPosition1;
+			v4::IValueIn^ vInPosition2;
+			v4::IValueIn^ vInFrequency;
+			v4::IValueIn^ vInDampingRatio;
 		};
 	}
 }
