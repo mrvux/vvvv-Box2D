@@ -4,7 +4,6 @@
 #include "../../Internals/Data/BodyCustomData.h"
 
 using namespace System::Collections::Generic;
-using namespace VVVV::Utils::VMath;
 
 namespace VVVV 
 {
@@ -12,6 +11,13 @@ namespace VVVV
 	{
 		Box2dGetCircles::Box2dGetCircles(void)
 		{
+			this->tempPosition = gcnew gen::List<v4math::Vector2D>(64);
+			this->tempRadius = gcnew gen::List<double>(64);
+			this->tempIds = gcnew gen::List<int>(64);
+			this->tempCustom = gcnew gen::List<System::String^>(64);
+			this->tempBodyId = gcnew gen::List<double>(64);
+			this->tempLifetime = gcnew gen::List<double>(64);
+			this->tempSensor = gcnew gen::List<double>(64);
 		}
 
 		void Box2dGetCircles::SetPluginHost(v4::IPluginHost^ Host) 
@@ -66,13 +72,13 @@ namespace VVVV
 
 			if (this->vInShapes->IsConnected) 
 			{
-				gen::List<Vector2D> pos = gcnew gen::List<Vector2D>();
-				gen::List<double>^ radius = gcnew gen::List<double>();
-				gen::List<int>^ ids = gcnew gen::List<int>();
-				gen::List<System::String^>^ custs = gcnew gen::List<System::String^>(); 
-				std::vector<bool> issensor;
-				List<int>^ bodyids = gcnew List<int>();
-				List<double>^ lifetime = gcnew List<double>();
+				this->tempPosition->Clear();
+				this->tempRadius->Clear();
+				this->tempIds->Clear();
+				this->tempCustom->Clear();
+				this->tempLifetime->Clear();
+				this->tempBodyId->Clear();
+				this->tempSensor->Clear();
 
 				int cnt = 0;
 				for (int i = 0; i < this->vInShapes->SliceCount ; i++) 
@@ -87,28 +93,28 @@ namespace VVVV
 						b2Vec2 local = circle->GetLocalPosition();
 						if (this->m_local)
 						{
-							Vector2D vec = Vector2D(local.x,local.y);
-							pos.Add(vec);
+							v4math::Vector2D vec = v4math::Vector2D(local.x,local.y);
+							this->tempPosition->Add(vec);
 						}
 						else
 						{
 							b2Vec2 world = circle->GetBody()->GetWorldPoint(local);
-							Vector2D vec = Vector2D(world.x,world.y);
-							pos.Add(vec);
+							v4math::Vector2D vec = v4math::Vector2D(world.x,world.y);
+							this->tempPosition->Add(vec);
 						}
 
-						radius->Add(circle->GetRadius());
+						tempRadius->Add(circle->GetRadius());
 						
 
 						ShapeCustomData* sdata = (ShapeCustomData*)shape->GetUserData();
-						ids->Add(sdata->Id);
-						lifetime->Add(sdata->LifeTime);
-						issensor.push_back(shape->IsSensor());
+						tempIds->Add(sdata->Id);
+						tempLifetime->Add(sdata->LifeTime);
+						tempSensor->Add(shape->IsSensor() ? 1.0 : 0.0);
 						System::String^ str = gcnew System::String(sdata->Custom);
-						custs->Add(str);
+						tempCustom->Add(str);
 
 						BodyCustomData* bdata = (BodyCustomData*)shape->GetBody()->GetUserData();
-						bodyids->Add(bdata->Id);
+						tempBodyId->Add(bdata->Id);
 
 						cnt++;
 					}
@@ -117,20 +123,32 @@ namespace VVVV
 				this->vOutPosition->SliceCount = cnt;
 				this->vOutRadius->SliceCount = cnt;
 				this->vOutId->SliceCount = cnt;
-				this->vOutIsSensor->SliceCount = issensor.size();
-				this->vOutCustom->SliceCount = cnt;
+				this->vOutIsSensor->SliceCount = cnt;
 				this->vOutBodyId->SliceCount = cnt;
 				this->vOutLifeTime->SliceCount = cnt;
 
+				this->vOutCustom->SliceCount = cnt;
+
+				double *positionPtr, *radiusPtr, *idPtr, *sensorPtr, *bodyIdPtr, *lifetimePtr;
+				this->vOutPosition->GetValuePointer(positionPtr);
+				this->vOutRadius->GetValuePointer(radiusPtr);
+				this->vOutId->GetValuePointer(idPtr);
+				this->vOutIsSensor->GetValuePointer(sensorPtr);
+				this->vOutBodyId->GetValuePointer(bodyIdPtr);
+				this->vOutLifeTime->GetValuePointer(lifetimePtr);
+
 				for (int i = 0; i < cnt ; i++) 
 				{	
-					this->vOutPosition->SetValue2D(i, pos[i].x,pos[i].y);
-					this->vOutRadius->SetValue(i,radius[i]);
-					this->vOutId->SetValue(i,ids[i]);
-					this->vOutIsSensor->SetValue(i, issensor.at(i));
-					this->vOutCustom->SetString(i, custs[i]);
-					this->vOutBodyId->SetValue(i, bodyids[i]);
-					this->vOutLifeTime->SetValue(i, lifetime[i]);
+					positionPtr[i * 2] = tempPosition[i].x;
+					positionPtr[i * 2 + 1] = tempPosition[i].y;
+
+					radiusPtr[i] = tempRadius[i];
+					idPtr[i] = tempIds[i];
+					sensorPtr[i] = tempSensor[i];
+					bodyIdPtr[i] = tempBodyId[i];
+					lifetimePtr[i] = tempLifetime[i];
+
+					this->vOutCustom->SetString(i, tempCustom[i]);
 				}
 			}
 		}

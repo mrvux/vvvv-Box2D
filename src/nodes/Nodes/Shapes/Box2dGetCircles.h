@@ -6,6 +6,7 @@
 namespace v4 = VVVV::PluginInterfaces::V1;
 namespace gen = System::Collections::Generic;
 namespace v4b2d = VVVV::DataTypes;
+namespace v4math = VVVV::Utils::VMath;
 
 namespace VVVV 
 {
@@ -71,6 +72,14 @@ namespace VVVV
 			v4::IValueOut^ vOutLifeTime;
 
 			bool m_local;
+
+			gen::List<v4math::Vector2D>^ tempPosition;
+			gen::List<double>^ tempRadius;
+			gen::List<int>^ tempIds;
+			gen::List<System::String^>^ tempCustom;
+			gen::List<double>^ tempBodyId;
+			gen::List<double>^ tempLifetime;
+			gen::List<double>^ tempSensor;
 		};
 	}
 }
