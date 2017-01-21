@@ -12,6 +12,12 @@ namespace VVVV
 	{
 		Box2dGetPolygonsNode::Box2dGetPolygonsNode(void)
 		{
+			this->tempVertices = gcnew gen::List<v4math::Vector2D>(128);
+			this->tempCenters = gcnew gen::List<v4math::Vector2D>(64);
+
+			this->tempCustomList = gcnew gen::List<System::String^>(64);
+			this->tempCustomId = gcnew gen::List<int>(64);
+			this->tempLifeTime = gcnew gen::List<double>(64);
 		}
 
 		void Box2dGetPolygonsNode::SetPluginHost(v4::IPluginHost^ Host) 
@@ -74,14 +80,17 @@ namespace VVVV
 
 			if (this->vInShapes->IsConnected) 
 			{
-				std::vector<b2Vec2> centers;
-				std::vector<b2Vec2> vertices;
+				/*std::vector<b2Vec2> centers;
+				std::vector<b2Vec2> vertices;*/
 				std::vector<int> vcount;
 				std::vector<int> ids;
 				std::vector<bool> issensor;
-				gen::List<System::String^>^ custs = gcnew gen::List<System::String^>(); 
-				gen::List<int>^ bodyids = gcnew gen::List<int>();
-				gen::List<double>^ lifetime = gcnew gen::List<double>();
+
+				this->tempVertices->Clear();
+				this->tempCenters->Clear();
+				this->tempCustomList->Clear();
+				this->tempCustomId->Clear();
+				this->tempLifeTime->Clear();
 
 				int cnt = 0;
 				for (int i = 0; i < this->vInShapes->SliceCount ; i++) 
@@ -104,18 +113,20 @@ namespace VVVV
 								vcount.push_back(poly->GetVertexCount());
 							}
 
-							centers.push_back(poly->GetBody()->GetWorldPoint(poly->GetCentroid()));
+							b2Vec2 center = poly->GetBody()->GetWorldPoint(poly->GetCentroid());
+							tempCenters->Add(v4math::Vector2D(center.x, center.y));
 
 							const b2Vec2* verts = poly->GetVertices();
 							for (int j=0; j < poly->GetVertexCount();j++) 
 							{
 								if (this->m_local)
 								{
-									vertices.push_back(verts[j]);
+									tempVertices->Add(v4math::Vector2D(verts[j].x, verts[j].y));
 								}
 								else
 								{
-									vertices.push_back(poly->GetBody()->GetWorldPoint(verts[j]));
+									b2Vec2 wp = poly->GetBody()->GetWorldPoint(verts[j]);
+									tempVertices->Add(v4math::Vector2D(wp.x, wp.y));
 								}
 							}
 
@@ -123,11 +134,12 @@ namespace VVVV
 							{
 								if (this->m_local)
 								{
-									vertices.push_back(verts[0]);
+									tempVertices->Add(v4math::Vector2D(verts[0].x, verts[0].y));
 								}
 								else
 								{
-									vertices.push_back(poly->GetBody()->GetWorldPoint(verts[0]));
+									b2Vec2 wp = poly->GetBody()->GetWorldPoint(verts[0]);
+									tempVertices->Add(v4math::Vector2D(wp.x, wp.y));
 								}
 							}
 
@@ -135,40 +147,56 @@ namespace VVVV
 							ids.push_back(sdata->Id);
 							issensor.push_back(shape->IsSensor());
 							System::String^ str = gcnew System::String(sdata->Custom);
-							custs->Add(str);
-							lifetime->Add(sdata->LifeTime);
+							this->tempCustomList->Add(str);
+							this->tempLifeTime->Add(sdata->LifeTime);
 
 							BodyCustomData* bdata = (BodyCustomData*)shape->GetBody()->GetUserData();
-							bodyids->Add(bdata->Id);
+							this->tempCustomId->Add(bdata->Id);
 
 							cnt++;
 						}
 					}
 				}
 
-				this->vOutVertices->SliceCount = vertices.size();
+				this->vOutVertices->SliceCount = this->tempVertices->Count;
 				this->vOutVerticesCount->SliceCount = vcount.size();
-				this->vOutCenters->SliceCount = centers.size();
+				this->vOutCenters->SliceCount = this->tempCenters->Count;
 				this->vOutId->SliceCount = ids.size();
 				this->vOutIsSensor->SliceCount = issensor.size();
 				this->vOutCustom->SliceCount = ids.size();
 				this->vOutBodyId->SliceCount = ids.size();
 				this->vOutLifeTime->SliceCount = ids.size();
 
-				for (int i = 0; i <  vertices.size() ; i++) 
+
+				double *vertexPosPtr, *vCountPtr, *centerPtr, *idPtr, *isSensorPtr, *bodyIdPtr, *lifetimePtr;
+
+				this->vOutVertices->GetValuePointer(vertexPosPtr);
+				this->vOutVerticesCount->GetValuePointer(vCountPtr);
+				this->vOutCenters->GetValuePointer(centerPtr);
+				this->vOutId->GetValuePointer(idPtr);
+				this->vOutIsSensor->GetValuePointer(isSensorPtr);
+				this->vOutBodyId->GetValuePointer(bodyIdPtr);
+				this->vOutLifeTime->GetValuePointer(lifetimePtr);
+
+				for (int i = 0; i <  this->tempVertices->Count; i++)
 				{
-					this->vOutVertices->SetValue2D(i,vertices.at(i).x,vertices.at(i).y);
+					vertexPosPtr[i * 2] = tempVertices[i].x;
+					vertexPosPtr[i * 2 + 1] = tempVertices[i].y;
 				}
 
 				for (int i = 0; i < vcount.size() ; i++) 
 				{
-					this->vOutVerticesCount->SetValue(i,vcount.at(i));
-					this->vOutCenters->SetValue2D(i,centers.at(i).x,centers.at(i).y);
-					this->vOutId->SetValue(i,ids.at(i));
-					this->vOutIsSensor->SetValue(i, issensor.at(i));
-					this->vOutCustom->SetString(i, custs[i]);
-					this->vOutBodyId->SetValue(i, bodyids[i]);
-					this->vOutLifeTime->SetValue(i, lifetime[i]);
+					vCountPtr[i] = vcount.at(i);
+
+					centerPtr[i * 2] = tempCenters[i].x;
+					centerPtr[i * 2 + 1] = tempCenters[i].y;
+
+					idPtr[i] = ids.at(i);
+					isSensorPtr[i] = issensor.at(i) ? 1.0 : 0.0;
+					bodyIdPtr[i] = tempCustomId[i];
+					lifetimePtr[i] = tempLifeTime[i],
+
+					this->vOutCustom->SetString(i, tempCustomList[i]);
 				}
 			}
 		}

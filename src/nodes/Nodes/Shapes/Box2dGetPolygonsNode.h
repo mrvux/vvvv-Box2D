@@ -5,6 +5,7 @@
 namespace v4 = VVVV::PluginInterfaces::V1;
 namespace gen = System::Collections::Generic;
 namespace v4b2d = VVVV::DataTypes;
+namespace v4math = VVVV::Utils::VMath;
 
 namespace VVVV 
 {
@@ -70,6 +71,13 @@ namespace VVVV
 			v4::IValueOut^ vOutBodyId;
 			v4::IStringOut^ vOutCustom;
 			v4::IValueOut^ vOutLifeTime;
+
+			gen::List<v4math::Vector2D>^ tempVertices;
+			gen::List<v4math::Vector2D>^ tempCenters;
+
+			gen::List<System::String^>^ tempCustomList;
+			gen::List<int>^ tempCustomId;
+			gen::List<double>^ tempLifeTime;;
 
 			bool m_closed;
 			bool m_local;
