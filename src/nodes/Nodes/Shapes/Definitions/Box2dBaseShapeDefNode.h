@@ -14,7 +14,7 @@ namespace VVVV
 {
 	namespace Nodes 
 	{
-		public ref class Box2dBaseShapeDefNode
+		public ref class Box2dBaseShapeDefNode abstract
 		{
 		public:
 			Box2dBaseShapeDefNode(void);

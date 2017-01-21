@@ -90,11 +90,11 @@ namespace VVVV
 
 								if (mode >= 0.5)
 								{
-									replace->radius += factor;
+									replace->radius += (float)factor;
 								}
 								else
 								{
-									replace->radius *= factor;
+									replace->radius *= (float)factor;
 								}
 
 								ShapeCustomData* sdata = (ShapeCustomData*)circle->GetUserData();
@@ -137,20 +137,20 @@ namespace VVVV
 										float x,y;
 										if (poly->GetVertices()[v].x > cx)
 										{
-											x = poly->GetVertices()[v].x + factor;
+											x = poly->GetVertices()[v].x + (float)factor;
 										}
 										else
 										{
-											x = poly->GetVertices()[v].x - factor;
+											x = poly->GetVertices()[v].x - (float)factor;
 										}
 
 										if (poly->GetVertices()[v].y > cy)
 										{
-											y = poly->GetVertices()[v].y + factor;
+											y = poly->GetVertices()[v].y + (float)factor;
 										}
 										else
 										{
-											y = poly->GetVertices()[v].y - factor;
+											y = poly->GetVertices()[v].y - (float)factor;
 										}
 
 										replace->vertices[v].Set(x,y);
@@ -161,7 +161,7 @@ namespace VVVV
 								{
 									for (int v = 0; v < poly->GetVertexCount(); v++)
 									{
-										replace->vertices[v].Set(poly->GetVertices()[v].x * factor,poly->GetVertices()[v].y * factor);
+										replace->vertices[v].Set(poly->GetVertices()[v].x * (float)factor, poly->GetVertices()[v].y * (float)factor);
 									}
 								}
 

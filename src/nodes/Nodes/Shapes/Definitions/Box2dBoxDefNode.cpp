@@ -28,7 +28,7 @@ namespace VVVV
 				|| this->vInGroupIndex->PinIsChanged) 
 			{
 
-				double x,y,r,sx,sy,a,friction,restitution,density,issensor,group;
+				double x,y,sx,sy,a,friction,restitution,density,issensor,group;
 				System::String^ custom;
 				this->vOutShapes->SliceCount = SpreadMax;
 
@@ -47,11 +47,11 @@ namespace VVVV
 					this->vInGroupIndex->GetValue(i, group);
 
 					b2PolygonDef* shapeDef = this->m_shapes->AddPolygon();
-					b2Vec2 center(x,y);
-					shapeDef->SetAsBox(sx / 2.0f, sy / 2.0,center,a * (System::Math::PI * 2.0));
-					shapeDef->density = density;
-					shapeDef->friction = friction;
-					shapeDef->restitution = restitution;
+					b2Vec2 center((float)x, (float)y);
+					shapeDef->SetAsBox((float)sx / 2.0f, (float)sy / 2.0f,center, (float)(a * (System::Math::PI * 2.0)));
+					shapeDef->density = (float)density;
+					shapeDef->friction = (float)friction;
+					shapeDef->restitution = (float)restitution;
 					shapeDef->isSensor = issensor >= 0.5;
 					shapeDef->filter.groupIndex = System::Convert::ToInt32(group);
 

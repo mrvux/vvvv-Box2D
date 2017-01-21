@@ -240,7 +240,7 @@ namespace VVVV
 			this->vOutBodies->SliceCount = this->m_bodies->size();
 			this->vOutBodies->MarkPinAsChanged();
 			this->vOutId->SliceCount = m_bodies->size();
-			this->vOutIsNew->SliceCount = this->m_bodies->size();
+			this->vOutIsNew->SliceCount = (int)this->m_bodies->size();
 
 			std::map<int,b2Body*>::iterator it;
 

@@ -41,11 +41,11 @@ namespace VVVV
 					this->vInGroupIndex->GetValue(i, group);
 
 					b2CircleDef* shapeDef = this->m_shapes->AddCircle();
-					shapeDef->radius = r;
-					shapeDef->density = density;
-					shapeDef->friction = friction;
-					shapeDef->restitution = restitution;
-					shapeDef->localPosition = b2Vec2(x,y);
+					shapeDef->radius = (float)r;
+					shapeDef->density = (float)density;
+					shapeDef->friction = (float)friction;
+					shapeDef->restitution = (float)restitution;
+					shapeDef->localPosition = b2Vec2((float)x, (float)y);
 					shapeDef->isSensor = issensor >= 0.5;
 					shapeDef->filter.groupIndex = System::Convert::ToInt32(group);
 

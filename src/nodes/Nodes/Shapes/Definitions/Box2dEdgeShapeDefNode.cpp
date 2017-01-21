@@ -66,9 +66,9 @@ namespace VVVV
 						}
 
 						shapeDef->vertices = loop;
-						shapeDef->density = density;
-						shapeDef->friction = friction;
-						shapeDef->restitution = restitution;
+						shapeDef->density = (float)density;
+						shapeDef->friction = (float)friction;
+						shapeDef->restitution = (float)restitution;
 						shapeDef->isSensor = issensor >= 0.5;
 						shapeDef->filter.groupIndex = System::Convert::ToInt32(group);
 
