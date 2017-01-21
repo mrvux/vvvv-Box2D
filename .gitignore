@@ -27,3 +27,15 @@
 *.exe
 *.out
 *.app
+
+#visual studio
+.suo
+.VC.db
+.user
+
+
+#build folder
+build
+.vs
+*.db
+*.user
