@@ -22,7 +22,7 @@
     <ProjectGuid>{C72B78C0-33DC-45CD-836E-D294A18148E6}</ProjectGuid>
     <RootNamespace>Box2dNodes</RootNamespace>
     <Keyword>ManagedCProj</Keyword>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -30,14 +30,14 @@
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>true</CLRSupport>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>true</CLRSupport>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -159,7 +159,7 @@
       <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)\build\lib\$(Platform)\</AdditionalLibraryDirectories>
     </Link>
-  </ItemDefinitionGroup>  
+  </ItemDefinitionGroup>
   <ItemGroup>
     <Reference Include="System">
       <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
@@ -179,7 +179,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup Condition="'$(Platform)'=='Win32'">
-      <Reference Include="VVVV.Core">
+    <Reference Include="VVVV.Core">
       <HintPath>$(SolutionDir)\externals\x86\VVVV.Core.dll</HintPath>
       <Private>false</Private>
     </Reference>
@@ -201,7 +201,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup Condition="'$(Platform)'=='x64'">
-      <Reference Include="VVVV.Core">
+    <Reference Include="VVVV.Core">
       <HintPath>$(SolutionDir)\externals\x64\VVVV.Core.dll</HintPath>
       <Private>false</Private>
     </Reference>
@@ -222,8 +222,6 @@
       <Private>false</Private>
     </Reference>
   </ItemGroup>
-  
-  
   <ItemGroup>
     <ClCompile Include="Box2dContactReportsNode.cpp" />
     <ClCompile Include="Utils\ArrayUtils.cpp" />
