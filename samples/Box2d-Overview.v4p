@@ -1,0 +1,417 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.6.dtd" >
+   <PATCH nodename="C:\Users\joreg\Desktop\Box2d-Overview.v4p" scrollx="0" scrolly="0" systemname="Box2d-Overview" filename="C:\Users\joreg\Desktop\Box2d-Overview.v4p">
+   <BOUNDS type="Window" left="510" top="900" width="16785" height="12375">
+   </BOUNDS>
+   <NODE systemname="World (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="World (Box2d)" componentmode="Hidden" id="1">
+   <BOUNDS type="Node" left="705" top="3315" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="705" top="3315">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="UpdateShape (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="UpdateShape (Box2d)" componentmode="Hidden" id="2">
+   <BOUNDS type="Node" left="12240" top="4575" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="12240" top="4575">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="UpdateBody (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="UpdateBody (Box2d)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="6300" top="3720" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6300" top="3720">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="UnAssignController (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="UnAssignController (Box2d)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="7725" top="10005" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7725" top="10005">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="TensorDamping (Box2d Controller)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="TensorDamping (Box2d Controller)" componentmode="Hidden" id="5">
+   <BOUNDS type="Node" left="6375" top="8340" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6375" top="8340">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="SetMotorSpeed (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="SetMotorSpeed (Box2d)" componentmode="Hidden" id="6">
+   <BOUNDS type="Node" left="3510" top="9645" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="ScaleShape (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="ScaleShape (Box2d)" componentmode="Hidden" id="7">
+   <BOUNDS type="Node" left="12240" top="4935" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="RayCast (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="RayCast (Box2d)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="12570" top="9120" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="12570" top="9120">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="RayCast (Box2d Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="RayCast (Box2d Advanced)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="12570" top="9585" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="12570" top="9585">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Polygon (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="Polygon (Box2d)" componentmode="Hidden" id="10">
+   <BOUNDS type="Node" left="11055" top="4125" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="11055" top="4125">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="MoveMouseJoint (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="MoveMouseJoint (Box2d)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="2625" top="7605" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="HasContact (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="HasContact (Box2d)" componentmode="Hidden" id="12">
+   <BOUNDS type="Node" left="12570" top="10050" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="12570" top="10050">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Gravity (Box2d Controller)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="Gravity (Box2d Controller)" componentmode="Hidden" id="13">
+   <BOUNDS type="Node" left="6375" top="7875" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6375" top="7875">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GetPolygons (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="GetPolygons (Box2d)" componentmode="Hidden" id="14">
+   <BOUNDS type="Node" left="11055" top="6030" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="11055" top="6030">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GetJointDetails (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="GetJointDetails (Box2d)" componentmode="Hidden" id="15">
+   <BOUNDS type="Node" left="2100" top="10800" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GetEdgeChains (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="GetEdgeChains (Box2d)" componentmode="Hidden" id="16">
+   <BOUNDS type="Node" left="11055" top="6480" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="11055" top="6480">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GetContactDetails (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="GetContactDetails (Box2d)" componentmode="Hidden" id="17">
+   <BOUNDS type="Node" left="2190" top="3315" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2190" top="3315">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GetContactDetails (Box2d Spreaded)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="GetContactDetails (Box2d Spreaded)" componentmode="Hidden" id="18">
+   <BOUNDS type="Node" left="2190" top="3720" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2190" top="3720">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GetCircles (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="GetCircles (Box2d)" componentmode="Hidden" id="19">
+   <BOUNDS type="Node" left="11055" top="5565" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="11055" top="5565">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="GetBodyDetails (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="GetBodyDetails (Box2d)" componentmode="Hidden" id="20">
+   <BOUNDS type="Node" left="6300" top="4845" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6300" top="4845">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="DestroyShape (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="DestroyShape (Box2d)" componentmode="Hidden" id="21">
+   <BOUNDS type="Node" left="14085" top="4575" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="14085" top="4575">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="DestroyJoint (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="DestroyJoint (Box2d)" componentmode="Hidden" id="22">
+   <BOUNDS type="Node" left="870" top="10815" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="870" top="10815">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="DestroyBody (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="DestroyBody (Box2d)" componentmode="Hidden" id="23">
+   <BOUNDS type="Node" left="6300" top="4125" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6300" top="4125">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="CreateShape (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="CreateShape (Box2d)" componentmode="Hidden" id="24">
+   <BOUNDS type="Node" left="11055" top="4575" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="11055" top="4575">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="CreateRevoluteJoint (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="CreateRevoluteJoint (Box2d)" componentmode="Hidden" id="25">
+   <BOUNDS type="Node" left="870" top="10095" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="870" top="10095">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="CreatePulleyJoint (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="CreatePulleyJoint (Box2d)" componentmode="Hidden" id="26">
+   <BOUNDS type="Node" left="870" top="8610" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="870" top="8610">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="CreatePrismaticJoint (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="CreatePrismaticJoint (Box2d)" componentmode="Hidden" id="27">
+   <BOUNDS type="Node" left="870" top="9630" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="870" top="9630">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="CreateMouseJoint (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="CreateMouseJoint (Box2d)" componentmode="Hidden" id="28">
+   <BOUNDS type="Node" left="870" top="7635" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="870" top="7635">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="CreateLineJoint (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="CreateLineJoint (Box2d)" componentmode="Hidden" id="29">
+   <BOUNDS type="Node" left="870" top="9195" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="870" top="9195">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="CreateDistanceJoint (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="CreateDistanceJoint (Box2d)" componentmode="Hidden" id="30">
+   <BOUNDS type="Node" left="870" top="8160" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="870" top="8160">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="CreateBody (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="CreateBody (Box2d)" componentmode="Hidden" id="31">
+   <BOUNDS type="Node" left="6300" top="3315" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6300" top="3315">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="ConstantForce (Box2d Controller)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="ConstantForce (Box2d Controller)" componentmode="Hidden" id="32">
+   <BOUNDS type="Node" left="6375" top="7425" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6375" top="7425">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="ConstantAcceleration (Box2d Controller)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="ConstantAcceleration (Box2d Controller)" componentmode="Hidden" id="33">
+   <BOUNDS type="Node" left="6375" top="8820" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6375" top="8820">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Circle (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="Circle (Box2d)" componentmode="Hidden" id="34">
+   <BOUNDS type="Node" left="11055" top="3720" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="11055" top="3720">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Buoyancy (Box2d Controller)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="Buoyancy (Box2d Controller)" componentmode="Hidden" id="35">
+   <BOUNDS type="Node" left="6375" top="9315" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6375" top="9315">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Box (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="Box (Box2d)" componentmode="Hidden" id="36">
+   <BOUNDS type="Node" left="11055" top="3315" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="11055" top="3315">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="AssignController (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="AssignController (Box2d)" componentmode="Hidden" id="37">
+   <BOUNDS type="Node" left="6375" top="10005" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6375" top="10005">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="ApplyTorque (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="ApplyTorque (Box2d)" componentmode="Hidden" id="38">
+   <BOUNDS type="Node" left="10185" top="9540" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10185" top="9540">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="ApplyImpulse (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="ApplyImpulse (Box2d)" componentmode="Hidden" id="39">
+   <BOUNDS type="Node" left="10200" top="9135" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10200" top="9135">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="ApplyForce (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="ApplyForce (Box2d)" componentmode="Hidden" id="40">
+   <BOUNDS type="Node" left="10200" top="8730" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10200" top="8730">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="AABBQuery (Box2d)" filename="%VVVV%\addonpack\lib\nodes\plugins\vuxbins\Box2dNodes.dll" nodename="AABBQuery (Box2d)" componentmode="Hidden" id="41">
+   <BOUNDS type="Node" left="12570" top="8670" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="12570" top="8670">
+   </BOUNDS>
+   </NODE>
+   <PACK Name="addonpack" Version="33.7.0">
+   </PACK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="42" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="6300" top="2580" width="480" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6300" top="2580" width="1020" height="480">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="Body">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="15">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="43" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="11055" top="2580" width="480" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="11055" top="2580" width="1020" height="420">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="Shape">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="15">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="44" systemname="IOBox (String)" exposed="0">
+   <BOUNDS type="Node" left="870" top="6915" width="480" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="870" top="6915" width="1725" height="495">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="Joint">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="15">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="45" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="6375" top="6870" width="480" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6375" top="6870" width="1725" height="450">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="Controller">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="15">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="46" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="12570" top="7950" width="480" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="12570" top="7950" width="1725" height="450">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="Hittest">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="15">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="47" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="720" top="2580" width="480" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="720" top="2580" width="1020" height="480">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="World">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="15">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="48" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="585" top="255" width="480" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="585" top="255" width="1680" height="405">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="Box2d">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="15">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="49" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="585" top="645" width="3225" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="585" top="645" width="3225" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|A 2D rigid body simulation library.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="50" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="585" top="1725" width="2250" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="585" top="1725" width="2250" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="http://box2d.org/manual.pdf">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="URL">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="51" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="10095" top="7980" width="480" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10095" top="7980" width="1020" height="480">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="Force">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="15">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="52" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="585" top="1050" width="12420" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="585" top="1050" width="4305" height="690">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Box2d was adapted for vvvv so not all concepts of the original library apply or available here. Still the original manual makes for a good read to understand a few things:|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <INFO author="" description="" tags="">
+   </INFO>
+   </PATCH>
